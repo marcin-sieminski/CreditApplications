@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.Web", "CreditApplications.Web\CreditApplications.Web.csproj", "{8492EA57-8451-460B-8147-009935BFBD9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationServices", "ApplicationServices\ApplicationServices.csproj", "{09D91A15-713A-4932-9FF4-FE6C562DD7A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.ApplicationServices", "ApplicationServices\CreditApplications.ApplicationServices.csproj", "{09D91A15-713A-4932-9FF4-FE6C562DD7A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

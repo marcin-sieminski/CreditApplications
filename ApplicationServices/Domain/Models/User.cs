@@ -1,4 +1,4 @@
-﻿namespace ApplicationServices.API.Domain.Models;
+﻿namespace CreditApplications.ApplicationServices.Domain.Models;
 
 public class User
 {
