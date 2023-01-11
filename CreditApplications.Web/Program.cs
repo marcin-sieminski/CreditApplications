@@ -1,7 +1,11 @@
+using CreditApplications.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<CreditApplicationsDbContext>();
 
 var app = builder.Build();
 
