@@ -1,0 +1,8 @@
+﻿@model CreditApplications.Web.VewModels.HomePageViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="">
+    <p>Active credit applications: @Model.ActiveCreditApplicationsNumber</p>
+    <a asp-controller="CreditApplications" asp-action="Index" class="btn btn-primary">Refresh</a>
+</div>
