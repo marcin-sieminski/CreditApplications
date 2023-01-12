@@ -1,15 +1,10 @@
 ﻿using CreditApplications.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.DataAccess;
 
 public class CreditApplicationsDbContext : DbContext
 {
-    public CreditApplicationsDbContext() 
-    {
-    }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)

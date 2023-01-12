@@ -6,7 +6,7 @@ public class ProductType : EntityBase
 {
     [Required]
     [MaxLength(250)]
-    public string? ProductTypeName { get; set; }
+    public string ProductTypeName { get; set; }
 
     public virtual List<CreditApplication>? CreditApplications { get; set; }
 }

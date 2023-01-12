@@ -6,9 +6,8 @@ public class Document : EntityBase
 {
     [Required]
     [MaxLength(250)]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
-    [Required]
     [MaxLength(5000)]
     public string? Description { get; set; }
     

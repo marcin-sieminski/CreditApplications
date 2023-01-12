@@ -6,7 +6,7 @@ public class Department : EntityBase
 {
     [Required]
     [MaxLength(250)]
-    public string? DepartmentName { get; set; }
+    public string DepartmentName { get; set; }
 
     public virtual List<Employee>? Employees { get; set; }
 }
