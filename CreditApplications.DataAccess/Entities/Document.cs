@@ -2,15 +2,15 @@
 
 namespace CreditApplications.DataAccess.Entities;
 
-public class Customer : EntityBase
+public class Document : EntityBase
 {
     [Required]
-    [MaxLength(500)]
-    public string? CustomerFirstName { get; set; }
+    [MaxLength(250)]
+    public string? Name { get; set; }
 
     [Required]
-    [MaxLength(500)]
-    public string? CustomerLastName { get; set; }
-
+    [MaxLength(5000)]
+    public string? Description { get; set; }
+    
     public virtual List<CreditApplication>? CreditApplications { get; set; }
 }

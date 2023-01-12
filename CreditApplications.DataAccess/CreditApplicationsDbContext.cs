@@ -18,12 +18,12 @@ public class CreditApplicationsDbContext : DbContext
         }
     }
 
-    public DbSet<ApplicationStatus> ApplicationStatus => Set<ApplicationStatus>();
-    public DbSet<CreditApplication> CreditApplication => Set<CreditApplication>();
-    public DbSet<Customer> Customer => Set<Customer>();
-    public DbSet<Department> Department => Set<Department>();
-    public DbSet<Employee> Employee => Set<Employee>();
-    public DbSet<ProductType> ProductType => Set<ProductType>();
+    public DbSet<ApplicationStatus> ApplicationStatuses => Set<ApplicationStatus>();
+    public DbSet<CreditApplication> CreditApplications => Set<CreditApplication>();
+    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<Department> Departments => Set<Department>();
+    public DbSet<Employee> Employees => Set<Employee>();
+    public DbSet<ProductType> ProductTypes => Set<ProductType>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,7 +40,7 @@ public class CreditApplicationsDbContext : DbContext
                 case EntityState.Added:
                     entry.Entity.CreatedBy = string.Empty;
                     entry.Entity.Created = DateTime.UtcNow;
-                    entry.Entity.StatusId = 1;
+                    entry.Entity.IsActive = true;
                     break;
                 case EntityState.Modified:
                     entry.Entity.ModifiedBy = string.Empty;
@@ -51,7 +51,7 @@ public class CreditApplicationsDbContext : DbContext
                     entry.Entity.Modified = DateTime.UtcNow;
                     entry.Entity.Inactivated = DateTime.UtcNow;
                     entry.Entity.InactivatedBy = string.Empty;
-                    entry.Entity.StatusId = 0;
+                    entry.Entity.IsActive = false;
                     entry.State = EntityState.Modified;
                     break;
             }

@@ -2,11 +2,11 @@
 
 namespace CreditApplications.DataAccess.Entities;
 
-public class Department : EntityBase
+public class Role : EntityBase
 {
     [Required]
     [MaxLength(250)]
-    public string? DepartmentName { get; set; }
+    public string? RoleName { get; set; }
 
     public virtual List<Employee>? Employees { get; set; }
 }

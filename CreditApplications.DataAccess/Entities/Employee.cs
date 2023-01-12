@@ -11,7 +11,9 @@ public class Employee : EntityBase
     [MaxLength(100)]
     public string? LastName { get; set; }
     public int DepartmentId { get; set; }
-    public Department? Department { get; set; }
+    public virtual Department? Department { get; set; }
+    public int RoleId { get; set; }
+    public Role? Role { get; set; }
 
-    public List<CreditApplication>? CreditApplications { get; set; }
+    public virtual List<CreditApplication>? CreditApplications { get; set; }
 }
