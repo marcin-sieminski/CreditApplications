@@ -8,5 +8,5 @@ public class Role : EntityBase
     [MaxLength(250)]
     public string RoleName { get; set; }
 
-    public virtual List<Employee>? Employees { get; set; }
+    public virtual List<Employee> Employees { get; set; } = new List<Employee>();
 }

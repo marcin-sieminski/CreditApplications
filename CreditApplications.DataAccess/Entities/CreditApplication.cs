@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace CreditApplications.DataAccess.Entities;
 
@@ -18,16 +17,15 @@ public class CreditApplication : EntityBase
     [Required]
     public decimal AmountRequested { get; set; }
     public decimal? AmountGranted { get; set; }
-
-    public virtual List<Collateral>? Collaterals { get; set; }
-    public virtual List<Document>? Documents { get; set; }
-    
     [Required]
     public int ApplicationStatusId { get; set; }
     public virtual ApplicationStatus ApplicationStatus { get; set; }
     public DateTime DateOfLastStatusChange { get; set; }
-    public int? EmployeeId { get; set; }
-    public virtual Employee? Employee { get; set; }
     [MaxLength(3000)]
     public string? Notes { get; set; }
+
+    public virtual List<Employee> Employees { get; set; } = new List<Employee>();
+    public virtual List<Collateral> Collaterals { get; set; } = new List<Collateral>();
+    public virtual List<Document> Documents { get; set; } = new List<Document>();
+
 }

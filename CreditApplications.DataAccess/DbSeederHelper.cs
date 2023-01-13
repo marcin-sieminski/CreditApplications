@@ -56,7 +56,6 @@ public static class DbSeederHelper
             AmountGranted = 50000M,
             ApplicationStatusId = 1,
             DateOfLastStatusChange = DateTime.Today,
-            EmployeeId = 1,
             Notes = string.Empty,
             IsActive = true
         });

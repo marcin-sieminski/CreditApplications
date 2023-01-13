@@ -11,5 +11,5 @@ public class Document : EntityBase
     [MaxLength(5000)]
     public string? Description { get; set; }
     
-    public virtual List<CreditApplication>? CreditApplications { get; set; }
+    public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
 }

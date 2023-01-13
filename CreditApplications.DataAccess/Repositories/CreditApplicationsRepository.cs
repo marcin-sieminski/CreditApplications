@@ -19,7 +19,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         return _entities
             .Include(x => x.Customer)
             .Include(x => x.ApplicationStatus)
-            .Include(x => x.Employee)
+            .Include(x => x.Employees)
             .Include(x => x.ProductType)
             .ToListAsync();
     }
@@ -28,7 +28,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
     {
         return _entities
             .Include(x => x.Customer)
-            .Include(x => x.Employee)
+            .Include(x => x.Employees)
             .Include(x => x.ApplicationStatus)
             .Include(x => x.ProductType)
             .SingleOrDefaultAsync(e => e.Id == id);

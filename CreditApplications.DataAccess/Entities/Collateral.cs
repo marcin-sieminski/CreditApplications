@@ -13,6 +13,6 @@ namespace CreditApplications.DataAccess.Entities
         
         public int? Value { get; set; }
 
-        public virtual List<CreditApplication>? CreditApplications { get; set; }
+        public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
     }
 }

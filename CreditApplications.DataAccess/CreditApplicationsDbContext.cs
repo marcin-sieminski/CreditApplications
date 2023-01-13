@@ -1,5 +1,6 @@
 ﻿using CreditApplications.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CreditApplications.DataAccess;
 
@@ -9,7 +10,8 @@ public class CreditApplicationsDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=CreditApplications;Integrated Security=True;Encrypt=False");
+            optionsBuilder.UseSqlServer(
+                "Data Source=.\\SQLEXPRESS;Initial Catalog=CreditApplications;Integrated Security=True;Encrypt=False");
         }
     }
 
@@ -24,7 +26,31 @@ public class CreditApplicationsDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         DbSeederHelper.DbSeeder(modelBuilder);
+
+        modelBuilder.Entity<CreditApplication>(eb =>
+            eb.HasOne(o => o.Customer)
+                .WithMany(m => m.CreditApplications)
+                .HasForeignKey(fk => fk.CustomerId)
+                );
+
+        modelBuilder.Entity<CreditApplication>(eb =>
+            eb.HasMany(m => m.Employees)
+                .WithMany(m => m.CreditApplications)
+                .UsingEntity<CreditApplicationEmployee>(
+                    m => m.HasOne(o => o.Employee)
+                        .WithMany()
+                        .HasForeignKey(fk => fk.EmployeeId),
+                    m => m.HasOne(o => o.CreditApplication)
+                        .WithMany()
+                        .HasForeignKey(fk => fk.CreditApplicationId),
+
+                    pk =>
+                    {
+                        pk.HasKey(x => x.Id);
+                    }
+                ));
     }
+
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
@@ -51,6 +77,7 @@ public class CreditApplicationsDbContext : DbContext
                     break;
             }
         }
+
         return base.SaveChangesAsync(cancellationToken);
     }
 }

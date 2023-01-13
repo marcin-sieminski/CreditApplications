@@ -12,5 +12,5 @@ public class Customer : EntityBase
     [MaxLength(500)]
     public string CustomerLastName { get; set; }
 
-    public virtual List<CreditApplication>? CreditApplications { get; set; }
+    public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
 }

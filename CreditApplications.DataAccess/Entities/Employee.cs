@@ -13,7 +13,7 @@ public class Employee : EntityBase
     public int DepartmentId { get; set; }
     public virtual Department Department { get; set; }
     public int RoleId { get; set; }
-    public Role Role { get; set; }
+    public virtual Role Role { get; set; }
 
-    public virtual List<CreditApplication>? CreditApplications { get; set; }
+    public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
 }
