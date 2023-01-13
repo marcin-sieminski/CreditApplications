@@ -22,6 +22,36 @@ namespace CreditApplications.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CollateralCreditApplication", b =>
+                {
+                    b.Property<int>("CollateralsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreditApplicationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CollateralsId", "CreditApplicationsId");
+
+                    b.HasIndex("CreditApplicationsId");
+
+                    b.ToTable("CollateralCreditApplication");
+                });
+
+            modelBuilder.Entity("CreditApplicationDocument", b =>
+                {
+                    b.Property<int>("CreditApplicationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DocumentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CreditApplicationsId", "DocumentsId");
+
+                    b.HasIndex("DocumentsId");
+
+                    b.ToTable("CreditApplicationDocument");
+                });
+
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ApplicationStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -40,11 +70,14 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -52,21 +85,55 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StatusId")
+                    b.HasKey("Id");
+
+                    b.ToTable("ApplicationStatuses");
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Collateral", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Inactivated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InactivatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int?>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ApplicationStatusName = "Initial check",
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StatusId = 0
-                        });
+                    b.ToTable("Collateral");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplication", b =>
@@ -77,7 +144,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("AmountGranted")
+                    b.Property<decimal?>("AmountGranted")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("AmountRequested")
@@ -93,6 +160,7 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Currency")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CustomerId")
@@ -104,16 +172,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime>("DateOfSubmission")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
@@ -129,38 +194,41 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationStatusId");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("CreditApplications");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AmountGranted = 50000m,
-                            AmountRequested = 100000m,
-                            ApplicationStatusId = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerId = 1,
-                            DateOfLastStatusChange = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            DateOfSubmission = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            EmployeeId = 1,
-                            IsActive = true,
-                            Notes = "",
-                            ProductTypeId = 1,
-                            StatusId = 0
-                        });
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplicationEmployee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreditApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreditApplicationId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("CreditApplicationEmployee");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Customer", b =>
@@ -187,11 +255,14 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -199,30 +270,9 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerFirstName = "Anna",
-                            CustomerLastName = "Cabacka",
-                            StatusId = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerFirstName = "Marcin",
-                            CustomerLastName = "Kowalski",
-                            StatusId = 0
-                        });
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Department", b =>
@@ -244,11 +294,14 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -256,21 +309,52 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentName = "Control",
-                            StatusId = 0
-                        });
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Document", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Inactivated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InactivatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Document");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Employee", b =>
@@ -295,11 +379,14 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -312,25 +399,16 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StatusId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Employees");
+                    b.HasIndex("RoleId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            FirstName = "Adam",
-                            LastName = "Abacki",
-                            StatusId = 0
-                        });
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>
@@ -347,11 +425,14 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Inactivated")
+                    b.Property<DateTime>("Inactivated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InactivatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -364,21 +445,78 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProductTypeName = "Overdraft",
-                            StatusId = 0
-                        });
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Inactivated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InactivatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+                });
+
+            modelBuilder.Entity("CollateralCreditApplication", b =>
+                {
+                    b.HasOne("CreditApplications.DataAccess.Entities.Collateral", null)
+                        .WithMany()
+                        .HasForeignKey("CollateralsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CreditApplications.DataAccess.Entities.CreditApplication", null)
+                        .WithMany()
+                        .HasForeignKey("CreditApplicationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CreditApplicationDocument", b =>
+                {
+                    b.HasOne("CreditApplications.DataAccess.Entities.CreditApplication", null)
+                        .WithMany()
+                        .HasForeignKey("CreditApplicationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CreditApplications.DataAccess.Entities.Document", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplication", b =>
@@ -395,12 +533,6 @@ namespace CreditApplications.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CreditApplications.DataAccess.Entities.Employee", "Employee")
-                        .WithMany("CreditApplications")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CreditApplications.DataAccess.Entities.ProductType", "ProductType")
                         .WithMany("CreditApplications")
                         .HasForeignKey("ProductTypeId")
@@ -411,9 +543,26 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Employee");
-
                     b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplicationEmployee", b =>
+                {
+                    b.HasOne("CreditApplications.DataAccess.Entities.CreditApplication", "CreditApplication")
+                        .WithMany()
+                        .HasForeignKey("CreditApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CreditApplications.DataAccess.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreditApplication");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Employee", b =>
@@ -424,7 +573,15 @@ namespace CreditApplications.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CreditApplications.DataAccess.Entities.Role", "Role")
+                        .WithMany("Employees")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ApplicationStatus", b =>
@@ -442,14 +599,14 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Employee", b =>
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>
                 {
                     b.Navigation("CreditApplications");
                 });
 
-            modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Role", b =>
                 {
-                    b.Navigation("CreditApplications");
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,7 +25,6 @@ public class CreditApplicationsDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        DbSeederHelper.DbSeeder(modelBuilder);
 
         modelBuilder.Entity<CreditApplication>(eb =>
             eb.HasOne(o => o.Customer)
