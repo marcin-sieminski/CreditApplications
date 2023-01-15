@@ -6,7 +6,7 @@ public interface ICreditApplication
 {
     Task<List<CreditApplication>> GetAll();
     Task<CreditApplication?> GetById(int id);
-    Task Insert(CreditApplication entity);
-    Task Update(CreditApplication entity);
-    Task Delete(int id);
+    Task<int> Insert(CreditApplication entity);
+    Task<int> Update(CreditApplication entity);
+    Task<int> Delete(int id);
 }

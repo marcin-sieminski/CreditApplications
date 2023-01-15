@@ -1,3 +1,4 @@
+using CreditApplications.ApplicationServices.Mappings;
 using CreditApplications.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
 builder.Services.AddDbContext<CreditApplicationsDbContext>();
 
 var app = builder.Build();

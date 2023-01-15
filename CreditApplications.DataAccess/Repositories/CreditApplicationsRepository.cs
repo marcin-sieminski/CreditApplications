@@ -45,7 +45,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<Task<int>> Update(CreditApplication entity)
+    public async Task<int> Update(CreditApplication entity)
     {
         if (entity == null)
         {
@@ -53,10 +53,10 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         }
 
         _entities.Update(entity);
-        return _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
     }
 
-    public async Task<Task<int>> Delete(int id)
+    public async Task<int> Delete(int id)
     {
         CreditApplication? entity = _entities.SingleOrDefault(e => e.Id == id);
         if (entity == null)
@@ -65,11 +65,11 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         }
 
         _entities.Remove(entity);
-        return _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
     }
 
-    public int GetActiveApplicationsNumber
+    public async Task<int> GetActiveApplicationsNumber()
     {
-        get => _entities.Count(x => x!.IsActive == true);
+        return await _entities.CountAsync(x => x!.IsActive == true);
     }
 }

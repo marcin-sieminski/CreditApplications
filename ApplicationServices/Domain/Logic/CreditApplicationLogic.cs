@@ -1,4 +1,5 @@
-﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
+﻿using AutoMapper;
+using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.DataAccess.Repositories;
 
@@ -7,34 +8,50 @@ namespace CreditApplications.ApplicationServices.Domain.Logic;
 public class CreditApplicationLogic : ICreditApplication
 {
     private readonly CreditApplicationsRepository _repository;
+    private readonly IMapper _mapper;
 
-    public CreditApplicationLogic(CreditApplicationsRepository repository)
+    public CreditApplicationLogic(CreditApplicationsRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<List<CreditApplication>> GetAll()
     {
-        throw new NotImplementedException();
+        var creditApplicationsFromDb = await _repository.GetAll();
+        var creditApplications = _mapper.Map<List<CreditApplication>>(creditApplicationsFromDb);
+        return creditApplications;
     }
 
-    public Task<CreditApplication> GetById(int id)
+    public async Task<CreditApplication> GetById(int id)
     {
-        throw new NotImplementedException();
+        var creditApplicationFromDb = await _repository.GetById(id);
+        var creditApplication = _mapper.Map<CreditApplication>(creditApplicationFromDb);
+        return creditApplication;
     }
 
-    public Task Insert(CreditApplication entity)
+    public async Task<int> Insert(CreditApplication entity)
     {
-        throw new NotImplementedException();
+        var creditApplicationForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
+        var id = await _repository.Insert(creditApplicationForDb);
+        return id;
     }
 
-    public Task Update(CreditApplication entity)
+    public async Task<int> Update(CreditApplication entity)
     {
-        throw new NotImplementedException();
+        var creditApplicationForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
+        var id = await _repository.Update(creditApplicationForDb);
+        return id;
     }
 
-    public Task Delete(int id)
+    public async Task<int> Delete(int id)
     {
-        throw new NotImplementedException();
+        var idDeleted = await _repository.Delete(id);
+        return idDeleted;
+    }
+
+    public async Task<int> GetActiveApplicationsNumber()
+    {
+        return await GetActiveApplicationsNumber();
     }
 }
