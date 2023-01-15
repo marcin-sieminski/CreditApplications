@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CreditApplications.DataAccess\CreditApplications.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

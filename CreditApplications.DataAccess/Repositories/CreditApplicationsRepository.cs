@@ -6,7 +6,7 @@ namespace CreditApplications.DataAccess.Repositories;
 public class CreditApplicationsRepository : IRepository<CreditApplication>
 {
     private readonly CreditApplicationsDbContext _context;
-    private readonly DbSet<CreditApplication> _entities;
+    private readonly DbSet<CreditApplication?> _entities;
 
     public CreditApplicationsRepository(CreditApplicationsDbContext context)
     {
@@ -14,9 +14,9 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         _entities = context.Set<CreditApplication>();
     }
 
-    public Task<List<CreditApplication>> GetAll()
+    public async Task<List<CreditApplication>> GetAll()
     {
-        return _entities
+        return await _entities
             .Include(x => x.Customer)
             .Include(x => x.ApplicationStatus)
             .Include(x => x.Employees)
@@ -24,9 +24,9 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
             .ToListAsync();
     }
 
-    public Task<CreditApplication> GetById(int id)
+    public async Task<CreditApplication?> GetById(int id)
     {
-        return _entities
+        return await _entities
             .Include(x => x.Customer)
             .Include(x => x.Employees)
             .Include(x => x.ApplicationStatus)
@@ -34,7 +34,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public Task Insert(CreditApplication entity)
+    public async Task<int> Insert(CreditApplication entity)
     {
         if (entity == null)
         {
@@ -42,10 +42,10 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         }
 
         _entities.Add(entity);
-        return _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
     }
 
-    public Task Update(CreditApplication entity)
+    public async Task<Task<int>> Update(CreditApplication entity)
     {
         if (entity == null)
         {
@@ -56,9 +56,9 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         return _context.SaveChangesAsync();
     }
 
-    public Task Delete(int id)
+    public async Task<Task<int>> Delete(int id)
     {
-        CreditApplication entity = _entities.SingleOrDefault(e => e.Id == id);
+        CreditApplication? entity = _entities.SingleOrDefault(e => e.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
@@ -70,6 +70,6 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
 
     public int GetActiveApplicationsNumber
     {
-        get => _entities.Count(x => x.IsActive == true);
+        get => _entities.Count(x => x!.IsActive == true);
     }
 }

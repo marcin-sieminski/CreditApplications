@@ -1,6 +1,6 @@
-namespace CreditApplications.Web.VewModels;
+namespace CreditApplications.Web.ViewModels;
 
     public class CreditApplicationListViewModel
     {
-        //public List<CreditApplicationSystem.ApplicationServices.API.Domain.Models.CreditApplication> CreditApplications { get; set; }
+        public List<CreditApplicationViewModel> CreditApplications { get; set; }
     }
