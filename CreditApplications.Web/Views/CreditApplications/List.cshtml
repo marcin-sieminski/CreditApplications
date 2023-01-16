@@ -1,11 +1,12 @@
-﻿@*@model CreditApplicationListViewModel;
+﻿@model CreditApplications.Web.ViewModels.CreditApplicationListViewModel;
 @{
-    ViewBag.Title = "Credit applications";
+    ViewBag.Title = "List";
     Layout = "_Layout";
 }
 <h3>Credit applications</h3>
 <hr />
-
+<a asp-action="Create" class="btn btn-secondary" role="button">Add credit new application</a>
+<hr />
 <div class="container-fluid">
 
     <div class="row">
@@ -15,33 +16,39 @@
                 <th>Id</th>
                 <th>Customer</th>
                 <th>Product type</th>
+                <th>Currency</th>
                 <th>Amount requested</th>
                 <th>Amount granted</th>
-                <th>Employee</th>
                 <th>Date of submission</th>
                 <th>Status</th>
                 <th>Date of status change</th>
                 <th>Notes</th>
+                <th>Employee</th>
+                <th>Actions</th>
             </tr>
 
             @foreach (var creditApplication in Model.CreditApplications)
             {
-
                 <tr>
                     <td><a asp-controller="CreditApplications" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></td>
-                    <td>@creditApplication.CustomerFirstName @creditApplication.CustomerLastName</td>
+                    <td>@creditApplication.CustomerFullName</td>
                     <td>@creditApplication.ProductTypeName</td>
+                    <td>@creditApplication.Currency</td>
                     <td>@creditApplication.AmountRequested</td>
                     <td>@creditApplication.AmountGranted</td>
-                    <td>@creditApplication.EmployeeFirstName @creditApplication.EmployeeLastName</td>
                     <td>@creditApplication.DateOfSubmission</td>
                     <td>@creditApplication.ApplicationStatus</td>
                     <td>@creditApplication.DateOfLastStatusChange</td>
                     <td>@creditApplication.Notes</td>
-                </tr>
+                    <td>@creditApplication.EmployeeFullName</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@creditApplication.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@creditApplication.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@creditApplication.Id">Delete</a>
+                    </td>
 
+                </tr>
             }
         </table>
     </div>
 </div>
-*@

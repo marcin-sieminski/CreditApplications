@@ -9,4 +9,5 @@ public interface IRepository<T> where T : EntityBase
     Task<int> Insert(T entity);
     Task<int> Update(T entity);
     Task<int> Delete(int id);
+    Task<int> GetCount();
 }

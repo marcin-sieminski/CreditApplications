@@ -6,13 +6,9 @@ namespace CreditApplications.DataAccess;
 
 public class CreditApplicationsDbContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public CreditApplicationsDbContext(DbContextOptions<CreditApplicationsDbContext> options) : base(options)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(
-                "Data Source=.\\SQLEXPRESS;Initial Catalog=CreditApplications;Integrated Security=True;Encrypt=False");
-        }
+        
     }
 
     public DbSet<ApplicationStatus> ApplicationStatuses => Set<ApplicationStatus>();

@@ -1,13 +1,23 @@
+using CreditApplications.ApplicationServices.Domain.Interfaces;
+using CreditApplications.ApplicationServices.Domain.Logic;
 using CreditApplications.ApplicationServices.Mappings;
 using CreditApplications.DataAccess;
+using CreditApplications.DataAccess.Entities;
+using CreditApplications.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
-builder.Services.AddDbContext<CreditApplicationsDbContext>();
+builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
+{
+    cfg.UseSqlServer(builder.Configuration.GetConnectionString("CreditApplicationsConnection")).EnableSensitiveDataLogging();
+});
+builder.Services.AddScoped<IRepository<CreditApplication>, CreditApplicationsRepository>();
+builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
 
 var app = builder.Build();
 

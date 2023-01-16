@@ -68,7 +68,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<int> GetActiveApplicationsNumber()
+    public async Task<int> GetCount()
     {
         return await _entities.CountAsync(x => x!.IsActive == true);
     }

@@ -23,7 +23,6 @@ public class CreditApplicationViewModel
         {
             Id = model.Id,
             DateOfSubmission = model.DateOfSubmission,
-            CustomerId = model.CustomerId,
             CustomerFullName = $"{model.CustomerFirstName} {model.CustomerLastName}",
             ProductTypeName = model.ProductTypeName,
             Currency = model.Currency,
@@ -31,7 +30,7 @@ public class CreditApplicationViewModel
             AmountGranted = model.AmountGranted,
             ApplicationStatus = model.ApplicationStatus,
             DateOfLastStatusChange = model.DateOfLastStatusChange,
-            EmployeeFullName = $"{model.EmployeeFirstName} {model.CustomerLastName}",
+            EmployeeFullName = $"{model.EmployeeFirstName} {model.EmployeeLastName}",
             Notes = model.Notes
         };
     }
@@ -42,7 +41,6 @@ public class CreditApplicationViewModel
         {
             Id = Id,
             DateOfSubmission = DateOfSubmission,
-            CustomerId = CustomerId,
             ProductTypeName = ProductTypeName,
             Currency = Currency,
             AmountRequested = AmountRequested,

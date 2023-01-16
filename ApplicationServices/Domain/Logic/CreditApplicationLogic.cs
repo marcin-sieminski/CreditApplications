@@ -5,12 +5,12 @@ using CreditApplications.DataAccess.Repositories;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
-public class CreditApplicationLogic : ICreditApplication
+public class CreditApplicationLogic : ICreditApplicationLogic
 {
-    private readonly CreditApplicationsRepository _repository;
+    private readonly IRepository<DataAccess.Entities.CreditApplication> _repository;
     private readonly IMapper _mapper;
 
-    public CreditApplicationLogic(CreditApplicationsRepository repository, IMapper mapper)
+    public CreditApplicationLogic(IRepository<DataAccess.Entities.CreditApplication> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -50,8 +50,8 @@ public class CreditApplicationLogic : ICreditApplication
         return idDeleted;
     }
 
-    public async Task<int> GetActiveApplicationsNumber()
+    public async Task<int> GetCount()
     {
-        return await GetActiveApplicationsNumber();
+        return await _repository.GetCount();
     }
 }
