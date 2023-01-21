@@ -1,0 +1,14 @@
+﻿@model CreditApplications.Web.ViewModels.CreditApplicationViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h3>Credit application edit</h3>
+<hr/>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

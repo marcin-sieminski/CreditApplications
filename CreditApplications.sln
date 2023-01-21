@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.DataAccess", "CreditApplications.DataAccess\CreditApplications.DataAccess.csproj", "{62D6095D-679D-4E64-A983-3C87F65A90F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplications.WebAPI", "CreditApplications.WebAPI\CreditApplications.WebAPI.csproj", "{3180506D-D421-4ECA-917E-EE2344685546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.WebAPI", "CreditApplications.WebAPI\CreditApplications.WebAPI.csproj", "{3180506D-D421-4ECA-917E-EE2344685546}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

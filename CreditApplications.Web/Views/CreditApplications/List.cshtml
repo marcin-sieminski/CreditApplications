@@ -1,11 +1,11 @@
 ﻿@model CreditApplications.Web.ViewModels.CreditApplicationListViewModel;
 @{
-    ViewBag.Title = "List";
+    ViewData["Title"] = "List";
     Layout = "_Layout";
 }
 <h3>Credit applications</h3>
 <hr />
-<a asp-action="Create" class="btn btn-secondary" role="button">Add credit new application</a>
+<a asp-action="Create" class="btn btn-secondary" role="button">Add new credit application</a>
 <hr />
 <div class="container-fluid">
 
@@ -43,9 +43,9 @@
                     <td>@creditApplication.EmployeeFullName</td>
                     <td>
                         <a asp-action="Details" asp-route-id="@creditApplication.Id">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@creditApplication.Id">Edit</a> |
+@*                        <a asp-action="Edit" asp-route-id="@creditApplication.Id">Edit</a> |
                         <a asp-action="Delete" asp-route-id="@creditApplication.Id">Delete</a>
-                    </td>
+*@                    </td>
 
                 </tr>
             }

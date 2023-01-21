@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CreditApplications.Web.Views.CreditApplications.Partials
+namespace CreditApplications.Web.Views.CreditApplications
 {
-    public class ApplicationDetailsPartialModel : PageModel
+    public class CreateModel : PageModel
     {
         public void OnGet()
         {
