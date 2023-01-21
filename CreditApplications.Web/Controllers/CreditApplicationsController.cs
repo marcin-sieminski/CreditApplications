@@ -39,11 +39,8 @@ public class CreditApplicationsController : Controller
         try
         {
             var models = await _creditApplicationLogic.GetAll();
-            var viewModels = models.Select(model => new CreditApplicationViewModel(model)).ToList();
-            var viewModel = new CreditApplicationListViewModel
-            {
-                CreditApplications = viewModels
-            };
+            var viewModel = models.Select(model => new CreditApplicationViewModel(model)).ToList();
+            
             return View(viewModel);
         }
         catch (Exception e)
@@ -58,7 +55,9 @@ public class CreditApplicationsController : Controller
     {
         try
         {
-            return View();
+            var model = await _creditApplicationLogic.GetById(id);
+            var viewModel = new CreditApplicationViewModel(model);
+            return View(viewModel);
         }
         catch (Exception e)
         {
@@ -99,29 +98,39 @@ public class CreditApplicationsController : Controller
             return View("NotFound");
         }
 
-        return View(CreditApplicationViewModel.FromModel(creditApplicationModel));
+        return View(new CreditApplicationViewModel(creditApplicationModel));
     }
 
-    // POST: ProductsData/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, ProductModel product)
+    public async Task<IActionResult> Edit(int id, CreditApplicationViewModel viewModel)
     {
-        if (id != product.Id) return View("NotFound");
+        if (id != viewModel.Id) return View("NotFound");
 
         if (ModelState.IsValid)
         {
-            await _productLogic.UpdateProduct(product);
-
-            return RedirectToAction(nameof(Index));
+            await _creditApplicationLogic.Update(viewModel.ToModel());
+            return RedirectToAction(nameof(List));
         }
 
-        await _productLogic.GetAvailableCategories(product);
-        return View(product);
+        return View(viewModel);
     }
 
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null) return View("NotFound");
+        var model = await _creditApplicationLogic.GetById(id.Value);
+        if (model == null) return View("NotFound");
+        return View(new CreditApplicationViewModel(model));
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _creditApplicationLogic.Delete(id);
+        return RedirectToAction(nameof(List));
+    }
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -18,6 +18,7 @@ builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
 });
 builder.Services.AddScoped<IRepository<CreditApplication>, CreditApplicationsRepository>();
 builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
+builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
 
 var app = builder.Build();
 
@@ -44,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=creditapplications}/{action=index}/{id?}");
+    pattern: "{controller=CreditApplications}/{action=Index}/{id?}");
 
 app.Run();

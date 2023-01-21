@@ -5,51 +5,92 @@
     Layout = "_Layout";
 }
 
-<h3>Credit application details</h3>
-<hr/>
-<table class="table table-sm table-bordered table-hover table-striped">
-    <tr>
-        <td>Id</td>
-        <td>@Model.Id</td>
-    </tr>
-    <tr>
-        <td>Date of submission</td>
-        <td>@Model.DateOfSubmission</td>
-    </tr>
-    <tr>
-        <td>Customer</td>
-        <td>@Model.CustomerFirstName @Model.CustomerLastName</td>
-    </tr>
-    <tr>
-        <td>Product type</td>
-        <td>@Model.ProductTypeName</td>
-    </tr>
-    <tr>
-        <td>Amount requested</td>
-        <td>@Model.AmountRequested</td>
-    </tr>
-    <tr>
-        <td>Amount granted</td>
-        <td>@Model.AmountGranted</td>
-    </tr>
-    <tr>
-        <td>Employee</td>
-        <td>@Model.EmployeeFirstName @Model.EmployeeLastName</td>
-    </tr>
-    <tr>
-        <td>Status</td>
-        <td>@Model.ApplicationStatus</td>
-    </tr>
-    <tr>
-        <td>Date of status change</td>
-        <td>@Model.DateOfLastStatusChange</td>
-    </tr>
-    <tr>
-        <td>Notes</td>
-        <td>@Model.Notes</td>
-    </tr>
-</table>
+<div>
+    <h3>Credit application details</h3>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfSubmission)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfSubmission)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerFirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerLastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductTypeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductTypeName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AmountRequested)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AmountRequested)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AmountGranted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AmountGranted)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfLastStatusChange)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfLastStatusChange)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeFirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeFirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeLastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeLastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+    </dl>
+</div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model!.Id">Edit</a> |
-    <a asp-action="Index">Back to Product List</a>
+    <a asp-action="List">Back to list</a>
 </div>
