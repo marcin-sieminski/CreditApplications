@@ -4,7 +4,6 @@ using CreditApplications.DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using CartItem = CreditApplications.ApplicationServices.Domain.Models.CartItem;
-using CreditApplication = CreditApplications.ApplicationServices.Domain.Models.CreditApplication;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
@@ -80,4 +79,11 @@ public class CartLogic : ICartLogic
             _context.SaveChanges();
         }
     }
+
+    public async Task<int> GetCount()
+    {
+        var count = await _context.CartItems.Where(x => x.SessionId == CartSessionId).CountAsync();
+        return count;
+    }
+
 }

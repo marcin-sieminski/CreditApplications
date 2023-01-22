@@ -10,9 +10,11 @@ public class CreditApplicationProfile : Profile
             .ForMember(x => x.CustomerFirstName, y => y.MapFrom(z => z.Customer.CustomerFirstName))
             .ForMember(x => x.CustomerLastName, y => y.MapFrom(z => z.Customer.CustomerLastName))
             .ForMember(x => x.ProductTypeName, y => y.MapFrom(z => z.ProductType.ProductTypeName))
-            .ForMember(x => x.ApplicationStatus, y => y.MapFrom(z => z.ApplicationStatus.ApplicationStatusName));
+            .ForMember(x => x.ApplicationStatus, y => y.MapFrom(z => z.ApplicationStatus.ApplicationStatusName))
+            .ForMember(x => x.ProductTypeId, y =>y.MapFrom(z => z.ProductTypeId));
 
-        CreateMap<Domain.Models.CreditApplication, DataAccess.Entities.CreditApplication>();
+        CreateMap<Domain.Models.CreditApplication, DataAccess.Entities.CreditApplication>()
+            .ForMember(x => x.ProductTypeId, y => y.MapFrom(z => z.ProductTypeId));
 
     }
 }

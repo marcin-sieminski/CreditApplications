@@ -9,7 +9,7 @@ public class Document : EntityBase
     public string Name { get; set; }
 
     [MaxLength(5000)]
-    public string? Description { get; set; }
+    public string Description { get; set; }
     
     public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
 }

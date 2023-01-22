@@ -9,7 +9,7 @@ namespace CreditApplications.DataAccess.Entities
         public string Name { get; set; }
         
         [MaxLength(5000)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
         
         public int? Value { get; set; }
 

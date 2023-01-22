@@ -45,7 +45,12 @@ public class CustomersRepository : IRepository<Customer>
         {
             throw new ArgumentNullException("entity");
         }
-
+        var dbEntity = _context.Customers.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        if (dbEntity is not null)
+        {
+            entity.Created = dbEntity.Created;
+            entity.CreatedBy = dbEntity.CreatedBy;
+        }
         _entities.Update(entity);
         return await _context.SaveChangesAsync();
     }

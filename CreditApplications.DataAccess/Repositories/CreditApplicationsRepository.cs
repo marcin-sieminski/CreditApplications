@@ -6,7 +6,7 @@ namespace CreditApplications.DataAccess.Repositories;
 public class CreditApplicationsRepository : IRepository<CreditApplication>
 {
     private readonly CreditApplicationsDbContext _context;
-    private readonly DbSet<CreditApplication?> _entities;
+    private readonly DbSet<CreditApplication> _entities;
 
     public CreditApplicationsRepository(CreditApplicationsDbContext context)
     {
@@ -25,7 +25,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
             .ToListAsync();
     }
 
-    public async Task<CreditApplication?> GetById(int id)
+    public async Task<CreditApplication> GetById(int id)
     {
         return await _entities
             .Where(x => x.IsActive)
@@ -53,6 +53,12 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
         {
             throw new ArgumentNullException("entity");
         }
+        var dbEntity = _context.CreditApplications.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        if (dbEntity is not null)
+        {
+            entity.Created = dbEntity.Created;
+            entity.CreatedBy = dbEntity.CreatedBy;
+        }
 
         _entities.Update(entity);
         return await _context.SaveChangesAsync();
@@ -60,7 +66,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
 
     public async Task<int> Delete(int id)
     {
-        CreditApplication? entity = _entities.SingleOrDefault(e => e.Id == id);
+        CreditApplication entity = _entities.SingleOrDefault(e => e.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException("entity");

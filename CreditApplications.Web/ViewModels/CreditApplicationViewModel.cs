@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using CreditApplications.ApplicationServices.Domain.Models;
+using CreditApplications.DataAccess.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using CreditApplication = CreditApplications.ApplicationServices.Domain.Models.CreditApplication;
 
 namespace CreditApplications.Web.ViewModels;
 
@@ -8,56 +10,120 @@ public class CreditApplicationViewModel
 {
     [DisplayName("Id")]
     public int Id { get; set; }
-    
+
+    [DisplayName("Customer")]
+    public int CustomerId { get; set; }
+
+    [DisplayName("Customer first name")]
+    public string CustomerFirstName { get; set; }
+
+    [DisplayName("Customer last name")]
+    public string CustomerLastName { get; set; }
+
+
+    [DisplayName("Customer name")]
+    public string CustomerFullName { get; set; }
+
+    public List<SelectListItem> AvailableCustomersSelectList { get; set; } = new();
+
+
+    [DisplayName("Product type")]
+    public int ProductTypeId { get; set; }
+
+    public string ProductTypeName { get; set; }
+
+    public List<SelectListItem> AvailableProductTypesSelectList { get; set; } = new();
+
+    public string Currency { get; set; }
+
+    [DisplayName("Amount requested")]
+    [Required]
+    [Range(0, 100000000, ErrorMessage = "Value for {0} must be between {1:C} and {2:C}")]
+    [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+    public decimal AmountRequested { get; set; }
+
+    [DisplayName("Amount granted")]
+    [Required]
+    [Range(0, 100000000, ErrorMessage = "Value for {0} must be between {1:C} and {2:C}")]
+    [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+    public decimal AmountGranted { get; set; }
+
     [DisplayName("Submission")]
     [Required(ErrorMessage = "Please provide date of submission.")]
     public DateTime DateOfSubmission { get; set; }
-    
-    public int CustomerId { get; set; }
-    
-    [DisplayName("Customer first name")]
-    public string CustomerFirstName { get; set; }
-    
-    [DisplayName("Customer last name")]
-    public string CustomerLastName { get; set; }
-    
-    
-    [DisplayName("Customer name")]
-    public string CustomerFullName { get; set; }
-    
-    
-    [DisplayName("Product type")]
-    public string ProductTypeName { get; set; }
-    
-    public string Currency { get; set; }
-    
-    [DisplayName("Amount requested")]
-    [Required]
-    [DataType(DataType.Currency)]
-    [Range(0.00, 100000000.00, ErrorMessage = "Value for {0} must be between {1:C} and {2:C}")]
-    public decimal AmountRequested { get; set; }
-    
-    [DisplayName("Amount granted")]
-    [Required]
-    [DataType(DataType.Currency)]
-    [Range(0.00, 100000000.00, ErrorMessage = "Value for {0} must be between {1:C} and {2:C}")]
-    public decimal AmountGranted { get; set; }
-    
+
     [DisplayName("Status")]
     public string ApplicationStatus { get; set; }
-    
+
+    public List<SelectListItem> AvailableApplicationStatusesSelectList { get; set; } = new();
+
     [DisplayName("Last status change")]
     public DateTime DateOfLastStatusChange { get; set; }
-    
+
+    [DisplayName("Employee")]
+    public int EmployeeId { get; set; }
+
     [DisplayName("Employee first name")]
     public string EmployeeFirstName { get; set; }
-    
+
     [DisplayName("Employee last name")]
     public string EmployeeLastName { get; set; }
-    
-    [DisplayName("Nones")] 
+
+    public List<SelectListItem> AvailableEmployeesSelectList { get; set; } = new();
+
+
+    [DisplayName("Nones")]
     public string Notes { get; set; }
 
+    public List<CreditApplications.DataAccess.Entities.Customer> AvailableCustomers { get; set; } = new();
+    public List<ProductType> AvailableProductTypes { get; set; } = new();
+    public List<ApplicationStatus> AvailableApplicationStatuses { get; set; } = new();
+    public List<Employee> AvailableEmployees { get; set; } = new();
+
+    public void Initialize()
+    {
+        AvailableCustomersSelectList = GetAvailableCustomers();
+        AvailableProductTypesSelectList = GetAvailableProductTypes();
+        AvailableApplicationStatusesSelectList = GetAvailableApplicationStatuses();
+        AvailableEmployeesSelectList = GetAvailableEmployees();
+    }
+
+    private List<SelectListItem> GetAvailableEmployees()
+    {
+        var returnList = new List<SelectListItem> { new("None", "") };
+        var availableList = AvailableEmployees.Select(x => new SelectListItem($"{x.FirstName} {x.LastName}", x.Id.ToString())).ToList();
+        returnList.AddRange(availableList);
+        return returnList;
+    }
+
+    private List<SelectListItem> GetAvailableApplicationStatuses()
+    {
+        var returnList = new List<SelectListItem> { new("None", "") };
+        var availableList = AvailableApplicationStatuses.Select(x => new SelectListItem(x.ApplicationStatusName, x.Id.ToString())).ToList();
+        returnList.AddRange(availableList);
+        return returnList;
+    }
+
+    private List<SelectListItem> GetAvailableProductTypes()
+    {
+        var returnList = new List<SelectListItem> { new("None", "") };
+        var availableList = AvailableProductTypes.Select(x => new SelectListItem(x.ProductTypeName, x.Id.ToString())).ToList();
+        returnList.AddRange(availableList);
+        return returnList;
+    }
+
+    private List<SelectListItem> GetAvailableCustomers()
+    {
+        var returnList = new List<SelectListItem> { new("None", "") };
+        var availableList = AvailableCustomers.Select(x => new SelectListItem($"{x.CustomerFirstName} {x.CustomerLastName}", x.Id.ToString())).ToList();
+        returnList.AddRange(availableList);
+        return returnList;
+    }
+
+    public CreditApplicationViewModel()
+    {
+
+    }
 
     public CreditApplicationViewModel(CreditApplication model)
     {
@@ -75,6 +141,38 @@ public class CreditApplicationViewModel
         EmployeeFirstName = model.EmployeeFirstName;
         EmployeeLastName = model.EmployeeLastName;
         Notes = model.Notes;
+        AvailableCustomers = model.AvailableCustomers;
+        AvailableProductTypes = model.AvailableProductTypes;
+        AvailableApplicationStatuses = model.AvailableApplicationStatuses;
+        AvailableEmployees = model.AvailableEmployees;
+        CustomerId = model.CustomerId;
+        EmployeeId = model.EmployeeId;
+        ProductTypeId = model.ProductTypeId;
+    }
+
+    public CreditApplicationViewModel PrepareViewModel(CreditApplicationViewModel model)
+    {
+        return new CreditApplicationViewModel
+        {
+            Id = model.Id,
+            DateOfSubmission = model.DateOfSubmission,
+            CustomerFirstName = model.CustomerFirstName,
+            CustomerLastName = model.CustomerLastName,
+            CustomerFullName = $"{model.CustomerFirstName} {model.CustomerLastName}",
+            ProductTypeName = model.ProductTypeName,
+            Currency = model.Currency,
+            AmountRequested = model.AmountRequested,
+            AmountGranted = model.AmountGranted,
+            ApplicationStatus = model.ApplicationStatus,
+            DateOfLastStatusChange = model.DateOfLastStatusChange,
+            EmployeeFirstName = model.EmployeeFirstName,
+            EmployeeLastName = model.EmployeeLastName,
+            Notes = model.Notes,
+            AvailableCustomers = model.AvailableCustomers,
+            AvailableProductTypes = model.AvailableProductTypes,
+            AvailableApplicationStatuses = model.AvailableApplicationStatuses,
+            AvailableEmployees = model.AvailableEmployees,
+        };
     }
 
     public CreditApplication ToModel()
@@ -89,7 +187,9 @@ public class CreditApplicationViewModel
             AmountGranted = AmountGranted,
             ApplicationStatus = ApplicationStatus,
             DateOfLastStatusChange = DateOfLastStatusChange,
-            Notes = Notes
+            Notes = Notes,
+            CustomerId = CustomerId,
+            ProductTypeId = ProductTypeId
         };
     }
 }

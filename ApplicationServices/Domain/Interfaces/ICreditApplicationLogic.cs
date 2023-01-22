@@ -6,8 +6,9 @@ public interface ICreditApplicationLogic
 {
     Task<List<CreditApplication>> GetAll();
     Task<CreditApplication> GetById(int id);
-    Task<int> Insert(CreditApplication entity);
+    Task<int> Create(CreditApplication entity);
     Task<int> Update(CreditApplication entity);
     Task<int> Delete(int id);
     Task<int> GetCount();
+    Task<CreditApplication> Initialize(CreditApplication entity);
 }

@@ -45,8 +45,8 @@ public class CustomerLogic : ICustomerLogic
         var entityForDb = _mapper.Map<DataAccess.Entities.Customer>(model);
         entityForDb.Modified = DateTime.Now;
         entityForDb.IsActive = true;
-        var id = await _repository.Update(entityForDb);
-        return id;
+        var idUpdated = await _repository.Update(entityForDb);
+        return idUpdated;
     }
 
     public async Task<int> Inactivate(int id)

@@ -9,4 +9,6 @@ public interface ICartLogic
     Task AddToCart(int id);
     Task<List<CartItem>> GetCartItems();
     void DeleteFromCart(int id);
+    Task<int> GetCount();
+
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
+using CreditApplications.DataAccess;
 using CreditApplications.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
@@ -9,11 +11,13 @@ public class CreditApplicationLogic : ICreditApplicationLogic
 {
     private readonly IRepository<DataAccess.Entities.CreditApplication> _repository;
     private readonly IMapper _mapper;
+    private readonly CreditApplicationsDbContext _context;
 
-    public CreditApplicationLogic(IRepository<DataAccess.Entities.CreditApplication> repository, IMapper mapper)
+    public CreditApplicationLogic(IRepository<DataAccess.Entities.CreditApplication> repository, IMapper mapper, CreditApplicationsDbContext dbContext)
     {
         _repository = repository;
         _mapper = mapper;
+        _context = dbContext;
     }
 
     public async Task<List<CreditApplication>> GetAll()
@@ -30,17 +34,24 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         return creditApplication;
     }
 
-    public async Task<int> Insert(CreditApplication entity)
+    public async Task<int> Create(CreditApplication entity)
     {
-        var creditApplicationForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
-        var id = await _repository.Create(creditApplicationForDb);
-        return id;
+        var dbEntity = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
+        dbEntity.Created = DateTime.Now;
+        dbEntity.Modified = DateTime.Now;
+        dbEntity.IsActive = true;
+        dbEntity.ApplicationStatusId = 2;
+        var idCreated = await _repository.Create(dbEntity);
+        return idCreated;
     }
 
     public async Task<int> Update(CreditApplication entity)
     {
-        var creditApplicationForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
-        var id = await _repository.Update(creditApplicationForDb);
+        var entityForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
+        entityForDb.Modified = DateTime.Now;
+        entityForDb.IsActive = true;
+        entityForDb.ApplicationStatusId = 3;
+        var id = await _repository.Update(entityForDb);
         return id;
     }
 
@@ -53,5 +64,14 @@ public class CreditApplicationLogic : ICreditApplicationLogic
     public async Task<int> GetCount()
     {
         return await _repository.GetCount();
+    }
+
+    public async Task<CreditApplication> Initialize(CreditApplication model)
+    {
+        model.AvailableCustomers = await _context.Customers.Where(x => x.IsActive).ToListAsync();
+        model.AvailableProductTypes = await _context.ProductTypes.Where(x => x.IsActive).ToListAsync();
+        model.AvailableApplicationStatuses = await _context.ApplicationStatuses.Where(x => x.IsActive).ToListAsync();
+        model.AvailableEmployees = await _context.Employees.Where(x => x.IsActive).ToListAsync();
+        return model;
     }
 }

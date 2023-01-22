@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
+using CreditApplications.ApplicationServices.Domain.Logic;
+using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Web.ViewModels;
 
 namespace CreditApplications.Web.Controllers;
@@ -10,11 +12,13 @@ public class CreditApplicationsController : Controller
 {
     private readonly ILogger<CreditApplicationsController> _logger;
     private readonly ICreditApplicationLogic _creditApplicationLogic;
+    private readonly ICustomerLogic _customerLogic;
 
-    public CreditApplicationsController(ILogger<CreditApplicationsController> logger, ICreditApplicationLogic creditApplicationLogic)
+    public CreditApplicationsController(ILogger<CreditApplicationsController> logger, ICreditApplicationLogic creditApplicationLogic, ICustomerLogic customerLogic)
     {
         _logger = logger;
         _creditApplicationLogic = creditApplicationLogic;
+        _customerLogic = customerLogic;
     }
 
     public async Task<IActionResult> Index()
@@ -23,7 +27,8 @@ public class CreditApplicationsController : Controller
         {
             return View(new HomePageViewModel
             {
-                ActiveCreditApplicationsNumber = await _creditApplicationLogic.GetCount()
+                ActiveCreditApplicationsNumber = await _creditApplicationLogic.GetCount(),
+                CustomersCount = await _customerLogic.GetCount()
             });
         }
         catch (Exception e)
@@ -65,9 +70,12 @@ public class CreditApplicationsController : Controller
         }
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View();
+        var model = await _creditApplicationLogic.Initialize(new CreditApplication());
+        var viewModel = new CreditApplicationViewModel(model);
+        viewModel.Initialize();
+        return View(viewModel);
     }
 
     [HttpPost]
@@ -76,7 +84,7 @@ public class CreditApplicationsController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _creditApplicationLogic.Insert(creditApplicationViewModel.ToModel());
+            await _creditApplicationLogic.Create(creditApplicationViewModel.ToModel());
             return RedirectToAction(nameof(List));
         }
         return View(creditApplicationViewModel);
@@ -97,7 +105,10 @@ public class CreditApplicationsController : Controller
             return View("NotFound");
         }
 
-        return View(new CreditApplicationViewModel(creditApplicationModel));
+        var viewModel = new CreditApplicationViewModel(await _creditApplicationLogic.Initialize(creditApplicationModel));
+        viewModel.Initialize();
+
+        return View(viewModel);
     }
 
     [HttpPost]
