@@ -1,5 +1,4 @@
 ﻿using CreditApplications.Web.Models;
-using CreditApplications.Web.VewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
@@ -50,7 +49,7 @@ public class CreditApplicationsController : Controller
         }
     }
 
-    [Route("{id:int}")]
+    [Route("Details/{id:int}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
         try

@@ -22,7 +22,7 @@ public class CreditApplication : EntityBase
     public virtual ApplicationStatus ApplicationStatus { get; set; }
     public DateTime DateOfLastStatusChange { get; set; }
     [MaxLength(3000)]
-    public string? Notes { get; set; }
+    public string Notes { get; set; }
 
     public virtual List<Employee> Employees { get; set; } = new List<Employee>();
     public virtual List<Collateral> Collaterals { get; set; } = new List<Collateral>();

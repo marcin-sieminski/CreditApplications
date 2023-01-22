@@ -17,6 +17,8 @@ public class CreditApplicationsDbContext : DbContext
     public DbSet<Department> Departments => Set<Department>();
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<ProductType> ProductTypes => Set<ProductType>();
+    public DbSet<CartItem> CartItems => Set<CartItem>();
+    public DbSet<Message> Messages => Set<Message>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

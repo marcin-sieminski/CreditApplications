@@ -5,12 +5,23 @@ using CreditApplications.DataAccess;
 using CreditApplications.DataAccess.Entities;
 using CreditApplications.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(120);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
 builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
 {
@@ -41,7 +52,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseCookiePolicy();
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CreditApplications.ApplicationServices.Domain.Models.CartItem>
+@{
+    ViewData["Title"] = "Dashboard cart";
+    Layout = "_Layout";
+}
+<h2>My dashboard cart</h2>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.CreditApplicationId)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.CreditApplication.Customer.CustomerFirstName)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.CreditApplication.Customer.CustomerLastName)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Created)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="table-primary">
+                        <td>@Html.DisplayFor(modelItem => item.CreditApplicationId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreditApplication.Customer.CustomerFirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreditApplication.Customer.CustomerLastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                        <td>
+                            <a asp-controller="CreditApplications" asp-action="Details" asp-route-id="@item.CreditApplicationId">Details</a> |
+                            <a asp-controller="CreditApplications" asp-action="Edit" asp-route-id="@item.CreditApplicationId">Edit</a> |
+                            <a asp-action="DeleteFromCart" asp-route-id="@item.Id">Delete from cart</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

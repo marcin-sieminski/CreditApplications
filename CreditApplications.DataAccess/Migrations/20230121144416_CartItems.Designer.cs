@@ -4,6 +4,7 @@ using CreditApplications.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditApplications.DataAccess.Migrations
 {
     [DbContext(typeof(CreditApplicationsDbContext))]
-    partial class CreditApplicationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230121144416_CartItems")]
+    partial class CartItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,6 +113,9 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("IdSession")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
@@ -123,9 +129,6 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SessionId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

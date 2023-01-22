@@ -1,8 +1,19 @@
-﻿@model CreditApplications.Web.VewModels.HomePageViewModel
+﻿@model HomePageViewModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Dashboard";
 }
 <div class="">
-    <p>Credit applications in progress: @Model.ActiveCreditApplicationsNumber</p>
-    <a asp-controller="CreditApplications" asp-action="Index" class="btn btn-primary">Refresh</a>
+    <p>All credit applications: @Model.ActiveCreditApplicationsNumber</p>
+    <p>My credit applications: @Model.MyCreditApplicationsNumber</p>
+
+    <hr />
+    
+    <div class="d-inline">
+        <a asp-controller="CreditApplications" asp-action="List" class="btn btn-primary">Go to all credit applications list</a>
+
+        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-primary">Go to my credit applications</a>
+
+        <a asp-controller="CreditApplications" asp-action="Index" class="btn btn-primary">Refresh</a>
+    </div>
+    
 </div>

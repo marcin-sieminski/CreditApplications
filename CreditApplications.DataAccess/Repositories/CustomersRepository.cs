@@ -20,7 +20,7 @@ public class CustomersRepository : IRepository<Customer>
             .ToListAsync();
     }
 
-    public async Task<Customer> GetById(int id)
+    public async Task<Customer?> GetById(int id)
     {
         return await _entities
             .SingleOrDefaultAsync(e => e.Id == id);

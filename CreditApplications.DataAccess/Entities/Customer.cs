@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CreditApplications.DataAccess.Entities;
 
 public class Customer : EntityBase
 {
+    [DisplayName("Customer first name")]
     [Required]
     [MaxLength(500)]
     public string CustomerFirstName { get; set; }
 
+    [DisplayName("Customer last name")]
     [Required]
     [MaxLength(500)]
     public string CustomerLastName { get; set; }
