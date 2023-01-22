@@ -17,6 +17,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
     public async Task<List<CreditApplication>> GetAll()
     {
         return await _entities
+            .Where(x => x.IsActive)
             .Include(x => x.Customer)
             .Include(x => x.ApplicationStatus)
             .Include(x => x.Employees)
@@ -27,6 +28,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
     public async Task<CreditApplication?> GetById(int id)
     {
         return await _entities
+            .Where(x => x.IsActive)
             .Include(x => x.Customer)
             .Include(x => x.Employees)
             .Include(x => x.ApplicationStatus)
@@ -34,7 +36,7 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<int> Insert(CreditApplication entity)
+    public async Task<int> Create(CreditApplication entity)
     {
         if (entity == null)
         {

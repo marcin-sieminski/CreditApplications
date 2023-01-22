@@ -29,7 +29,7 @@ namespace CreditApplications.Web.Controllers
             }
         }
 
-        [Route("Details/{id:int}")]
+        [Route("{controller}/Details/{id:int}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
             try
@@ -55,7 +55,7 @@ namespace CreditApplications.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _customersLogic.Insert(model);
+                await _customersLogic.Create(model);
                 return RedirectToAction(nameof(List));
             }
             return View(model);
@@ -116,7 +116,7 @@ namespace CreditApplications.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _customersLogic.Delete(id);
+            await _customersLogic.Inactivate(id);
             return RedirectToAction(nameof(List));
         }
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
-using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.DataAccess.Repositories;
+using Customer = CreditApplications.ApplicationServices.Domain.Models.Customer;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
@@ -30,18 +30,34 @@ public class CustomerLogic : ICustomerLogic
         return model;
     }
 
-    public async Task<int> Insert(Customer model)
+    public async Task<int> Create(Customer model)
     {
         var dbEntity = _mapper.Map<DataAccess.Entities.Customer>(model);
-        var id = await _repository.Insert(dbEntity);
+        dbEntity.Created = DateTime.Now;
+        dbEntity.Modified = DateTime.Now;
+        dbEntity.IsActive = true;
+        var id = await _repository.Create(dbEntity);
         return id;
     }
 
     public async Task<int> Update(Customer model)
     {
-        var dbEntity = _mapper.Map<DataAccess.Entities.Customer>(model);
-        var id = await _repository.Update(dbEntity);
+        var entityForDb = _mapper.Map<DataAccess.Entities.Customer>(model);
+        entityForDb.Modified = DateTime.Now;
+        entityForDb.IsActive = true;
+        var id = await _repository.Update(entityForDb);
         return id;
+    }
+
+    public async Task<int> Inactivate(int id)
+    {
+        var dbEntity = await _repository.GetById(id);
+        if (dbEntity is not null)
+        {
+            dbEntity.Inactivated = DateTime.Now;
+            dbEntity.IsActive = false;
+        }
+        return await _repository.Update(dbEntity); 
     }
 
     public async Task<int> Delete(int id)

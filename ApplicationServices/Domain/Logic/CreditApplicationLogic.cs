@@ -33,7 +33,7 @@ public class CreditApplicationLogic : ICreditApplicationLogic
     public async Task<int> Insert(CreditApplication entity)
     {
         var creditApplicationForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
-        var id = await _repository.Insert(creditApplicationForDb);
+        var id = await _repository.Create(creditApplicationForDb);
         return id;
     }
 

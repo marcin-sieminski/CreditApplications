@@ -17,16 +17,18 @@ public class CustomersRepository : IRepository<Customer>
     public async Task<List<Customer>> GetAll()
     {
         return await _entities
+            .Where(x => x.IsActive)
             .ToListAsync();
     }
 
-    public async Task<Customer?> GetById(int id)
+    public async Task<Customer> GetById(int id)
     {
         return await _entities
+            .Where(x => x.IsActive)
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<int> Insert(Customer entity)
+    public async Task<int> Create(Customer entity)
     {
         if (entity == null)
         {

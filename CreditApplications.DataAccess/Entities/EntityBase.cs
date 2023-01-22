@@ -13,7 +13,7 @@ public abstract class EntityBase
         public string ModifiedBy { get; set; }
         public DateTime? Modified { get; set; }
 
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string InactivatedBy { get; set; }
         public DateTime? Inactivated { get; set; }
     }
