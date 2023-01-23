@@ -10,8 +10,8 @@
         @await Html.PartialAsync("Messages", @Model.Messages)
     </div>
     <div class="d-inline">
-        <a asp-controller="CreditApplications" asp-action="List" class="btn btn-primary">Go to all credit applications list</a>
+        <a asp-controller="CreditApplication" asp-action="List" class="btn btn-primary">Go to all credit applications list</a>
         <a asp-controller="Dashboard" asp-action="Index" class="btn btn-primary">Go to my credit applications</a>
-        <a asp-controller="CreditApplications" asp-action="Index" class="btn btn-primary">Refresh</a>
+        <a asp-controller="CreditApplication" asp-action="Index" class="btn btn-primary">Refresh</a>
     </div>
 </div>

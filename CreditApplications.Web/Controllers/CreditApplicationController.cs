@@ -10,14 +10,14 @@ using CreditApplications.DataAccess;
 
 namespace CreditApplications.Web.Controllers;
 
-public class CreditApplicationsController : Controller
+public class CreditApplicationController : Controller
 {
-    private readonly ILogger<CreditApplicationsController> _logger;
+    private readonly ILogger<CreditApplicationController> _logger;
     private readonly ICreditApplicationLogic _creditApplicationLogic;
     private readonly ICustomerLogic _customerLogic;
     private readonly CreditApplicationsDbContext _context;
 
-    public CreditApplicationsController(ILogger<CreditApplicationsController> logger, ICreditApplicationLogic creditApplicationLogic, ICustomerLogic customerLogic, CreditApplicationsDbContext context)
+    public CreditApplicationController(ILogger<CreditApplicationController> logger, ICreditApplicationLogic creditApplicationLogic, ICustomerLogic customerLogic, CreditApplicationsDbContext context)
     {
         _logger = logger;
         _creditApplicationLogic = creditApplicationLogic;

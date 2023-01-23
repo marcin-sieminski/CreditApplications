@@ -4,12 +4,12 @@ using CreditApplications.ApplicationServices.Domain.Models;
 
 namespace CreditApplications.Web.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomerController : Controller
     {
-        private readonly ILogger<CreditApplicationsController> _logger;
+        private readonly ILogger<CreditApplicationController> _logger;
         private readonly ICustomerLogic _customersLogic;
 
-        public CustomersController(ILogger<CreditApplicationsController> logger, ICustomerLogic customersLogic)
+        public CustomerController(ILogger<CreditApplicationController> logger, ICustomerLogic customersLogic)
         {
             _logger = logger;
             _customersLogic = customersLogic;

@@ -27,8 +27,8 @@
                         <td>@Html.DisplayFor(modelItem => item.CreditApplication.Customer.CustomerLastName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Created)</td>
                         <td>
-                            <a asp-controller="CreditApplications" asp-action="Details" asp-route-id="@item.CreditApplicationId">Details</a> |
-                            <a asp-controller="CreditApplications" asp-action="Edit" asp-route-id="@item.CreditApplicationId">Edit</a> |
+                            <a asp-controller="CreditApplication" asp-action="Details" asp-route-id="@item.CreditApplicationId">Details</a> |
+                            <a asp-controller="CreditApplication" asp-action="Edit" asp-route-id="@item.CreditApplicationId">Edit</a> |
                             <a asp-action="DeleteFromCart" asp-route-id="@item.Id">Delete from cart</a>
                         </td>
                     </tr>

@@ -58,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=CreditApplications}/{action=Index}/{id?}");
+    pattern: "{controller=CreditApplication}/{action=Index}/{id?}");
 
 app.Run();
