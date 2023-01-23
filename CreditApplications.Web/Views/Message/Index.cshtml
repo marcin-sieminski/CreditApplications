@@ -1,0 +1,11 @@
+﻿@model CreditApplications.DataAccess.Entities.Message
+@{
+    ViewData["Title"] = @Model.Title;
+}
+<div><h3>Message details</h3></div>
+<hr />
+<div>@Model.Title</div>
+@Model.Body
+<br />
+<a asp-controller="CreditApplications" asp-action="Index" class="btn btn-primary">Go back to main page</a>
+

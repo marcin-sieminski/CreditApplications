@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CreditApplications.DataAccess.Entities.Message>
+<div class="section">
+    <div class="row">
+        <h3>Messages:</h3>
+        @foreach (var item in Model)
+        {
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h5 class="light">@Html.ActionLink(item.Title, "Index", "Message", new { id = item.Id }, null)</h5>
+                    <p class="light">@item.Body</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

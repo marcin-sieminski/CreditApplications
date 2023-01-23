@@ -5,6 +5,8 @@ using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Logic;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Web.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using CreditApplications.DataAccess;
 
 namespace CreditApplications.Web.Controllers;
 
@@ -13,12 +15,14 @@ public class CreditApplicationsController : Controller
     private readonly ILogger<CreditApplicationsController> _logger;
     private readonly ICreditApplicationLogic _creditApplicationLogic;
     private readonly ICustomerLogic _customerLogic;
+    private readonly CreditApplicationsDbContext _context;
 
-    public CreditApplicationsController(ILogger<CreditApplicationsController> logger, ICreditApplicationLogic creditApplicationLogic, ICustomerLogic customerLogic)
+    public CreditApplicationsController(ILogger<CreditApplicationsController> logger, ICreditApplicationLogic creditApplicationLogic, ICustomerLogic customerLogic, CreditApplicationsDbContext context)
     {
         _logger = logger;
         _creditApplicationLogic = creditApplicationLogic;
         _customerLogic = customerLogic;
+        _context = context;
     }
 
     public async Task<IActionResult> Index()
@@ -28,7 +32,8 @@ public class CreditApplicationsController : Controller
             return View(new HomePageViewModel
             {
                 ActiveCreditApplicationsNumber = await _creditApplicationLogic.GetCount(),
-                CustomersCount = await _customerLogic.GetCount()
+                CustomersCount = await _customerLogic.GetCount(),
+                Messages = await _context.Messages.Where(x => x.IsActive).ToListAsync()
             });
         }
         catch (Exception e)
