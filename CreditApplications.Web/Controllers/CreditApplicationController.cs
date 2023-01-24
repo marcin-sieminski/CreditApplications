@@ -77,7 +77,7 @@ public class CreditApplicationController : Controller
 
     public async Task<IActionResult> Create()
     {
-        var model = await _creditApplicationLogic.Initialize(new CreditApplication());
+        var model = await _creditApplicationLogic.Initialize(new CreditApplicationModel());
         var viewModel = new CreditApplicationViewModel(model);
         viewModel.Initialize();
         return View(viewModel);

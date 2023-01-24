@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.DataAccess.Repositories;
-using Customer = CreditApplications.ApplicationServices.Domain.Models.Customer;
+using CustomerModel = CreditApplications.ApplicationServices.Domain.Models.CustomerModel;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
@@ -16,21 +16,21 @@ public class CustomerLogic : ICustomerLogic
         _mapper = mapper;
     }
 
-    public async Task<List<Customer>> GetAll()
+    public async Task<List<CustomerModel>> GetAll()
     {
         var dbEntities = await _repository.GetAll();
-        var model = _mapper.Map<List<Customer>>(dbEntities);
+        var model = _mapper.Map<List<CustomerModel>>(dbEntities);
         return model;
     }
 
-    public async Task<Customer> GetById(int id)
+    public async Task<CustomerModel> GetById(int id)
     {
         var dbEntity = await _repository.GetById(id);
-        var model = _mapper.Map<Customer>(dbEntity);
+        var model = _mapper.Map<CustomerModel>(dbEntity);
         return model;
     }
 
-    public async Task<int> Create(Customer model)
+    public async Task<int> Create(CustomerModel model)
     {
         var dbEntity = _mapper.Map<DataAccess.Entities.Customer>(model);
         dbEntity.Created = DateTime.Now;
@@ -40,7 +40,7 @@ public class CustomerLogic : ICustomerLogic
         return id;
     }
 
-    public async Task<int> Update(Customer model)
+    public async Task<int> Update(CustomerModel model)
     {
         var entityForDb = _mapper.Map<DataAccess.Entities.Customer>(model);
         entityForDb.Modified = DateTime.Now;

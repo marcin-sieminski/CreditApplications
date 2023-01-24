@@ -4,11 +4,12 @@ namespace CreditApplications.ApplicationServices.Domain.Interfaces;
 
 public interface ICreditApplicationLogic
 {
-    Task<List<CreditApplication>> GetAll();
-    Task<CreditApplication> GetById(int id);
-    Task<int> Create(CreditApplication entity);
-    Task<int> Update(CreditApplication entity);
+    Task<List<CreditApplicationModel>> GetAll();
+    Task<CreditApplicationModel> GetById(int id);
+    Task<int> Create(CreditApplicationModel entity);
+    Task<int> Update(CreditApplicationModel entity);
     Task<int> Delete(int id);
     Task<int> GetCount();
-    Task<CreditApplication> Initialize(CreditApplication entity);
+    Task<CreditApplicationModel> Initialize(CreditApplicationModel entity);
+    bool EntityExists(int id);
 }

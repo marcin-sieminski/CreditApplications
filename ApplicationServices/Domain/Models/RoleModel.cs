@@ -3,7 +3,7 @@ using CreditApplications.DataAccess.Entities;
 
 namespace CreditApplications.ApplicationServices.Domain.Models;
 
-public class Role
+public class RoleModel
 {
     public string RoleName { get; set; }
 

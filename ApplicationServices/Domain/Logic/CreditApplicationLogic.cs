@@ -20,21 +20,21 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         _context = dbContext;
     }
 
-    public async Task<List<CreditApplication>> GetAll()
+    public async Task<List<CreditApplicationModel>> GetAll()
     {
         var creditApplicationsFromDb = await _repository.GetAll();
-        var creditApplications = _mapper.Map<List<CreditApplication>>(creditApplicationsFromDb);
+        var creditApplications = _mapper.Map<List<CreditApplicationModel>>(creditApplicationsFromDb);
         return creditApplications;
     }
 
-    public async Task<CreditApplication> GetById(int id)
+    public async Task<CreditApplicationModel> GetById(int id)
     {
         var creditApplicationFromDb = await _repository.GetById(id);
-        var creditApplication = _mapper.Map<CreditApplication>(creditApplicationFromDb);
+        var creditApplication = _mapper.Map<CreditApplicationModel>(creditApplicationFromDb);
         return creditApplication;
     }
 
-    public async Task<int> Create(CreditApplication entity)
+    public async Task<int> Create(CreditApplicationModel entity)
     {
         var dbEntity = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
         dbEntity.Created = DateTime.Now;
@@ -45,7 +45,7 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         return idCreated;
     }
 
-    public async Task<int> Update(CreditApplication entity)
+    public async Task<int> Update(CreditApplicationModel entity)
     {
         var entityForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
         entityForDb.Modified = DateTime.Now;
@@ -66,7 +66,7 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         return await _repository.GetCount();
     }
 
-    public async Task<CreditApplication> Initialize(CreditApplication model)
+    public async Task<CreditApplicationModel> Initialize(CreditApplicationModel model)
     {
         model.AvailableCustomers = await _context.Customers.Where(x => x.IsActive).ToListAsync();
         model.AvailableProductTypes = await _context.ProductTypes.Where(x => x.IsActive).ToListAsync();
@@ -74,4 +74,10 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         model.AvailableEmployees = await _context.Employees.Where(x => x.IsActive).ToListAsync();
         return model;
     }
+
+    public bool EntityExists(int id)
+    {
+        return _repository.TryEntityExists(id);
+    }
+
 }

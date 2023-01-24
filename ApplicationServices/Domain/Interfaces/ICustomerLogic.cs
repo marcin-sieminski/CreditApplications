@@ -4,10 +4,10 @@ namespace CreditApplications.ApplicationServices.Domain.Interfaces;
 
 public interface ICustomerLogic
 {
-    Task<List<Customer>> GetAll();
-    Task<Customer> GetById(int id);
-    Task<int> Create(Customer entity);
-    Task<int> Update(Customer entity);
+    Task<List<CustomerModel>> GetAll();
+    Task<CustomerModel> GetById(int id);
+    Task<int> Create(CustomerModel entity);
+    Task<int> Update(CustomerModel entity);
     Task<int> Delete(int id);
     Task<int> Inactivate(int id);
     Task<int> GetCount();

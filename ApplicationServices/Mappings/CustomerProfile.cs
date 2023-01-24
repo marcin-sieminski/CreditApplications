@@ -7,7 +7,7 @@ public class CustomerProfile : Profile
 {
     public CustomerProfile()
     {
-        CreateMap<DataAccess.Entities.Customer, Domain.Models.Customer>();
-        CreateMap<Domain.Models.Customer, DataAccess.Entities.Customer>();
+        CreateMap<DataAccess.Entities.Customer, Domain.Models.CustomerModel>();
+        CreateMap<Domain.Models.CustomerModel, DataAccess.Entities.Customer>();
     }
 }

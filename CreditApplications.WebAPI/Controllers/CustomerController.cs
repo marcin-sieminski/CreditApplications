@@ -18,13 +18,13 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Customer>>> Get()
+    public async Task<ActionResult<IEnumerable<CustomerModel>>> Get()
     {
         return await _customerLogic.GetAll();
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Customer>> Get(int id)
+    public async Task<ActionResult<CustomerModel>> Get(int id)
     {
         var model = await _customerLogic.GetById(id);
         if (model is null)
@@ -36,14 +36,14 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Customer>> Post(Customer model)
+    public async Task<ActionResult<CustomerModel>> Post(CustomerModel model)
     {
         var idCreated = await _customerLogic.Create(model);
         return CreatedAtAction("Get", new { id = idCreated, model });
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<Customer>> Put(int id, Customer model)
+    public async Task<ActionResult<CustomerModel>> Put(int id, CustomerModel model)
     {
         if (id != model.Id)
         {

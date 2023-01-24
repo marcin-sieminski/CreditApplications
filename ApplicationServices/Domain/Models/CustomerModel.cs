@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CreditApplications.ApplicationServices.Domain.Models;
 
-public class Customer
+public class CustomerModel
 {
     [DisplayName("Id")]
     public int Id { get; set; }

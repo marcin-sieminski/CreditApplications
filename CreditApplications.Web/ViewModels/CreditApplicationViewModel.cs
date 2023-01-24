@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using CreditApplications.DataAccess.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using CreditApplication = CreditApplications.ApplicationServices.Domain.Models.CreditApplication;
+using CreditApplicationModel = CreditApplications.ApplicationServices.Domain.Models.CreditApplicationModel;
 
 namespace CreditApplications.Web.ViewModels;
 
@@ -125,7 +125,7 @@ public class CreditApplicationViewModel
 
     }
 
-    public CreditApplicationViewModel(CreditApplication model)
+    public CreditApplicationViewModel(CreditApplicationModel model)
     {
         Id = model.Id;
         DateOfSubmission = model.DateOfSubmission;
@@ -175,9 +175,9 @@ public class CreditApplicationViewModel
         };
     }
 
-    public CreditApplication ToModel()
+    public CreditApplicationModel ToModel()
     {
-        return new CreditApplication
+        return new CreditApplicationModel
         {
             Id = Id,
             DateOfSubmission = DateOfSubmission,

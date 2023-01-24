@@ -51,7 +51,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Customer model)
+        public async Task<IActionResult> Create(CustomerModel model)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Customer model)
+        public async Task<IActionResult> Edit(int id, CustomerModel model)
         {
             if (id != model.Id)
             {

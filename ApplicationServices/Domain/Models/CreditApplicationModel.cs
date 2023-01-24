@@ -2,7 +2,7 @@
 
 namespace CreditApplications.ApplicationServices.Domain.Models;
 
-public class CreditApplication
+public class CreditApplicationModel
 {
     public int Id { get; set; }
     public DateTime DateOfSubmission { get; set; }
