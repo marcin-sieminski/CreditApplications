@@ -70,4 +70,9 @@ public class CustomerLogic : ICustomerLogic
     {
         return await _repository.GetCount();
     }
+
+    public bool EntityExists(int id)
+    {
+        return _repository.TryEntityExists(id);
+    }
 }

@@ -10,4 +10,5 @@ public interface IRepository<T> where T : EntityBase
     Task<int> Update(T entity);
     Task<int> Delete(int id);
     Task<int> GetCount();
+    bool TryEntityExists(int id);
 }

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
+using CreditApplications.ApplicationServices.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Drawing2D;
+using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.WebAPI.Controllers;
 
@@ -6,30 +10,72 @@ namespace CreditApplications.WebAPI.Controllers;
 [ApiController]
 public class CustomerController : ControllerBase
 {
-    [HttpGet]
-    public IEnumerable<string> Get()
+    private readonly ICustomerLogic _customerLogic;
+
+    public CustomerController(ICustomerLogic customerLogic)
     {
-        return new string[] { "value1", "value2" };
+        _customerLogic = customerLogic;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Customer>>> Get()
+    {
+        return await _customerLogic.GetAll();
     }
 
     [HttpGet("{id}")]
-    public string Get(int id)
+    public async Task<ActionResult<Customer>> Get(int id)
     {
-        return "value";
+        var model = await _customerLogic.GetById(id);
+        if (model is null)
+        {
+            return NotFound();
+        }
+
+        return model;
     }
 
     [HttpPost]
-    public void Post([FromBody] string value)
+    public async Task<ActionResult<Customer>> Post(Customer model)
     {
+        var idCreated = await _customerLogic.Create(model);
+        return CreatedAtAction("Get", new { id = idCreated, model });
     }
 
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public async Task<ActionResult<Customer>> Put(int id, Customer model)
     {
+        if (id != model.Id)
+        {
+            return BadRequest();
+        }
+
+        try
+        {
+            await _customerLogic.Update(model);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!_customerLogic.EntityExists(id))
+            {
+                return NotFound();
+            }
+
+            throw;
+        }
+
+        return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
+        var response = await _customerLogic.Delete(id);
+        if (response == 0)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
 }

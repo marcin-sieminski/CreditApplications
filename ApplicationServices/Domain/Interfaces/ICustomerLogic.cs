@@ -11,4 +11,6 @@ public interface ICustomerLogic
     Task<int> Delete(int id);
     Task<int> Inactivate(int id);
     Task<int> GetCount();
+    bool EntityExists(int id);
+
 }

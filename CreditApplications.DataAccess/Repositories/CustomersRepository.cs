@@ -71,4 +71,9 @@ public class CustomersRepository : IRepository<Customer>
     {
         return await _entities.CountAsync(x => x!.IsActive == true);
     }
+
+    public bool TryEntityExists(int id)
+    {
+        return _entities.Any(x => x.Id == id);
+    }
 }
