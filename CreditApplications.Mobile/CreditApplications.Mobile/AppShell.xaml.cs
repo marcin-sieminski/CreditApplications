@@ -11,6 +11,11 @@ namespace CreditApplications.Mobile
         public AppShell()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(CustomersPage), typeof(CustomersPage));
+            Routing.RegisterRoute(nameof(CustomerDetailPage), typeof(CustomerDetailPage));
+            Routing.RegisterRoute(nameof(NewCustomerPage), typeof(NewCustomerPage));
+
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
