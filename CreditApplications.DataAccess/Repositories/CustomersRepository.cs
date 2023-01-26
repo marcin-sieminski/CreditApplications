@@ -28,15 +28,16 @@ public class CustomersRepository : IRepository<Customer>
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<int> Create(Customer entity)
+    public async Task<Customer> Create(Customer entity)
     {
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
         }
 
-        _entities.Add(entity);
-        return await _context.SaveChangesAsync();
+        var entityEntry = _entities.Add(entity);
+        await _context.SaveChangesAsync();
+        return entityEntry.Entity;
     }
 
     public async Task<int> Update(Customer entity)

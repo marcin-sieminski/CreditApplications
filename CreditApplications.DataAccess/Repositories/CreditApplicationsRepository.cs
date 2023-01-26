@@ -36,15 +36,16 @@ public class CreditApplicationsRepository : IRepository<CreditApplication>
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<int> Create(CreditApplication entity)
+    public async Task<DataAccess.Entities.CreditApplication> Create(CreditApplication entity)
     {
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
         }
 
-        _entities.Add(entity);
-        return await _context.SaveChangesAsync();
+        var entityCreated = _entities.Add(entity);
+        await _context.SaveChangesAsync();
+        return entityCreated.Entity;
     }
 
     public async Task<int> Update(CreditApplication entity)

@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace CreditApplications.Mobile.ViewModels;
 
-public class CustomersViewModel : ItemsViewModel<CustomerForView>
+public class CustomersViewModel : BaseItemsViewModel<CustomerForView>
 {
     public CustomersViewModel()
         : base("Customers")

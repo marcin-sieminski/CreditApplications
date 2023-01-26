@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace CreditApplications.Mobile.ViewModels;
 
-public abstract class ItemsViewModel<T> : BaseViewModel<T>
+public abstract class BaseItemsViewModel<T> : BaseViewModel<T>
 {
     private T _selectedItem;
     public ObservableCollection<T> Items { get; }
@@ -15,7 +15,7 @@ public abstract class ItemsViewModel<T> : BaseViewModel<T>
     public Command AddItemCommand { get; }
     public Command<T> ItemTapped { get; }
 
-    public ItemsViewModel(string title)
+    public BaseItemsViewModel(string title)
         : base()
     {
         Title = title;

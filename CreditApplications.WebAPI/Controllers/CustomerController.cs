@@ -38,8 +38,8 @@ public class CustomerController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CustomerModel>> Post(CustomerModel model)
     {
-        var idCreated = await _customerLogic.Create(model);
-        return CreatedAtAction("Get", new { id = idCreated, model });
+        var modelCreated = await _customerLogic.Create(model);
+        return Ok(modelCreated);
     }
 
     [HttpPut("{id}")]

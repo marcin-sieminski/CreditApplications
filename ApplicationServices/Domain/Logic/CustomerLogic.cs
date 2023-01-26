@@ -30,14 +30,14 @@ public class CustomerLogic : ICustomerLogic
         return model;
     }
 
-    public async Task<int> Create(CustomerModel model)
+    public async Task<DataAccess.Entities.Customer> Create(CustomerModel model)
     {
         var dbEntity = _mapper.Map<DataAccess.Entities.Customer>(model);
         dbEntity.Created = DateTime.Now;
         dbEntity.Modified = DateTime.Now;
         dbEntity.IsActive = true;
-        var id = await _repository.Create(dbEntity);
-        return id;
+        var entityCreated = await _repository.Create(dbEntity);
+        return entityCreated;
     }
 
     public async Task<int> Update(CustomerModel model)

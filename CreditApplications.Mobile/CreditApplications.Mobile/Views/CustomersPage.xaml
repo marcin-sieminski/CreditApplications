@@ -19,11 +19,11 @@
                     <StackLayout Padding="10" x:DataType="model:CustomerForView">
                         <Label Text="{Binding CustomerFirstName}" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="16" />
-                        <Label Text="{Binding CustomerLastName}" 
-                               Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
-                        <Label Text="{Binding Id}" 
+                        <Label Text="{Binding CustomerLastName}" 
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding City}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
                         <StackLayout.GestureRecognizers>

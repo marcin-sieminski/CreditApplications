@@ -34,15 +34,15 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         return creditApplication;
     }
 
-    public async Task<int> Create(CreditApplicationModel entity)
+    public async Task<DataAccess.Entities.CreditApplication> Create(CreditApplicationModel entity)
     {
         var dbEntity = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
         dbEntity.Created = DateTime.Now;
         dbEntity.Modified = DateTime.Now;
         dbEntity.IsActive = true;
         dbEntity.ApplicationStatusId = 2;
-        var idCreated = await _repository.Create(dbEntity);
-        return idCreated;
+        var modelCreated = await _repository.Create(dbEntity);
+        return modelCreated;
     }
 
     public async Task<int> Update(CreditApplicationModel entity)

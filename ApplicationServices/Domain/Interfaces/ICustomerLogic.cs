@@ -6,7 +6,7 @@ public interface ICustomerLogic
 {
     Task<List<CustomerModel>> GetAll();
     Task<CustomerModel> GetById(int id);
-    Task<int> Create(CustomerModel entity);
+    Task<DataAccess.Entities.Customer> Create(CustomerModel entity);
     Task<int> Update(CustomerModel entity);
     Task<int> Delete(int id);
     Task<int> Inactivate(int id);
