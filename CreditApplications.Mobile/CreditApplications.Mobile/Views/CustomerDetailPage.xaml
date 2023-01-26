@@ -3,10 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CreditApplications.Mobile.Views.CustomerDetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Text="Customer First Name" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding CustomerFirstName}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="1"  Text="Customer Last Name" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="1"  Text="{Binding CustomerLastName}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="2"  Text="Country" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding Country}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Text="Postal Code" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding PostalCode}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="4"  Text="City" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="4" Text="{Binding City}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" Text="Street" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="5" Text="{Binding Street}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="6" Text="Address Number" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="6" Text="{Binding AddressNumber}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="7" Text="Phone Number" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="7" Text="{Binding PhoneNumber}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="8" Text="Email" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Email}" FontSize="Small"/>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Edit" Command="{Binding EditCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Delete" Command="{Binding DeleteCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

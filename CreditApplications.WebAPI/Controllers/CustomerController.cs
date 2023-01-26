@@ -1,7 +1,6 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Drawing.Drawing2D;
 using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.WebAPI.Controllers;

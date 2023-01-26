@@ -10,9 +10,10 @@ public class CustomersViewModel : BaseItemsViewModel<CustomerForView>
         : base("Customers")
     {
     }
-    public override async void GoToDetailsPage()
+
+    public override async void GoToDetailsPage(CustomerForView model)
     {
-        //await Shell.Current.GoToAsync($"{nameof(CustomerDetailPage)}?{nameof(CustomerDetailViewModel.ItemId)}={item.Id}");
+        await Shell.Current.GoToAsync($"{nameof(CustomerDetailPage)}?Id={model.Id}");
     }
 
     public override async void GoToAddPage()

@@ -20,12 +20,12 @@ public class CustomerForView
     [DisplayName("City")]
     public string City { get; set; }
     
-    [DisplayName("Postal code")]
-    public string PostalCode { get; set; }
-    
     [DisplayName("Street")]
     public string Street { get; set; }
     
+    [DisplayName("Postal code")]
+    public string PostalCode { get; set; }
+
     [DisplayName("House number")]
     
     public string AddressNumber { get; set; }

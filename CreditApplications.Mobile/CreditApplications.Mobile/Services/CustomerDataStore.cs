@@ -44,6 +44,22 @@ public class CustomerDataStore : DataStoreBase, IDataStore<CustomerForView>
         Items.Remove(oldItem);
         Items.Add(item);
 
+        var model = new CustomerModel()
+        {
+            Id = item.Id,
+            CustomerFirstName = item.CustomerFirstName,
+            CustomerLastName = item.CustomerLastName,
+            Country = item.Country,
+            City = item.City,
+            PostalCode = item.PostalCode,
+            Street = item.Street,
+            AddressNumber = item.AddressNumber,
+            PhoneNumber = item.PhoneNumber,
+            Email = item.Email
+        };
+        
+        var result = _creditApplicationsService.Customer3Async(model.Id, model);
+        
         return await Task.FromResult(true);
     }
 
@@ -52,6 +68,8 @@ public class CustomerDataStore : DataStoreBase, IDataStore<CustomerForView>
         var oldItem = Items.FirstOrDefault(arg => arg.Id == id);
         Items.Remove(oldItem);
 
+        var result = _creditApplicationsService.Customer4Async(id);
+        
         return await Task.FromResult(true);
     }
 

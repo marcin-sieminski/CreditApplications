@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using CreditApplications.Mobile.Services;
 using Xamarin.Forms;
 
 namespace CreditApplications.Mobile.ViewModels;
@@ -67,12 +66,16 @@ public abstract class BaseItemsViewModel<T> : BaseViewModel<T>
         GoToAddPage();
     }
 
-    public abstract void GoToDetailsPage();
+    public abstract void GoToDetailsPage(T item);
+    
     async void OnItemSelected(T item)
     {
         if (item == null)
+        {
             return;
-        GoToDetailsPage();
+        }
+
+        GoToDetailsPage(item);
     }
 }
 

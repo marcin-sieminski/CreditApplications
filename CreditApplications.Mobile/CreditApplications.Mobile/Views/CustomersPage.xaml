@@ -13,17 +13,36 @@
     <RefreshView x:DataType="local:CustomersViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                         ItemsSource="{Binding Items}"
-                        SelectionMode="None">
+                        SelectionMode="Single"
+                        SelectedItem="{Binding ItemTapped}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:CustomerForView">
+                    <StackLayout Padding="10" x:DataType="model:CustomerForView" Orientation="Horizontal">
                         <Label Text="{Binding CustomerFirstName}" 
                                Style="{DynamicResource ListItemTextStyle}" 
                                FontSize="13" />
                         <Label Text="{Binding CustomerLastName}" 
                                Style="{DynamicResource ListItemTextStyle}"
                                FontSize="13" />
+                        <Label Text="{Binding Country}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding PostalCode}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
                         <Label Text="{Binding City}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding Street}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding AddressNumber}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding PhoneNumber}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="13" />
+                        <Label Text="{Binding Email}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
                         <StackLayout.GestureRecognizers>

@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace CreditApplications.Mobile.ViewModels;
 
-public class CustomerDetailViewModel : BaseItemDetailViewModel<CustomerForView>, IQueryAttributable  
+public class CustomerEditViewModel : BaseItemEditViewModel<CustomerForView>, IQueryAttributable  
 {
-    public CustomerDetailViewModel() : base("Customer details")
+    public CustomerEditViewModel() : base("Customer details")
     {
 
     }
@@ -117,14 +117,28 @@ public class CustomerDetailViewModel : BaseItemDetailViewModel<CustomerForView>,
         Id = int.Parse(id); 
     }
 
-    public override async void GoToEditPage()
+    public override bool ValidateSave()
     {
-        await Shell.Current.GoToAsync($"{nameof(CustomerEditPage)}?Id={Id}");
+        return !String.IsNullOrWhiteSpace(CustomerFirstName)
+               && !String.IsNullOrWhiteSpace(CustomerLastName);
     }
 
-    public override int GetIdToDelete()
+    public override CustomerForView SetItem()
     {
-        return Id;
+        return new CustomerForView()
+        {
+            Id = this.Id,
+            CustomerFirstName = this.CustomerFirstName,
+            CustomerLastName = this.CustomerLastName,
+            Country = this.Country,
+            City = this.City,
+            PostalCode = this.PostalCode,
+            Street = this.Street,
+            AddressNumber = this.AddressNumber,
+            PhoneNumber = this.PhoneNumber,
+            Email = this.Email
+        };
     }
+
 }
 
