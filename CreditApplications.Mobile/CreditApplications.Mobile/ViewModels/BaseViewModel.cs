@@ -1,5 +1,4 @@
-﻿using CreditApplications.Mobile.Models;
-using CreditApplications.Mobile.Services;
+﻿using CreditApplications.Mobile.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

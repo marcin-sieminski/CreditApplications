@@ -22,7 +22,7 @@ public abstract class BaseItemDetailViewModel<T> : BaseViewModel<T>
         await Shell.Current.GoToAsync("..");
     }
 
-    async void OnEdit()
+    void OnEdit()
     {
         GoToEditPage();
     }
