@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CreditApplications.Mobile.Models;
+﻿using CreditApplications.Mobile.Models;
 using CreditApplications.Mobile.Views;
 using Xamarin.Forms;
 

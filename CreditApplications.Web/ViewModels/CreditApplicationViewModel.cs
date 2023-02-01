@@ -34,6 +34,8 @@ public class CreditApplicationViewModel
 
     public List<SelectListItem> AvailableProductTypesSelectList { get; set; } = new();
 
+    [Required]
+    [MinLength(3, ErrorMessage = "Currency must contain 3 letters.")]
     public string Currency { get; set; }
 
     [DisplayName("Amount requested")]
@@ -72,7 +74,7 @@ public class CreditApplicationViewModel
     public List<SelectListItem> AvailableEmployeesSelectList { get; set; } = new();
 
 
-    [DisplayName("Nones")]
+    [DisplayName("Notes")]
     public string Notes { get; set; }
 
     public List<CreditApplications.DataAccess.Entities.Customer> AvailableCustomers { get; set; } = new();

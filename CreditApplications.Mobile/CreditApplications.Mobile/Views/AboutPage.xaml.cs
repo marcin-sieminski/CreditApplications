@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CreditApplications.Mobile.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +7,11 @@ namespace CreditApplications.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
+        private AboutViewModel _viewModel;
         public AboutPage()
         {
             InitializeComponent();
+            BindingContext = _viewModel = new AboutViewModel();
         }
     }
 }

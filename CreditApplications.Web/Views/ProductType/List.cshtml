@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CustomerModel>
+﻿@model IEnumerable<ProductTypeModel>
 @{
-    ViewData["Title"] = "Customers list";
+    ViewData["Title"] = "Product types list";
     Layout = "_Layout";
 }
-<h4>Customers</h4>
+<h4>Product types</h4>
 <hr />
-<a asp-action="Create" class="btn btn-secondary" role="button">Add new customer</a>
+<a asp-action="Create" class="btn btn-secondary" role="button">Add new product type</a>
 <hr />
 
 <div class="container-fluid">
@@ -15,9 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.CustomerFirstName)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.CustomerLastName)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.City)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ProductTypeName)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -26,9 +24,7 @@
                 {
                     <tr class="table-primary">
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.CustomerFirstName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.CustomerLastName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.City)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductTypeName)</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

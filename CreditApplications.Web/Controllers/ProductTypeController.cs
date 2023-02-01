@@ -4,12 +4,12 @@ using CreditApplications.ApplicationServices.Domain.Models;
 
 namespace CreditApplications.Web.Controllers
 {
-    public class CustomerController : Controller
+    public class ProductTypeController : Controller
     {
-        private readonly ILogger<CustomerController> _logger;
-        private readonly ICustomerLogic _logic;
+        private readonly ILogger<ProductTypeController> _logger;
+        private readonly IProductTypeLogic _logic;
 
-        public CustomerController(ILogger<CustomerController> logger, ICustomerLogic logic)
+        public ProductTypeController(ILogger<ProductTypeController> logger, IProductTypeLogic logic)
         {
             _logger = logger;
             _logic = logic;
@@ -24,7 +24,7 @@ namespace CreditApplications.Web.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"Failed to get customers: {e}");
+                _logger.LogError($"Failed to get product types: {e}");
                 return RedirectToAction(nameof(Error));
             }
         }
@@ -39,7 +39,7 @@ namespace CreditApplications.Web.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"Failed to get credit application details: {e}");
+                _logger.LogError($"Failed to get product type details: {e}");
                 return RedirectToAction(nameof(Error));
             }
         }
@@ -51,7 +51,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CustomerModel model)
+        public async Task<IActionResult> Create(ProductTypeModel model)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace CreditApplications.Web.Controllers
             var model = await _logic.GetById(id.Value);
             if (model == null)
             {
-                _logger.LogInformation("No product found for {id}.", id.Value);
+                _logger.LogInformation("No product type found for {id}.", id.Value);
                 return RedirectToAction(nameof(Error));
             }
 
@@ -81,7 +81,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CustomerModel model)
+        public async Task<IActionResult> Edit(int id, ProductTypeModel model)
         {
             if (id != model.Id)
             {
