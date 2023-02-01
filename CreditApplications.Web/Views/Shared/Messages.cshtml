@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<CreditApplications.DataAccess.Entities.Message>
 <div class="section">
-    <div class="row">
-        <h3>Messages:</h3>
+    <h4>Messages</h4>
+    
+    <div class="d-flex flex-wrap">
         @foreach (var item in Model)
         {
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h5 class="light">@Html.ActionLink(item.Title, "Index", "Message", new { id = item.Id }, null)</h5>
-                    <p class="light">@item.Body</p>
+                <div class="card border-primary m-3" style="max-width: 20rem;">
+                    <div class="card-header">@Html.ActionLink(item.Title, "Index", "Message", new { id = item.Id }, null)</div>
+                    <div class="card-body">
+                        <p class="card-text">@item.Body</p>
+                    </div>
                 </div>
-            </div>
         }
     </div>
 </div>

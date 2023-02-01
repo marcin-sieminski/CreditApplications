@@ -1,17 +1,17 @@
 ﻿@model HomePageViewModel
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Main";
 }
 <div class="">
-    <h3><p>All credit applications: @Model.ActiveCreditApplicationsNumber</p></h3>
-    <h3><p>Customers count: @Model.CustomersCount</p></h3>
+    <hr />
+        <div class="d-inline">
+            <a asp-controller="CreditApplication" asp-action="List" class="btn btn-primary">Active credit applications: @Model.ActiveCreditApplicationsNumber</a>
+            <a asp-controller="CreditApplication" asp-action="List" class="btn btn-primary">Active credit applications: @Model.ActiveCreditApplicationsNumber</a>
+            <a asp-controller="Customer" asp-action="List" class="btn btn-primary">Active customers: @Model.CustomersCount</a>
+            <a asp-controller="CreditApplication" asp-action="Index" class="btn btn-primary">Refresh</a>
+        </div>
     <hr />
     <div>
         @await Html.PartialAsync("Messages", @Model.Messages)
-    </div>
-    <div class="d-inline">
-        <a asp-controller="CreditApplication" asp-action="List" class="btn btn-primary">Go to all credit applications list</a>
-        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-primary">Go to my credit applications</a>
-        <a asp-controller="CreditApplication" asp-action="Index" class="btn btn-primary">Refresh</a>
     </div>
 </div>
