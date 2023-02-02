@@ -1,12 +1,12 @@
-﻿@model ProductTypeModel
+﻿@model ApplicationStatusModel
 
 @{
-    ViewData["Title"] = "Product type edit";
+    ViewData["Title"] = "Edit application status";
     Layout = "_Layout";
 }
 
 <div>
-    <h4>Product type edit</h4>
+    <h4>Edit application status</h4>
     <hr />
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -14,9 +14,9 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
-                <label asp-for="ProductTypeName" class="control-label"></label>
-                <input asp-for="ProductTypeName" class="form-control" />
-                <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+                <label asp-for="ApplicationStatusName" class="control-label"></label>
+                <input asp-for="ApplicationStatusName" class="form-control" />
+                <span asp-validation-for="ApplicationStatusName" class="text-danger"></span>
             </div>
 
             <div class="form-group">

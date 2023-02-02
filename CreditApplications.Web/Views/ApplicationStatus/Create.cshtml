@@ -1,21 +1,21 @@
-﻿@model ProductTypeModel
+﻿@model ApplicationStatusModel
 
 @{
-    ViewData["Title"] = "Create product type";
+    ViewData["Title"] = "Create application status";
     Layout = "_Layout";
 }
 
 <div>
-    <h4>Create product type</h4>
+    <h4>Create application status</h4>
     <hr />
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ProductTypeName" class="control-label"></label>
-                <input asp-for="ProductTypeName" class="form-control" />
-                <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+                <label asp-for="ApplicationStatusName" class="control-label"></label>
+                <input asp-for="ApplicationStatusName" class="form-control" />
+                <span asp-validation-for="ApplicationStatusName" class="text-danger"></span>
             </div>
 
             <div class="form-group">

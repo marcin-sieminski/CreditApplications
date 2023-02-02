@@ -1,12 +1,12 @@
-﻿@model ProductTypeModel
+﻿@model ApplicationStatusModel
 
 @{
-    ViewData["Title"] = "Product type details";
+    ViewData["Title"] = "Details of application status";
     Layout = "_Layout";
 }
 
 <div>
-    <h4>Product type details</h4>
+    <h4>Details of application status</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -16,10 +16,10 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductTypeName)
+            @Html.DisplayNameFor(model => model.ApplicationStatusName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductTypeName)
+            @Html.DisplayFor(model => model.ApplicationStatusName)
         </dd>
     </dl>
 </div>

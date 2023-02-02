@@ -30,10 +30,12 @@ builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
 builder.Services.AddScoped<IRepository<CreditApplication>, CreditApplicationsRepository>();
 builder.Services.AddScoped<IRepository<Customer>, CustomersRepository>();
 builder.Services.AddScoped<IRepository<ProductType>, ProductTypeRepository>();
+builder.Services.AddScoped<IRepository<ApplicationStatus>, ApplicationsStatusRepository>();
 
 builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
 builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
 builder.Services.AddScoped<IProductTypeLogic, ProductTypeLogic>();
+builder.Services.AddScoped<IApplicationStatusLogic, ApplicationStatusLogic>();
 
 var app = builder.Build();
 
