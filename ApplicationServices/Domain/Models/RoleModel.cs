@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using CreditApplications.DataAccess.Entities;
-
-namespace CreditApplications.ApplicationServices.Domain.Models;
+﻿namespace CreditApplications.ApplicationServices.Domain.Models;
 
 public class RoleModel
 {
+    public int Id { get; set; }
     public string RoleName { get; set; }
-
-    public virtual List<Employee> Employees { get; set; } = new List<Employee>();
 }
