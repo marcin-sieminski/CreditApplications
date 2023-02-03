@@ -5,12 +5,12 @@ using CreditApplications.DataAccess.Entities;
 
 namespace CreditApplications.Web.Controllers
 {
-    public class ApplicationStatusController : Controller
+    public class DepartmentController : Controller
     {
-        private readonly ILogger<ApplicationStatusController> _logger;
-        private readonly IApplicationStatusLogic _logic;
+        private readonly ILogger<DepartmentController> _logger;
+        private readonly IDepartmentLogic _logic;
 
-        public ApplicationStatusController(ILogger<ApplicationStatusController> logger, IApplicationStatusLogic logic)
+        public DepartmentController(ILogger<DepartmentController> logger, IDepartmentLogic logic)
         {
             _logger = logger;
             _logic = logic;
@@ -25,7 +25,7 @@ namespace CreditApplications.Web.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"Failed to get application statuses: {e}");
+                _logger.LogError($"Failed to get departments: {e}");
                 return RedirectToAction(nameof(Error));
             }
         }
@@ -40,7 +40,7 @@ namespace CreditApplications.Web.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"Failed to get application status details: {e}");
+                _logger.LogError($"Failed to get department details: {e}");
                 return RedirectToAction(nameof(Error));
             }
         }
@@ -52,7 +52,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ApplicationStatusModel model)
+        public async Task<IActionResult> Create(DepartmentModel model)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace CreditApplications.Web.Controllers
             var model = await _logic.GetById(id.Value);
             if (model == null)
             {
-                _logger.LogInformation("No product type found for {id}.", id.Value);
+                _logger.LogInformation("No department found for {id}.", id.Value);
                 return RedirectToAction(nameof(Error));
             }
 
@@ -82,7 +82,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ApplicationStatusModel model)
+        public async Task<IActionResult> Edit(int id, DepartmentModel model)
         {
             if (id != model.Id)
             {

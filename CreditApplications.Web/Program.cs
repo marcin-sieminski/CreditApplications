@@ -31,11 +31,13 @@ builder.Services.AddScoped<IRepository<CreditApplication>, CreditApplicationsRep
 builder.Services.AddScoped<IRepository<Customer>, CustomersRepository>();
 builder.Services.AddScoped<IRepository<ProductType>, ProductTypeRepository>();
 builder.Services.AddScoped<IRepository<ApplicationStatus>, ApplicationsStatusRepository>();
+builder.Services.AddScoped<IRepository<Department>, DepartmentRepository>();
 
 builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
 builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
 builder.Services.AddScoped<IProductTypeLogic, ProductTypeLogic>();
 builder.Services.AddScoped<IApplicationStatusLogic, ApplicationStatusLogic>();
+builder.Services.AddScoped<IDepartmentLogic, DepartmentLogic>();
 
 var app = builder.Build();
 
