@@ -11,6 +11,8 @@ public class CreditApplicationModel
     
     [DisplayName("Customer")]
     public int CustomerId { get; set; }
+
+    public Customer Customer { get; set; }
     
     [DisplayName("Customer first name")]
     public string CustomerFirstName { get; set; }
@@ -40,7 +42,7 @@ public class CreditApplicationModel
     
     [DisplayName("Submission")]
     [Required(ErrorMessage = "Please provide date of submission.")]
-    public DateTime DateOfSubmission { get; set; }
+    public DateTime DateOfSubmission { get; set; } = DateTime.Now;
     
     [DisplayName("Status")]
     public string ApplicationStatus { get; set; }
