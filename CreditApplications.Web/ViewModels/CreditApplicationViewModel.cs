@@ -26,10 +26,9 @@ public class CreditApplicationViewModel
 
     public List<SelectListItem> AvailableCustomersSelectList { get; set; } = new();
 
-
-    [DisplayName("Product type")]
     public int ProductTypeId { get; set; }
 
+    [DisplayName("Product type")]
     public string ProductTypeName { get; set; }
 
     public List<SelectListItem> AvailableProductTypesSelectList { get; set; } = new();
@@ -174,6 +173,9 @@ public class CreditApplicationViewModel
             AvailableProductTypes = model.AvailableProductTypes,
             AvailableApplicationStatuses = model.AvailableApplicationStatuses,
             AvailableEmployees = model.AvailableEmployees,
+            CustomerId = model.CustomerId,
+            ProductTypeId = model.ProductTypeId,
+            EmployeeId = model.EmployeeId,
         };
     }
 
