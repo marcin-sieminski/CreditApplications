@@ -27,7 +27,7 @@ public class EmployeeModel
     public int RoleId { get; set; }
     public virtual Role Role { get; set; }
 
-    public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
+    public virtual CreditApplication CreditApplications { get; set; }
 
     public List<DepartmentModel> AvailableDepartments { get; set; } = new();
     public List<RoleModel> AvailableRoles { get; set; } = new();

@@ -3,72 +3,62 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.DataAccess.Repositories;
 
-public class CreditApplicationsRepository : IRepository<CreditApplication>
+public class CollateraleRepository : IRepository<Collateral>
 {
     private readonly CreditApplicationsDbContext _context;
-    private readonly DbSet<CreditApplication> _entities;
+    private readonly DbSet<Collateral> _entities;
 
-    public CreditApplicationsRepository(CreditApplicationsDbContext context)
+    public CollateraleRepository(CreditApplicationsDbContext context)
     {
         _context = context;
-        _entities = context.Set<CreditApplication>();
+        _entities = context.Set<Collateral>();
     }
 
-    public async Task<List<CreditApplication>> GetAll()
+    public async Task<List<Collateral>> GetAll()
     {
         return await _entities
             .Where(x => x.IsActive)
-            .Include(x => x.Customer)
-            .Include(x => x.ApplicationStatus)
-            //.Include(x => x.Employee)
-            .Include(x => x.ProductType)
             .ToListAsync();
     }
 
-    public async Task<CreditApplication> GetById(int id)
+    public async Task<Collateral> GetById(int id)
     {
         return await _entities
             .Where(x => x.IsActive)
-            .Include(x => x.Customer)
-            //.Include(x => x.Employee)
-            .Include(x => x.ApplicationStatus)
-            .Include(x => x.ProductType)
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<DataAccess.Entities.CreditApplication> Create(CreditApplication entity)
+    public async Task<Collateral> Create(Collateral entity)
     {
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
         }
 
-        var entityCreated = _entities.Add(entity);
+        var entityEntry = _entities.Add(entity);
         await _context.SaveChangesAsync();
-        return entityCreated.Entity;
+        return entityEntry.Entity;
     }
 
-    public async Task<int> Update(CreditApplication entity)
+    public async Task<int> Update(Collateral entity)
     {
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
         }
-        var dbEntity = _context.CreditApplications.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        var dbEntity = _context.Customers.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
         if (dbEntity is not null)
         {
             entity.Created = dbEntity.Created;
             entity.CreatedBy = dbEntity.CreatedBy;
         }
-
         _entities.Update(entity);
-        
         return await _context.SaveChangesAsync();
     }
 
     public async Task<int> Delete(int id)
     {
-        CreditApplication entity = _entities.SingleOrDefault(e => e.Id == id);
+        var entity = _entities.SingleOrDefault(e => e.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException("entity");

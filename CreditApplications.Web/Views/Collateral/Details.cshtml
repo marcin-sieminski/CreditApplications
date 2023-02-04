@@ -1,0 +1,43 @@
+﻿@model CollateralModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<div>
+    <h4>Details of collateral</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model!.Id">Edit</a> 
+    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@Model!.Id">Delete</a>
+    <a class="btn btn-primary" asp-action="List">Back to list</a>
+</div>

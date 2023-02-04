@@ -21,6 +21,7 @@
                     <th scope="col">@Html.DisplayNameFor(model => model.Currency)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.AmountRequested)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.AmountGranted)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ApplicationStatusId)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Currency)</td>
                         <td>@Html.DisplayFor(modelItem => item.AmountRequested)</td>
                         <td>@Html.DisplayFor(modelItem => item.AmountGranted)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ApplicationStatus)</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

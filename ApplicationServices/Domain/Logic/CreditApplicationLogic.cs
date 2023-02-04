@@ -51,6 +51,7 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         entityForDb.Modified = DateTime.Now;
         entityForDb.IsActive = true;
         entityForDb.ApplicationStatusId = 3;
+        entityForDb.DateOfLastStatusChange = DateTime.Now;
         var id = await _repository.Update(entityForDb);
         return id;
     }

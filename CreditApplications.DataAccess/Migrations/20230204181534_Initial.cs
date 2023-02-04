@@ -19,12 +19,12 @@ namespace CreditApplications.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationStatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,16 +37,16 @@ namespace CreditApplications.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
-                    Value = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,13 +61,20 @@ namespace CreditApplications.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerFirstName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CustomerLastName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    AddressNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,12 +89,12 @@ namespace CreditApplications.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -103,16 +110,37 @@ namespace CreditApplications.DataAccess.Migrations
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Document", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Body = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,12 +151,12 @@ namespace CreditApplications.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductTypeName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,23 +164,64 @@ namespace CreditApplications.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    MessageId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Roles_Messages_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Messages",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Employees_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,9 +230,10 @@ namespace CreditApplications.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateOfSubmission = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     ProductTypeId = table.Column<int>(type: "int", nullable: false),
+                    DateOfSubmission = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AmountRequested = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AmountGranted = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -171,12 +241,12 @@ namespace CreditApplications.DataAccess.Migrations
                     DateOfLastStatusChange = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -194,6 +264,12 @@ namespace CreditApplications.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_CreditApplications_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_CreditApplications_ProductTypes_ProductTypeId",
                         column: x => x.ProductTypeId,
                         principalTable: "ProductTypes",
@@ -202,36 +278,35 @@ namespace CreditApplications.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "CartItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreditApplicationId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     InactivatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Inactivated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_CartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
+                        name: "FK_CartItems_CreditApplications_CreditApplicationId",
+                        column: x => x.CreditApplicationId,
+                        principalTable: "CreditApplications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employees_Role_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Role",
+                        name: "FK_CartItems_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -284,32 +359,15 @@ namespace CreditApplications.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "CreditApplicationEmployee",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreditApplicationId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CreditApplicationEmployee", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CreditApplicationEmployee_CreditApplications_CreditApplicationId",
-                        column: x => x.CreditApplicationId,
-                        principalTable: "CreditApplications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CreditApplicationEmployee_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_CreditApplicationId",
+                table: "CartItems",
+                column: "CreditApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_EmployeeId",
+                table: "CartItems",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CollateralCreditApplication_CreditApplicationsId",
@@ -322,16 +380,6 @@ namespace CreditApplications.DataAccess.Migrations
                 column: "DocumentsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CreditApplicationEmployee_CreditApplicationId",
-                table: "CreditApplicationEmployee",
-                column: "CreditApplicationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CreditApplicationEmployee_EmployeeId",
-                table: "CreditApplicationEmployee",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CreditApplications_ApplicationStatusId",
                 table: "CreditApplications",
                 column: "ApplicationStatusId");
@@ -340,6 +388,11 @@ namespace CreditApplications.DataAccess.Migrations
                 name: "IX_CreditApplications_CustomerId",
                 table: "CreditApplications",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CreditApplications_EmployeeId",
+                table: "CreditApplications",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CreditApplications_ProductTypeId",
@@ -355,11 +408,19 @@ namespace CreditApplications.DataAccess.Migrations
                 name: "IX_Employees_RoleId",
                 table: "Employees",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Roles_MessageId",
+                table: "Roles",
+                column: "MessageId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CartItems");
+
             migrationBuilder.DropTable(
                 name: "CollateralCreditApplication");
 
@@ -367,19 +428,13 @@ namespace CreditApplications.DataAccess.Migrations
                 name: "CreditApplicationDocument");
 
             migrationBuilder.DropTable(
-                name: "CreditApplicationEmployee");
-
-            migrationBuilder.DropTable(
                 name: "Collateral");
-
-            migrationBuilder.DropTable(
-                name: "Document");
 
             migrationBuilder.DropTable(
                 name: "CreditApplications");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Document");
 
             migrationBuilder.DropTable(
                 name: "ApplicationStatuses");
@@ -388,13 +443,19 @@ namespace CreditApplications.DataAccess.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "ProductTypes");
 
             migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
         }
     }
 }

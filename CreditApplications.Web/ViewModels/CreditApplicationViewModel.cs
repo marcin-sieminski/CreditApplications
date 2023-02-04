@@ -51,9 +51,11 @@ public class CreditApplicationViewModel
 
     [DisplayName("Submission")]
     [Required(ErrorMessage = "Please provide date of submission.")]
-    public DateTime DateOfSubmission { get; set; }
+    public DateTime DateOfSubmission { get; set; } = DateTime.Now;
 
-    [DisplayName("Status")]
+    [DisplayName("Status")] 
+    public int ApplicationStatusId { get; set; }
+
     public string ApplicationStatus { get; set; }
 
     public List<SelectListItem> AvailableApplicationStatusesSelectList { get; set; } = new();
@@ -139,16 +141,17 @@ public class CreditApplicationViewModel
         AmountGranted = model.AmountGranted;
         ApplicationStatus = model.ApplicationStatus;
         DateOfLastStatusChange = model.DateOfLastStatusChange;
-        EmployeeFirstName = model.EmployeeFirstName;
-        EmployeeLastName = model.EmployeeLastName;
+        //EmployeeFirstName = model.EmployeeFirstName;
+        //EmployeeLastName = model.EmployeeLastName;
         Notes = model.Notes;
         AvailableCustomers = model.AvailableCustomers;
         AvailableProductTypes = model.AvailableProductTypes;
         AvailableApplicationStatuses = model.AvailableApplicationStatuses;
         AvailableEmployees = model.AvailableEmployees;
         CustomerId = model.CustomerId;
-        EmployeeId = model.EmployeeId;
+        //EmployeeId = model.EmployeeId;
         ProductTypeId = model.ProductTypeId;
+        ApplicationStatusId = model.ApplicationStatusId;
     }
 
     public CreditApplicationViewModel PrepareViewModel(CreditApplicationViewModel model)
@@ -176,6 +179,7 @@ public class CreditApplicationViewModel
             CustomerId = model.CustomerId,
             ProductTypeId = model.ProductTypeId,
             EmployeeId = model.EmployeeId,
+            ApplicationStatusId = model.ApplicationStatusId,
         };
     }
 
@@ -193,7 +197,9 @@ public class CreditApplicationViewModel
             DateOfLastStatusChange = DateOfLastStatusChange,
             Notes = Notes,
             CustomerId = CustomerId,
-            ProductTypeId = ProductTypeId
+            ProductTypeId = ProductTypeId,
+            //EmployeeId = EmployeeId,
+            ApplicationStatusId = ApplicationStatusId
         };
     }
 }

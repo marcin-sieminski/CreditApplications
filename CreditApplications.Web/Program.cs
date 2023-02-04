@@ -34,6 +34,7 @@ builder.Services.AddScoped<IRepository<ApplicationStatus>, ApplicationsStatusRep
 builder.Services.AddScoped<IRepository<Department>, DepartmentRepository>();
 builder.Services.AddScoped<IRepository<Role>, RoleRepository>();
 builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
+builder.Services.AddScoped<IRepository<Collateral>, CollateraleRepository>();
 
 builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
 builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IApplicationStatusLogic, ApplicationStatusLogic>();
 builder.Services.AddScoped<IDepartmentLogic, DepartmentLogic>();
 builder.Services.AddScoped<IRoleLogic, RoleLogic>();
 builder.Services.AddScoped<IEmploeeLogic, EmployeeLogic>();
+builder.Services.AddScoped<ICollateralLogic, CollateralLogic>();
 
 
 var app = builder.Build();

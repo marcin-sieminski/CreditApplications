@@ -10,11 +10,16 @@ public class CreditApplication : EntityBase
     [Required]
     public int CustomerId { get; set; }
     public virtual Customer Customer { get; set; }
+    
+    [DisplayName("Employee")]
+    [Required]
+    public int EmployeeId { get; set; }
+    public virtual Employee Employee { get; set; }
 
     [Required]
     public int ProductTypeId { get; set; }
     public virtual ProductType ProductType { get; set; }
-
+    
     [Required]
     public DateTime DateOfSubmission { get; set; }
     [Required]
@@ -29,7 +34,7 @@ public class CreditApplication : EntityBase
     [MaxLength(3000)]
     public string Notes { get; set; }
 
-    public virtual List<Employee> Employees { get; set; } = new List<Employee>();
     public virtual List<Collateral> Collaterals { get; set; } = new List<Collateral>();
     public virtual List<Document> Documents { get; set; } = new List<Document>();
+
 }

@@ -30,23 +30,7 @@ public class CreditApplicationsDbContext : DbContext
                 .WithMany(m => m.CreditApplications)
                 .HasForeignKey(fk => fk.CustomerId)
                 );
-
-        modelBuilder.Entity<CreditApplication>(eb =>
-            eb.HasMany(m => m.Employees)
-                .WithMany(m => m.CreditApplications)
-                .UsingEntity<CreditApplicationEmployee>(
-                    m => m.HasOne(o => o.Employee)
-                        .WithMany()
-                        .HasForeignKey(fk => fk.EmployeeId),
-                    m => m.HasOne(o => o.CreditApplication)
-                        .WithMany()
-                        .HasForeignKey(fk => fk.CreditApplicationId),
-
-                    pk =>
-                    {
-                        pk.HasKey(x => x.Id);
-                    }
-                ));
+        
     }
 
 
