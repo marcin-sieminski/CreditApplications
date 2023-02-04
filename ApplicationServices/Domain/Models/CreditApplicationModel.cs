@@ -13,7 +13,7 @@ public class CreditApplicationModel
     public int CustomerId { get; set; }
 
     public Customer Customer { get; set; }
-
+    
     [DisplayName("Customer first name")]
     public string CustomerFirstName { get; set; }
     

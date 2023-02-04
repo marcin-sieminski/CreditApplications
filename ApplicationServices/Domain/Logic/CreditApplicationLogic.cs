@@ -50,7 +50,6 @@ public class CreditApplicationLogic : ICreditApplicationLogic
         var entityForDb = _mapper.Map<DataAccess.Entities.CreditApplication>(entity);
         entityForDb.Modified = DateTime.Now;
         entityForDb.IsActive = true;
-        entityForDb.ApplicationStatusId = 3;
         entityForDb.DateOfLastStatusChange = DateTime.Now;
         var id = await _repository.Update(entityForDb);
         return id;

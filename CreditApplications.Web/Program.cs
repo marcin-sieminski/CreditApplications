@@ -45,7 +45,6 @@ builder.Services.AddScoped<IRoleLogic, RoleLogic>();
 builder.Services.AddScoped<IEmploeeLogic, EmployeeLogic>();
 builder.Services.AddScoped<ICollateralLogic, CollateralLogic>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -55,7 +55,6 @@ public class CreditApplicationViewModel
 
     [DisplayName("Status")] 
     public int ApplicationStatusId { get; set; }
-
     public string ApplicationStatus { get; set; }
 
     public List<SelectListItem> AvailableApplicationStatusesSelectList { get; set; } = new();
@@ -179,7 +178,7 @@ public class CreditApplicationViewModel
             CustomerId = model.CustomerId,
             ProductTypeId = model.ProductTypeId,
             EmployeeId = model.EmployeeId,
-            ApplicationStatusId = model.ApplicationStatusId,
+            ApplicationStatusId = model.ApplicationStatusId
         };
     }
 
@@ -198,7 +197,6 @@ public class CreditApplicationViewModel
             Notes = Notes,
             CustomerId = CustomerId,
             ProductTypeId = ProductTypeId,
-            //EmployeeId = EmployeeId,
             ApplicationStatusId = ApplicationStatusId
         };
     }

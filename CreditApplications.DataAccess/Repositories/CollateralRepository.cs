@@ -1,4 +1,4 @@
-﻿using CreditApplications.DataAccess.Entities;
+﻿﻿using CreditApplications.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.DataAccess.Repositories;

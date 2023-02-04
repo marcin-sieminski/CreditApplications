@@ -17,7 +17,6 @@
                 <label asp-for="CustomerId" class="control-label"></label>
                 <select asp-for="CustomerId" asp-items="Model!.AvailableCustomersSelectList" class="form-control"></select>
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
-
             </div>
             <div class="form-group">
                 <label asp-for="ProductTypeName" class="control-label"></label>
@@ -49,7 +48,6 @@
                 <label asp-for="ApplicationStatusId" class="control-label"></label>
                 <select asp-for="ApplicationStatusId" asp-items="Model!.AvailableApplicationStatusesSelectList" class="form-control"></select>
             </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a class="btn btn-primary" asp-action="List">Back to List</a>
