@@ -5,34 +5,34 @@ using CreditApplications.DataAccess.Repositories;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
-public class CollateralLogic : ICollateralLogic
+public class ProductTypeLogic : IProductTypeLogic
 {
-    private readonly IRepository<DataAccess.Entities.Collateral> _repository;
+    private readonly IRepository<DataAccess.Entities.ProductType> _repository;
     private readonly IMapper _mapper;
 
-    public CollateralLogic(IRepository<DataAccess.Entities.Collateral> repository, IMapper mapper)
+    public ProductTypeLogic(IRepository<DataAccess.Entities.ProductType> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task<List<CollateralModel>> GetAll()
+    public async Task<List<ProductTypeModel>> GetAll()
     {
         var dbEntities = await _repository.GetAll();
-        var model = _mapper.Map<List<CollateralModel>>(dbEntities);
+        var model = _mapper.Map<List<ProductTypeModel>>(dbEntities);
         return model;
     }
 
-    public async Task<CollateralModel> GetById(int id)
+    public async Task<ProductTypeModel> GetById(int id)
     {
         var dbEntity = await _repository.GetById(id);
-        var model = _mapper.Map<CollateralModel>(dbEntity);
+        var model = _mapper.Map<ProductTypeModel>(dbEntity);
         return model;
     }
 
-    public async Task<DataAccess.Entities.Collateral> Create(CollateralModel model)
+    public async Task<DataAccess.Entities.ProductType> Create(ProductTypeModel model)
     {
-        var dbEntity = _mapper.Map<DataAccess.Entities.Collateral>(model);
+        var dbEntity = _mapper.Map<DataAccess.Entities.ProductType>(model);
         dbEntity.Created = DateTime.Now;
         dbEntity.Modified = DateTime.Now;
         dbEntity.IsActive = true;
@@ -40,9 +40,9 @@ public class CollateralLogic : ICollateralLogic
         return entityCreated;
     }
 
-    public async Task<int> Update(CollateralModel model)
+    public async Task<int> Update(ProductTypeModel model)
     {
-        var entityForDb = _mapper.Map<DataAccess.Entities.Collateral>(model);
+        var entityForDb = _mapper.Map<DataAccess.Entities.ProductType>(model);
         entityForDb.Modified = DateTime.Now;
         entityForDb.IsActive = true;
         var idUpdated = await _repository.Update(entityForDb);
