@@ -14,7 +14,10 @@ public class CreditApplicationProfile : Profile
             .ForMember(x => x.ProductTypeId, y => y.MapFrom(z => z.ProductTypeId));
         
         CreateMap<Domain.Models.CreditApplicationModel, DataAccess.Entities.CreditApplication>()
-            .ForMember(x => x.ProductTypeId, y => y.MapFrom(z => z.ProductTypeId));
+            .ForMember(x => x.ProductTypeId, y => y.MapFrom(z => z.ProductTypeId))
+            .ForMember(x => x.ApplicationStatusId, y => y.MapFrom(z => z.ApplicationStatusId))
+            .ForMember(x => x.CustomerId, y => y.MapFrom(z => z.CustomerId))
+            .ForMember(x => x.ApplicationStatus, y => y.Ignore());
 
     }
 }
