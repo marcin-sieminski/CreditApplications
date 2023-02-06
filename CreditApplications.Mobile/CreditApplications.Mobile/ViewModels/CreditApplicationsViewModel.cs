@@ -18,7 +18,7 @@ public class CreditApplicationsViewModel : BaseItemsViewModel<CreditApplicationF
 
     public override async void GoToAddPage()
     {
-        //await Shell.Current.GoToAsync(nameof(NewCreditApplicationPage));
+        await Shell.Current.GoToAsync(nameof(NewCreditApplicationPage));
     }
 }
 

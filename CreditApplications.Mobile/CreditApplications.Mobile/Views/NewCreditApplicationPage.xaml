@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CreditApplications.Mobile.Views.NewCreditApplicationPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New credit application">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+                <Label Text="Customer" FontSize="Small" />
+                <Picker Title="Pick customer" ItemsSource="{Binding Customers}" ItemDisplayBinding="{Binding CustomerFullName}" SelectedItem="{Binding SelectedCustomer}" FontSize="Small" Margin="0"/>
+
+                <Entry Text="{Binding Currency, Mode=TwoWay}" FontSize="Small" Placeholder="Currency"/>
+
+                <Entry Text="{Binding AmountRequested, Mode=TwoWay}" FontSize="Small" Placeholder="Amount requested"/>
+
+                <Entry Text="{Binding AmountGranted, Mode=TwoWay}" FontSize="Small" Placeholder="Amount granted"/>
+
+                <Label Text="Date of submission" FontSize="Small" />
+                <DatePicker Date="{Binding DateOfSubmission, Mode=TwoWay}" FontSize="Small" />
+
+                <Label Text="Date of last status change" FontSize="Small" />
+                <DatePicker Date="{Binding DateOfLastStatusChange, Mode=TwoWay}" FontSize="Small" />
+
+                <Entry Text="{Binding Notes, Mode=TwoWay}" FontSize="Small" Placeholder="Notes"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
