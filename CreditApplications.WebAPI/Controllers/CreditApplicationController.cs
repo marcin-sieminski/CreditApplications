@@ -37,8 +37,8 @@ public class CreditApplicationController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CreditApplicationModel>> Post(CreditApplicationModel model)
     {
-        var idCreated = await _creditApplicationLogic.Create(model);
-        return CreatedAtAction("Get", new { id = idCreated, model });
+        var modelCreated = await _creditApplicationLogic.Create(model);
+        return Ok(modelCreated);
     }
 
     [HttpPut("{id}")]

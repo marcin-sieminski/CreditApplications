@@ -14,6 +14,7 @@ namespace CreditApplications.Mobile
             InitializeComponent();
             
             DependencyService.Register<CustomerDataStore>();
+            DependencyService.Register<CreditApplicationDataStore>();
 
             MainPage = new AppShell();
         }
