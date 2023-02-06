@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Logic;
 using CreditApplications.ApplicationServices.Domain.Models;
@@ -12,7 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);;
 builder.Services.AddDbContext<CreditApplicationsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CreditApplicationsConnection")));
 

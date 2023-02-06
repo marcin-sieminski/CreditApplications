@@ -30,6 +30,9 @@
       <SubType>Code</SubType>
       <DependentUpon>CustomerEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\CreditApplicationsPage.xaml.cs">
+      <DependentUpon>CreditApplicationsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
