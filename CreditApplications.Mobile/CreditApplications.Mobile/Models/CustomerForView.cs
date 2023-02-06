@@ -14,6 +14,9 @@ public class CustomerForView
     [DisplayName("Last name")]
     public string CustomerLastName { get; set; }
 
+    [DisplayName("Full name")]
+    public string CustomerFullName { get; set; }
+
     [DisplayName("Country")]
     public string Country { get; set; }
     
@@ -46,6 +49,7 @@ public class CustomerForView
         Id = model.Id;
         CustomerFirstName = model.CustomerFirstName;
         CustomerLastName = model.CustomerLastName;
+        CustomerFullName = model.CustomerFirstName + " " + model.CustomerLastName;
         Country = model.Country;
         City = model.City;
         PostalCode = model.PostalCode;

@@ -1,9 +1,9 @@
 using System.Text.Json.Serialization;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Logic;
-using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.ApplicationServices.Mappings;
 using CreditApplications.DataAccess;
+using CreditApplications.DataAccess.Entities;
 using CreditApplications.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using CreditApplication = CreditApplications.DataAccess.Entities.CreditApplication;
@@ -23,8 +23,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepository<CreditApplication>, CreditApplicationsRepository>();
 builder.Services.AddScoped<IRepository<Customer>, CustomersRepository>();
+builder.Services.AddScoped<IRepository<ApplicationStatus>, ApplicationsStatusRepository>();
+builder.Services.AddScoped<IRepository<ProductType>, ProductTypeRepository>();
 builder.Services.AddScoped<ICreditApplicationLogic, CreditApplicationLogic>();
 builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
+builder.Services.AddScoped<IProductTypeLogic, ProductTypeLogic>();
+builder.Services.AddScoped<IApplicationStatusLogic, ApplicationStatusLogic>();
 
 var app = builder.Build();
 
