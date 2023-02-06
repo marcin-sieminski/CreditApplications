@@ -17,9 +17,9 @@ public class ApplicationStatusForView
         
     }
 
-    //public ApplicationStatusForView(ApplicationStatusModel model)
-    //{
-    //    Id = model.Id;
-    //    ApplicationStatusName = model.ApplicationStatusName;
-    //}
+    public ApplicationStatusForView(ApplicationStatusModel model)
+    {
+        Id = model.Id;
+        ApplicationStatusName = model.ApplicationStatusName;
+    }
 }

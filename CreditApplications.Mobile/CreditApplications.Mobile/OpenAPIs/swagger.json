@@ -5,6 +5,211 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/ApplicationStatus": {
+      "get": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationStatusModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationStatusModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationStatusModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ApplicationStatus/{id}": {
+      "get": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatusModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationStatusModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/CreditApplication": {
       "get": {
         "tags": [
@@ -414,6 +619,211 @@
           }
         }
       }
+    },
+    "/api/ProductType": {
+      "get": {
+        "tags": [
+          "ProductType"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductTypeModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductTypeModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductTypeModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductType"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ProductType/{id}": {
+      "get": {
+        "tags": [
+          "ProductType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTypeModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -472,6 +882,24 @@
         },
         "additionalProperties": false
       },
+      "ApplicationStatusModel": {
+        "required": [
+          "applicationStatusName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "applicationStatusName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "Collateral": {
         "required": [
           "name"
@@ -513,18 +941,18 @@
             "nullable": true
           },
           "name": {
-            "maxLength": 250,
+            "maxLength": 500,
             "minLength": 1,
             "type": "string"
           },
           "description": {
-            "maxLength": 5000,
+            "maxLength": 1000,
             "type": "string",
             "nullable": true
           },
           "value": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "double",
             "nullable": true
           },
           "creditApplications": {
@@ -654,15 +1082,17 @@
         "additionalProperties": false
       },
       "CreditApplicationModel": {
+        "required": [
+          "amountGranted",
+          "amountRequested",
+          "currency",
+          "dateOfSubmission"
+        ],
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
-          },
-          "dateOfSubmission": {
-            "type": "string",
-            "format": "date-time"
           },
           "customerId": {
             "type": "integer",
@@ -676,25 +1106,33 @@
             "type": "string",
             "nullable": true
           },
-          "productTypeName": {
-            "type": "string",
-            "nullable": true
-          },
           "productTypeId": {
             "type": "integer",
             "format": "int32"
           },
-          "currency": {
+          "productTypeName": {
             "type": "string",
             "nullable": true
           },
+          "currency": {
+            "minLength": 3,
+            "type": "string"
+          },
           "amountRequested": {
+            "maximum": 100000000,
+            "minimum": 0,
             "type": "number",
             "format": "double"
           },
           "amountGranted": {
+            "maximum": 100000000,
+            "minimum": 0,
             "type": "number",
             "format": "double"
+          },
+          "dateOfSubmission": {
+            "type": "string",
+            "format": "date-time"
           },
           "applicationStatus": {
             "type": "string",
@@ -708,6 +1146,10 @@
             "type": "string",
             "format": "date-time"
           },
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "employeeFirstName": {
             "type": "string",
             "nullable": true
@@ -715,10 +1157,6 @@
           "employeeLastName": {
             "type": "string",
             "nullable": true
-          },
-          "employeeId": {
-            "type": "integer",
-            "format": "int32"
           },
           "notes": {
             "type": "string",
@@ -1153,6 +1591,24 @@
               "$ref": "#/components/schemas/CreditApplication"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductTypeModel": {
+        "required": [
+          "productTypeName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productTypeName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false

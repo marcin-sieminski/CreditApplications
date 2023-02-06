@@ -16,10 +16,12 @@ public class NewCreditApplicationViewModel : BaseNewItemViewModel<CreditApplicat
     private decimal _amountGranted;
     private DateTime _dateOfSubmission;
     private DateTime _dateOfLastStatusChange;
-    //private ApplicationStatusForView _selectedApplicationStatus;
+    private ApplicationStatusForView _selectedApplicationStatus;
     private string _notes;
 
     public List<CustomerForView> Customers => new CustomerDataStore().Items;
+    public List<ProductTypeForView> ProductTypes => new ProductTypeDataStore().Items;
+    public List<ApplicationStatusForView> ApplicationStatuses => new ApplicationStatusDataStore().Items;
 
     public NewCreditApplicationViewModel()
     {
@@ -40,17 +42,17 @@ public class NewCreditApplicationViewModel : BaseNewItemViewModel<CreditApplicat
         set => SetProperty(ref _selectedCustomer, value);
     }
 
-    //public ProductTypeForView SelectedProductType
-    //{
-    //    get => _selectedProductType;
-    //    set => SetProperty(ref _selectedProductType, value);
-    //}
+    public ProductTypeForView SelectedProductType
+    {
+        get => _selectedProductType;
+        set => SetProperty(ref _selectedProductType, value);
+    }
 
-    //public EmployeeForView SelectedEmployee
-    //{
-    //    get => _selectedEmployee;
-    //    set => SetProperty(ref _selectedEmployee, value);
-    //}
+    public ApplicationStatusForView SelectedApplicationStatus
+    {
+        get => _selectedApplicationStatus;
+        set => SetProperty(ref _selectedApplicationStatus, value);
+    }
 
     public string Currency
     {
@@ -89,7 +91,6 @@ public class NewCreditApplicationViewModel : BaseNewItemViewModel<CreditApplicat
     }
 
 
-
     public override bool ValidateSave()
     {
         return !String.IsNullOrWhiteSpace(Currency)
@@ -103,16 +104,15 @@ public class NewCreditApplicationViewModel : BaseNewItemViewModel<CreditApplicat
             CustomerId = SelectedCustomer.Id,
             CustomerFirstName = SelectedCustomer.CustomerFirstName,
             CustomerLastName = SelectedCustomer.CustomerLastName,
-            //ProductTypeId = SelectedProductType.Id,
-            //ProductTypeName = SelectedProductType.Name,
+            ProductTypeId = SelectedProductType.Id,
+            ProductTypeName = SelectedProductType.ProductTypeName,
+            ApplicationStatusId = SelectedApplicationStatus.Id,
+            ApplicationStatus = SelectedApplicationStatus.ApplicationStatusName,
             Currency = Currency,
             AmountRequested = AmountRequested,
             AmountGranted = AmountGranted,
             DateOfSubmission = DateOfSubmission,
             DateOfLastStatusChange = DateOfLastStatusChange,
-            //EmployeeId = SelectedEmployee.Id,
-            //EmployeeFirstName = SelectedEmployee.FirstName,
-            //EmployeeLastName = SelectedEmployee.LastName,
             Notes = Notes
         };
     }

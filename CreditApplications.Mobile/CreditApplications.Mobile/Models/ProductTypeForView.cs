@@ -17,9 +17,9 @@ public class ProductTypeForView
         
     }
 
-    //public ProductTypeForView(ProductTypeModel model)
-    //{
-    //    Id = model.Id;
-    //    ProductTypeName = model.ProductTypeName;
-    //}
+    public ProductTypeForView(ProductTypeModel model)
+    {
+        Id = model.Id;
+        ProductTypeName = model.ProductTypeName;
+    }
 }
