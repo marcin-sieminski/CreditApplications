@@ -15,6 +15,8 @@ public partial class AppShell : Xamarin.Forms.Shell
         Routing.RegisterRoute(nameof(NewCustomerPage), typeof(NewCustomerPage));
         Routing.RegisterRoute(nameof(CustomerEditPage), typeof(CustomerEditPage));
         Routing.RegisterRoute(nameof(NewCreditApplicationPage), typeof(NewCreditApplicationPage));
+        Routing.RegisterRoute(nameof(CreditApplicationDetailPage), typeof(CreditApplicationDetailPage));
+        Routing.RegisterRoute(nameof(CreditApplicationEditPage), typeof(CreditApplicationEditPage));
     }
 
     private async void OnMenuItemClicked(object sender, EventArgs e)

@@ -75,9 +75,8 @@ public class CreditApplicationForView
         ApplicationStatus = model.ApplicationStatus;
         DateOfSubmission = model.DateOfSubmission;
         DateOfLastStatusChange = model.DateOfLastStatusChange;
-        EmployeeId = model.EmployeeId;
-        EmployeeFirstName = model.EmployeeFirstName;
-        EmployeeLastName = model.EmployeeLastName;
         Notes = model.Notes;
+        ApplicationStatus = model.ApplicationStatus;
+        ApplicationStatusId = model.ApplicationStatusId;
     }
 }

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web;
 using CreditApplications.Mobile.Models;
-using CreditApplications.Mobile.Views;
 using Xamarin.Forms;
 
 namespace CreditApplications.Mobile.ViewModels;
 
 public class CustomerEditViewModel : BaseItemEditViewModel<CustomerForView>, IQueryAttributable  
 {
-    public CustomerEditViewModel() : base("Customer details")
+    public CustomerEditViewModel() : base("Customer edit")
     {
 
     }

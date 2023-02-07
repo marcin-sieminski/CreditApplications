@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using CreditApplications.ServiceReference;
 
 namespace CreditApplications.Mobile.Models;
 
-public class CustomerForView
+public class CustomerForView : IEquatable<CustomerForView>
 {
     [DisplayName("Id")]
     public int Id { get; set; }
@@ -57,5 +58,11 @@ public class CustomerForView
         AddressNumber = model.AddressNumber;
         PhoneNumber = model.PhoneNumber;
         Email = model.Email;
+    }
+
+    public bool Equals(CustomerForView other)
+    {
+        if (other == null) return false;
+        return (this.Id.Equals(other.Id));
     }
 }

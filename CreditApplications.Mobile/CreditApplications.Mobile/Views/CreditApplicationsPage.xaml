@@ -33,18 +33,18 @@
                         <Label Text="{Binding AmountRequested}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
-                        <Label Text="{Binding AmountGranted}" 
+                        <!--<Label Text="{Binding AmountGranted}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
                         <Label Text="{Binding DateOfSubmission}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
-                               FontSize="13" />
+                               FontSize="13" />-->
                         <Label Text="{Binding ApplicationStatus}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="13" />
-                        <Label Text="{Binding Notes}" 
+                        <!--<Label Text="{Binding Notes}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"
-                               FontSize="13" />
+                               FontSize="13" />-->
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"

@@ -32,14 +32,12 @@ public class CreditApplicationDataStore : DataStoreBase, IDataStore<CreditApplic
             ApplicationStatus = item.ApplicationStatus,
             DateOfSubmission = item.DateOfSubmission,
             DateOfLastStatusChange = item.DateOfLastStatusChange,
-            EmployeeId = item.EmployeeId,
-            EmployeeFirstName = item.EmployeeFirstName,
-            EmployeeLastName = item.EmployeeLastName,
-            Notes = item.Notes
+            Notes = item.Notes,
+            ApplicationStatusId = item.ApplicationStatusId
         };
 
         var itemFromService = new CreditApplicationForView(_creditApplicationsService.CreditApplicationAsync(itemToAdd).Result);
-        Items.Add(itemFromService);
+        Items.Add(item);
 
         return await Task.FromResult(true);
     }
@@ -64,10 +62,8 @@ public class CreditApplicationDataStore : DataStoreBase, IDataStore<CreditApplic
             ApplicationStatus = item.ApplicationStatus,
             DateOfSubmission = item.DateOfSubmission,
             DateOfLastStatusChange = item.DateOfLastStatusChange,
-            EmployeeId = item.EmployeeId,
-            EmployeeFirstName = item.EmployeeFirstName,
-            EmployeeLastName = item.EmployeeLastName,
-            Notes = item.Notes
+            Notes = item.Notes,
+            ApplicationStatusId = item.ApplicationStatusId,
         };
         
         var result = _creditApplicationsService.CreditApplication3Async(model.Id, model);

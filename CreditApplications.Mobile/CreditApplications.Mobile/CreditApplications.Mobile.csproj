@@ -26,6 +26,12 @@
     <Compile Update="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\CreditApplicationDetailPage.xaml.cs">
+      <DependentUpon>CreditApplicationDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CreditApplicationEditPage.xaml.cs">
+      <DependentUpon>CreditApplicationEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\CustomerEditPage.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>CustomerEditPage.xaml</DependentUpon>

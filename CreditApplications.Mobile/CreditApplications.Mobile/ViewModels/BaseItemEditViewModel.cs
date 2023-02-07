@@ -22,7 +22,7 @@ public abstract class BaseItemEditViewModel<T> : BaseViewModel<T>
     private async void OnSave()
     {
         await DataStore.UpdateItemAsync(SetItem());
-        await Shell.Current.GoToAsync($"//{nameof(CustomersPage)}");
+        await Shell.Current.GoToAsync("../..");
     }
     public abstract T SetItem();
 

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CreditApplications.Mobile.Views.CreditApplicationDetailPage"
+             Title="Edit credit application">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Text="Customer First Name" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding CustomerFirstName}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Text="Customer Last Name" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding CustomerLastName}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Text="Product Type" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding ProductType}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Text="Currency" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding Currency}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Text="Amount Requested" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="4" Text="{Binding AmountRequested}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" Text="Amount Granted" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="5" Text="{Binding Currency}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="6" Text="Date Of Submission" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="6" Text="{Binding DateOfSubmission}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="7" Text="Date Of Last Status Change" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="7" Text="{Binding DateOfLastStatusChange}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="8" Text="Notes" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Notes}" FontSize="Small"/>
+
+                    <Label Grid.Column="0" Grid.Row="9" Text="Application Status" FontSize="Small" />
+                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding ApplicationStatus}" FontSize="Small"/>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Edit" Command="{Binding EditCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Delete" Command="{Binding DeleteCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

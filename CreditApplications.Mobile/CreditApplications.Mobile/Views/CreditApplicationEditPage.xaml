@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CreditApplications.Mobile.ViewModels;assembly=CreditApplications.Mobile"
+             x:Class="CreditApplications.Mobile.Views.CreditApplicationEditPage"
+             Title="Edit credit application">
+    
+    <ContentPage.BindingContext>
+        <viewModels:CreditApplicationEditViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+
+                <Picker Title="Customer" ItemsSource="{Binding Customers, Mode=TwoWay}" ItemDisplayBinding="{Binding CustomerFullName, Mode=TwoWay}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}" Margin="0" FontSize="Small"/>
+
+                <Picker Title="Product type" ItemsSource="{Binding ProductTypes}" ItemDisplayBinding="{Binding ProductTypeName}" SelectedItem="{Binding SelectedProductType}" Margin="0" FontSize="Small"/>
+
+                <Label Text="Currency" FontSize="Small" ></Label>
+                <Entry Text="{Binding Currency, Mode=TwoWay}" FontSize="Small" Placeholder="Currency"/>
+
+                <Label Text="Amount requested" FontSize="Small" ></Label>
+                <Entry Text="{Binding AmountRequested, Mode=TwoWay}" FontSize="Small" Placeholder="Amount requested"/>
+
+                <Label Text="Amount granted" FontSize="Small" ></Label>
+                <Entry Text="{Binding AmountGranted, Mode=TwoWay}" FontSize="Small" Placeholder="Amount granted"/>
+
+                <Label Text="Date of submission" FontSize="Small" />
+                <DatePicker Date="{Binding DateOfSubmission, Mode=TwoWay}" FontSize="Small" />
+
+                <Label Text="Date of last status change" FontSize="Small" />
+                <DatePicker Date="{Binding DateOfLastStatusChange, Mode=TwoWay}" FontSize="Small" />
+
+                <Label Text="Notes" FontSize="Small" ></Label>
+                <Entry Text="{Binding Notes, Mode=TwoWay}" FontSize="Small" Placeholder="Notes"/>
+
+                <Picker Title="Application status" ItemsSource="{Binding ApplicationStatuses}" ItemDisplayBinding="{Binding ApplicationStatusName}" SelectedItem="{Binding SelectedApplicationStatus}" Margin="0" FontSize="Small"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
