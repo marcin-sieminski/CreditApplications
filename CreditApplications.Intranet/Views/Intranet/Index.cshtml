@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CreditApplications.Intranet.ViewModels.HomePageViewModel
+@{
+    ViewData["Title"] = "Main";
+}
+<div class="">
+    <hr />
+        <div class="d-inline">
+            <a asp-controller="Intranet" asp-action="List" class="btn btn-primary">Active credit applications: @Model.ActiveCreditApplicationsNumber</a>
+        </div>
+    <hr />
+    <div>
+        @await Html.PartialAsync("Messages", @Model.Messages)
+    </div>
+</div>
