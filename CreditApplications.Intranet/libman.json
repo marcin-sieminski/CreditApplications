@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "@fortawesome/fontawesome-free@6.3.0",
+      "destination": "wwwroot/lib/fortawesome/fontawesome-free/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "globalize@1.7.0",
+      "destination": "wwwroot/lib/globalize/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation-globalize@0.1.1",
+      "destination": "wwwroot/lib/jquery-validation-globalize/"
+    }
+  ]
+}
