@@ -20,6 +20,8 @@ public class CreditApplicationsDbContext : DbContext
     public DbSet<CartItem> CartItems => Set<CartItem>();
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<Role> Roles => Set<Role>();
+    public DbSet<Page> Pages => Set<Page>();
+    public DbSet<Article> Articles => Set<Article>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

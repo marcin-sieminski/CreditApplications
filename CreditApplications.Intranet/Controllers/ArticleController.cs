@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.Intranet.Controllers;
 
-public class MessageController : Controller
+public class ArticleController : Controller
 {
     private readonly CreditApplicationsDbContext _context;
 
-    public MessageController(CreditApplicationsDbContext context)
+    public ArticleController(CreditApplicationsDbContext context)
     {
         _context = context;
     }
