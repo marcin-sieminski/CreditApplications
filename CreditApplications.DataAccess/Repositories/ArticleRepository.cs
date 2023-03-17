@@ -3,32 +3,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.DataAccess.Repositories;
 
-public class ApplicationsStatusRepository : IRepository<ApplicationStatus>
+public class ArticleRepository : IRepository<Article>
 {
     private readonly CreditApplicationsDbContext _context;
-    private readonly DbSet<ApplicationStatus> _entities;
+    private readonly DbSet<Article> _entities;
 
-    public ApplicationsStatusRepository(CreditApplicationsDbContext context)
+    public ArticleRepository(CreditApplicationsDbContext context)
     {
         _context = context;
-        _entities = context.Set<ApplicationStatus>();
+        _entities = context.Set<Article>();
     }
 
-    public async Task<List<ApplicationStatus>> GetAll()
+    public async Task<List<Article>> GetAll()
     {
         return await _entities
             .Where(x => x.IsActive)
             .ToListAsync();
     }
 
-    public async Task<ApplicationStatus> GetById(int id)
+    public async Task<Article> GetById(int id)
     {
         return await _entities
             .Where(x => x.IsActive)
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<ApplicationStatus> Create(ApplicationStatus entity)
+    public async Task<Article> Create(Article entity)
     {
         if (entity == null)
         {
@@ -40,13 +40,13 @@ public class ApplicationsStatusRepository : IRepository<ApplicationStatus>
         return entityEntry.Entity;
     }
 
-    public async Task<int> Update(ApplicationStatus entity)
+    public async Task<int> Update(Article entity)
     {
         if (entity == null)
         {
             throw new ArgumentNullException("entity");
         }
-        var dbEntity = _context.ApplicationStatuses.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        var dbEntity = _context.Articles.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
         if (dbEntity is not null)
         {
             entity.Created = dbEntity.Created;

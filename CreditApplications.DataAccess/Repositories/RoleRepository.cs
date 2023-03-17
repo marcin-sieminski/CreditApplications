@@ -46,7 +46,7 @@ public class RoleRepository : IRepository<Role>
         {
             throw new ArgumentNullException("entity");
         }
-        var dbEntity = _context.Customers.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        var dbEntity = _context.Roles.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
         if (dbEntity is not null)
         {
             entity.Created = dbEntity.Created;

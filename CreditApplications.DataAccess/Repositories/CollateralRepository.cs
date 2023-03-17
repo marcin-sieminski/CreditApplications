@@ -46,7 +46,7 @@ public class CollateraleRepository : IRepository<Collateral>
         {
             throw new ArgumentNullException("entity");
         }
-        var dbEntity = _context.Customers.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
+        var dbEntity = _context.Collaterals.AsNoTracking().FirstOrDefault(x => x.Id == entity.Id);
         if (dbEntity is not null)
         {
             entity.Created = dbEntity.Created;
