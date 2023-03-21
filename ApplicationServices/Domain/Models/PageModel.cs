@@ -24,4 +24,6 @@ public class PageModel
     [Display(Name = "Position")]
     [Required(ErrorMessage = "Position is required")]
     public int Position { get; set; }
+    public bool IsActive { get; set; }
+
 }

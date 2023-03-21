@@ -28,8 +28,10 @@ builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
     cfg.UseSqlServer(builder.Configuration.GetConnectionString("CreditApplicationsConnection")).EnableSensitiveDataLogging();
 });
 builder.Services.AddScoped<IRepository<Article>, ArticleRepository>();
+builder.Services.AddScoped<IRepository<Page>, PageRepository>();
 
 builder.Services.AddScoped<IArticleLogic, ArticleLogic>();
+builder.Services.AddScoped<IPageLogic, PageLogic>();
 
 var app = builder.Build();
 

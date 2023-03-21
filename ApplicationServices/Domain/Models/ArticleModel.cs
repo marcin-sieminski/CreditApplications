@@ -20,4 +20,6 @@ public class ArticleModel
 
     public DateTime Created { get; set; }
     public virtual List<RoleModel> RolesToDistribute { get; set; }
+    public bool IsActive { get; set; }
+
 }

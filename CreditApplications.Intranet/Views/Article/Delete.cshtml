@@ -1,4 +1,4 @@
-﻿@model CreditApplications.DataAccess.Entities.Message
+﻿@model ArticleModel
 
 @{
     ViewData["Title"] = "Delete article";
@@ -15,6 +15,9 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Body)
+        </dd>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Position)
         </dd>
     </dl>
 

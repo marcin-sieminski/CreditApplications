@@ -1,34 +1,65 @@
-﻿using CreditApplications.DataAccess;
-using CreditApplications.DataAccess.Entities;
+﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
+using CreditApplications.ApplicationServices.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.Intranet.Controllers;
 
 public class ArticleController : Controller
 {
-    private readonly CreditApplicationsDbContext _context;
+    private readonly ILogger<ArticleController> _logger;
+    private readonly IArticleLogic _logic;
 
-    public ArticleController(CreditApplicationsDbContext context)
+    public ArticleController(ILogger<ArticleController> logger, IArticleLogic logic)
     {
-        _context = context;
+        _logger = logger;
+        _logic = logic;
     }
 
     public async Task<IActionResult> Index(int? id)
     {
-        ViewBag.MessageModel = _context.Messages.Where(x => x.IsActive).OrderByDescending(x => x.Created).ToList();
-        var model = await _context.Messages.FirstOrDefaultAsync(x => x.IsActive && x.Id == id);
-        if (model == null)
+        try
         {
-            return NotFound();
+            var model = await _logic.GetById(id.Value);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            return View(model);
         }
-        return View(model);
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to get article: {e}");
+            return RedirectToAction(nameof(Error));
+        }
     }
 
     public async Task<IActionResult> List()
     {
-        var model = await _context.Messages.Where(x => x.IsActive).ToListAsync();
-        return View(model);
+        try
+        {
+            var model = await _logic.GetAll();
+            return View(model);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to get article: {e}");
+            return RedirectToAction(nameof(Error));
+        }
+    }
+
+    [Route("{controller}/Details/{id:int}")]
+    public async Task<IActionResult> Details([FromRoute] int id)
+    {
+        try
+        {
+            var model = await _logic.GetById(id);
+            return View(model);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to get article details: {e}");
+            return RedirectToAction(nameof(Error));
+        }
     }
 
     public IActionResult Create()
@@ -38,14 +69,11 @@ public class ArticleController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Message model)
+    public async Task<IActionResult> Create(ArticleModel model)
     {
         if (ModelState.IsValid)
         {
-            model.IsActive = true;
-            model.Created = DateTime.Now;
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            await _logic.Create(model);
             return RedirectToAction(nameof(List));
         }
         return View(model);
@@ -55,21 +83,22 @@ public class ArticleController : Controller
     {
         if (id == null)
         {
+            _logger.LogInformation("Null id passed to edit route.");
             return RedirectToAction(nameof(Error));
         }
 
-        var model = await _context.Messages.SingleAsync(x => x.Id == id);
+        var model = await _logic.GetById(id.Value);
         if (model == null)
         {
+            _logger.LogInformation("No article found for {id}.", id.Value);
             return RedirectToAction(nameof(Error));
         }
-
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, Message model)
+    public async Task<IActionResult> Edit(int id, ArticleModel model)
     {
         if (id != model.Id)
         {
@@ -78,11 +107,7 @@ public class ArticleController : Controller
 
         if (ModelState.IsValid)
         {
-            var dbEntity = _context.Messages.Single(x => x.Id == model.Id);
-            dbEntity.Body = model.Body;
-            dbEntity.Title = model.Title;
-            dbEntity.Modified = DateTime.Now;
-            await _context.SaveChangesAsync();
+            await _logic.Update(model);
             return RedirectToAction(nameof(List));
         }
         return View(model);
@@ -92,11 +117,12 @@ public class ArticleController : Controller
     {
         if (id != null)
         {
-            var model = _context.Messages.Single(x => x.Id == id);
+            var model = await _logic.GetById(id.Value);
             if (model == null)
             {
                 return RedirectToAction(nameof(Error));
             }
+
             return View(model);
         }
 
@@ -107,10 +133,7 @@ public class ArticleController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var dbEntity = _context.Messages.Single(x => x.Id == id);
-        dbEntity.IsActive = false;
-        dbEntity.Inactivated = DateTime.Now;
-        await _context.SaveChangesAsync();
+        await _logic.Inactivate(id);
         return RedirectToAction(nameof(List));
     }
 
