@@ -17,6 +17,7 @@
                     <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.Title)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.Body)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.LinkTitle)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.Position)</th>
                     <th></th>
                 </tr>
@@ -28,6 +29,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.Body)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Position)</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

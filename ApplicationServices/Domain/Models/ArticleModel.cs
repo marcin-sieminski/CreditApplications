@@ -14,6 +14,11 @@ public class ArticleModel
     [Display(Name = "Body")]
     public string Body { get; set; }
     
+    [Required(ErrorMessage = "Link title is required")]
+    [MaxLength(200, ErrorMessage = "Max title length is 200 characters")]
+    [Display(Name = "Link title")]
+    public string LinkTitle { get; set; }
+
     [Display(Name = "Position")]
     [Required(ErrorMessage = "Position is required")]
     public int Position { get; set; }

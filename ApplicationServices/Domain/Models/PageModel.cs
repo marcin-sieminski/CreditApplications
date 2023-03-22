@@ -7,10 +7,6 @@ public class PageModel
 {
     public int Id { get; set; }
     
-    [Required(ErrorMessage = "Link title is required")]
-    [MaxLength(200, ErrorMessage = "Max title length is 200 characters")]
-    [Display(Name = "Link title")]
-    public string LinkTitle { get; set; }
 
     [Required(ErrorMessage = "Page title is required")]
     [MaxLength(300, ErrorMessage = "Max page title length is 300 characters")]
@@ -20,6 +16,11 @@ public class PageModel
     [Display(Name = "Body")]
     [Column(TypeName = "nvarchar(MAX)")]
     public string Body { get; set; }
+
+    [Required(ErrorMessage = "Link title is required")]
+    [MaxLength(200, ErrorMessage = "Max title length is 200 characters")]
+    [Display(Name = "Link title")]
+    public string LinkTitle { get; set; }
 
     [Display(Name = "Position")]
     [Required(ErrorMessage = "Position is required")]
