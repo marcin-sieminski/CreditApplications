@@ -25,6 +25,12 @@
             </div>
             
             <div class="form-group">
+                <label asp-for="LinkTitle" class="control-label"></label>
+                <input asp-for="LinkTitle" class="form-control" />
+                <span asp-validation-for="LinkTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Position" class="control-label"></label>
                 <input asp-for="Position" class="form-control" />
                 <span asp-validation-for="Position" class="text-danger"></span>
