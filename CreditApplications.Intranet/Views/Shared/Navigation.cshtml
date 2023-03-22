@@ -1,26 +1,36 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" asp-area="" asp-controller="Intranet" asp-action="Index"><i class="fas fa-university"></i>Credit Applications</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Page" asp-action="Index"><i class="fas fa-university"></i>Credit Applications</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Intranet" asp-action="Index">
-                        Intranet
+                    <a class="nav-link" asp-area="" asp-controller="Page" asp-action="Index">
+                        Pages
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
-                @*<partial name="_LoginPartial" />*@
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Articles administration</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-controller="Page" asp-action="Index">Pages list</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-controller="Page" asp-action="Create">Add new page</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Articles</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" asp-controller="Article" asp-action="List">Articles list</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" asp-controller="Article" asp-action="Create">Add new article</a>
                     </div>
                 </li>
+                @*<partial name="_LoginPartial" />*@
             </ul>
         </div>
     </div>
