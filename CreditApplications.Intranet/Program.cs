@@ -59,6 +59,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Page}/{action=Index}/{id?}");
+    pattern: "{controller=Intranet}/{action=Index}/{id?}");
 
 app.Run();

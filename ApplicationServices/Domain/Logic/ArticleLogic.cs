@@ -23,6 +23,13 @@ public class ArticleLogic : IArticleLogic
         return model;
     }
 
+    public async Task<List<ArticleModel>> GetAllSorted()
+    {
+        var dbEntities = await _repository.GetAll();
+        var model = _mapper.Map<List<ArticleModel>>(dbEntities.OrderBy(x => x.Position));
+        return model;
+    }
+
     public async Task<ArticleModel> GetById(int id)
     {
         var dbEntity = await _repository.GetById(id);
