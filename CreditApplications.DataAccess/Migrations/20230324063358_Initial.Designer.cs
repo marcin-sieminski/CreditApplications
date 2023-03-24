@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditApplications.DataAccess.Migrations
 {
     [DbContext(typeof(CreditApplicationsDbContext))]
-    [Migration("20230204060351_RoleModelUpdate")]
-    partial class RoleModelUpdate
+    [Migration("20230324063358_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -93,6 +93,60 @@ namespace CreditApplications.DataAccess.Migrations
                     b.ToTable("ApplicationStatuses");
                 });
 
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Inactivated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InactivatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LinkTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PageId");
+
+                    b.ToTable("Articles");
+                });
+
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CartItem", b =>
                 {
                     b.Property<int>("Id")
@@ -155,8 +209,8 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
@@ -175,15 +229,15 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("Value")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Value")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collateral");
+                    b.ToTable("Collaterals");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplication", b =>
@@ -531,6 +585,54 @@ namespace CreditApplications.DataAccess.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Page", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Inactivated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InactivatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LinkTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pages");
+                });
+
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>
                 {
                     b.Property<int>("Id")
@@ -644,6 +746,15 @@ namespace CreditApplications.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
+                {
+                    b.HasOne("CreditApplications.DataAccess.Entities.Page", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CartItem", b =>
                 {
                     b.HasOne("CreditApplications.DataAccess.Entities.CreditApplication", "CreditApplication")
@@ -753,6 +864,11 @@ namespace CreditApplications.DataAccess.Migrations
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Message", b =>
                 {
                     b.Navigation("RolesToDistribute");
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Page", b =>
+                {
+                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>

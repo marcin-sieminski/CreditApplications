@@ -5,7 +5,7 @@ namespace CreditApplications.ApplicationServices.Domain.Models;
 public class ArticleModel
 {
     public int Id { get; set; }
-    
+
     [Display(Name = "Title")]
     [Required(ErrorMessage = "Article title is required")]
     [MaxLength(1000, ErrorMessage = "Max article title length is 1000 characters")]
@@ -13,7 +13,7 @@ public class ArticleModel
 
     [Display(Name = "Body")]
     public string Body { get; set; }
-    
+
     [Required(ErrorMessage = "Link title is required")]
     [MaxLength(200, ErrorMessage = "Max title length is 200 characters")]
     [Display(Name = "Link title")]
@@ -23,8 +23,11 @@ public class ArticleModel
     [Required(ErrorMessage = "Position is required")]
     public int Position { get; set; }
 
+    [Display(Name = "Created")]
     public DateTime Created { get; set; }
-    public virtual List<RoleModel> RolesToDistribute { get; set; }
     public bool IsActive { get; set; }
 
+    [Display(Name = "Page")]
+    public int PageId { get; set; }
+    public List<PageModel> AvailablePages { get; set; } = new();
 }

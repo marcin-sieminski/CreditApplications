@@ -11,5 +11,5 @@ public class Article : EntityBase
     public string LinkTitle { get; set; }
 
     public int Position { get; set; }
-    public virtual List<Role> RolesToDistribute { get; set; }
+    public int PageId { get; set; }
 }

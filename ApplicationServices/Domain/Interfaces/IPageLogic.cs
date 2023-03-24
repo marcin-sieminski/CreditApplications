@@ -5,6 +5,7 @@ namespace CreditApplications.ApplicationServices.Domain.Interfaces;
 public interface IPageLogic
 {
     Task<List<PageModel>> GetAll();
+    Task<List<PageModel>> GetAllSorted();
     Task<PageModel> GetById(int id);
     Task<DataAccess.Entities.Page> Create(PageModel model);
     Task<int> Update(PageModel model);

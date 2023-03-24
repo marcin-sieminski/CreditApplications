@@ -127,6 +127,9 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Position")
                         .HasColumnType("int");
 
@@ -135,6 +138,8 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PageId");
 
                     b.ToTable("Articles");
                 });
@@ -672,9 +677,6 @@ namespace CreditApplications.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ArticleId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
@@ -705,8 +707,6 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
 
                     b.HasIndex("MessageId");
 
@@ -739,6 +739,15 @@ namespace CreditApplications.DataAccess.Migrations
                     b.HasOne("CreditApplications.DataAccess.Entities.Document", null)
                         .WithMany()
                         .HasForeignKey("DocumentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
+                {
+                    b.HasOne("CreditApplications.DataAccess.Entities.Page", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -829,10 +838,6 @@ namespace CreditApplications.DataAccess.Migrations
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Role", b =>
                 {
-                    b.HasOne("CreditApplications.DataAccess.Entities.Article", null)
-                        .WithMany("RolesToDistribute")
-                        .HasForeignKey("ArticleId");
-
                     b.HasOne("CreditApplications.DataAccess.Entities.Message", null)
                         .WithMany("RolesToDistribute")
                         .HasForeignKey("MessageId");
@@ -841,11 +846,6 @@ namespace CreditApplications.DataAccess.Migrations
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ApplicationStatus", b =>
                 {
                     b.Navigation("CreditApplications");
-                });
-
-            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
-                {
-                    b.Navigation("RolesToDistribute");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Customer", b =>
@@ -861,6 +861,11 @@ namespace CreditApplications.DataAccess.Migrations
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Message", b =>
                 {
                     b.Navigation("RolesToDistribute");
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Page", b =>
+                {
+                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>

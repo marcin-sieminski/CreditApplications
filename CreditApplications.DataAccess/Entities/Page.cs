@@ -14,4 +14,5 @@ public class Page : EntityBase
     public string LinkTitle { get; set; }
 
     public int Position { get; set; }
+    public virtual List<Article> Articles { get; set; }
 }

@@ -23,6 +23,13 @@ public class PageLogic : IPageLogic
         return model;
     }
 
+    public async Task<List<PageModel>> GetAllSorted()
+    {
+        var dbEntities = await _repository.GetAll();
+        var model = _mapper.Map<List<PageModel>>(dbEntities.OrderBy(x => x.Position));
+        return model;
+    }
+
     public async Task<PageModel> GetById(int id)
     {
         var dbEntity = await _repository.GetById(id);

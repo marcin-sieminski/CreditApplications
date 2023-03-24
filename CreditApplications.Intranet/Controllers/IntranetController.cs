@@ -23,7 +23,8 @@ namespace CreditApplications.Intranet.Controllers
             {
                 return View(new HomePageViewModel
                 {
-                    Articles = await _articleLogic.GetAllSorted()
+                    Articles = await _articleLogic.GetAllSorted(),
+                    Pages = await _pageLogic.GetAllSorted()
                 });
             }
             catch (Exception e)

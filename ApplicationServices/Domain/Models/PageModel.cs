@@ -6,13 +6,13 @@ namespace CreditApplications.ApplicationServices.Domain.Models;
 public class PageModel
 {
     public int Id { get; set; }
-    
+
 
     [Required(ErrorMessage = "Page title is required")]
     [MaxLength(300, ErrorMessage = "Max page title length is 300 characters")]
     [Display(Name = "Title")]
     public string Title { get; set; }
-    
+
     [Display(Name = "Body")]
     [Column(TypeName = "nvarchar(MAX)")]
     public string Body { get; set; }
@@ -27,4 +27,5 @@ public class PageModel
     public int Position { get; set; }
     public bool IsActive { get; set; }
 
+    public virtual IEnumerable<ArticleModel> Articles { get; set; }
 }
