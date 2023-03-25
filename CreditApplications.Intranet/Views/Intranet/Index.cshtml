@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
-@model CreditApplications.Intranet.ViewModels.HomePageViewModel
+@model CreditApplications.Intranet.ViewModels.IntranetViewModel
 @{
     ViewData["Title"] = "Main";
 }
 <div class="">
     <div>
-        @await Html.PartialAsync("ArticlesPartial", @Model.Articles)
+        @await Html.PartialAsync("ArticleRead", @Model.Articles)
     </div>
 </div>

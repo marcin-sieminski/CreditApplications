@@ -1,15 +1,43 @@
-﻿@model ArticleModel
+﻿@model IntranetViewModel
 @{
-    ViewData["Title"] = @Model.Title;
+    ViewData["Title"] = "Articles list";
+    Layout = "_Layout";
 }
-<div><h4>Article details</h4></div>
-<hr />
-<div class="card border-primary m-3" style="max-width: 20rem;">
-    <div class="card-header">@Model.Title</div>
-    <div class="card-body">
-        <p class="card-text">@Model.Body</p>
+<h4>Articles</h4>
+<a asp-action="Create" class="btn btn-secondary" role="button">Add new article</a>
+<div class="container-fluid">
+    <div class="row">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Title)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Body)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.LinkTitle)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.PageId)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Position)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Articles)
+                {
+                    <tr class="table-primary">
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Body)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PageId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
-<br />
-<a asp-controller="Intranet" asp-action="Index" class="btn btn-primary">Go back to main page</a>
-

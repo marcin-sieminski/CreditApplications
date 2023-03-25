@@ -1,26 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
+using CreditApplications.Intranet.ViewModels;
 
 namespace CreditApplications.Intranet.Controllers;
 
 public class PageController : Controller
 {
     private readonly ILogger<PageController> _logger;
-    private readonly IPageLogic _logic;
+    private readonly IPageLogic _pageLogic;
 
     public PageController(ILogger<PageController> logger, IPageLogic logic)
     {
         _logger = logger;
-        _logic = logic;
+        _pageLogic = logic;
     }
 
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> Index()
     {
         try
         {
-            var model = await _logic.GetAll();
-            return View(model);
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted()
+            });
         }
         catch (Exception e)
         {
@@ -29,27 +32,17 @@ public class PageController : Controller
         }
     }
 
-    public async Task<IActionResult> List()
-    {
-        try
-        {
-            var model = await _logic.GetAll();
-            return View(model);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError($"Failed to get page: {e}");
-            return RedirectToAction(nameof(Error));
-        }
-    }
 
     [Route("{controller}/Details/{id:int}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
         try
         {
-            var model = await _logic.GetById(id);
-            return View(model);
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                PageModel = await _pageLogic.GetById(id)
+            });
         }
         catch (Exception e)
         {
@@ -58,21 +51,29 @@ public class PageController : Controller
         }
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View();
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted()
+        });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(PageModel model)
+    public async Task<IActionResult> Create(IntranetViewModel model)
     {
         if (ModelState.IsValid)
         {
-            await _logic.Create(model);
-            return RedirectToAction(nameof(List));
+            await _pageLogic.Create(model.PageModel);
+            return RedirectToAction(nameof(Index));
         }
-        return View(model);
+
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            PageModel = model.PageModel
+        });
     }
 
     public async Task<IActionResult> Edit(int? id)
@@ -83,43 +84,55 @@ public class PageController : Controller
             return RedirectToAction(nameof(Error));
         }
 
-        var model = await _logic.GetById(id.Value);
+        var model = await _pageLogic.GetById(id.Value);
         if (model == null)
         {
             _logger.LogInformation("No page found for {id}.", id.Value);
             return RedirectToAction(nameof(Error));
         }
-        return View(model);
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            PageModel = model
+        });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, PageModel model)
+    public async Task<IActionResult> Edit(int id, IntranetViewModel model)
     {
-        if (id != model.Id)
+        if (id != model.PageModel.Id)
         {
             return RedirectToAction(nameof(Error));
         }
 
         if (ModelState.IsValid)
         {
-            await _logic.Update(model);
-            return RedirectToAction(nameof(List));
+            await _pageLogic.Update(model.PageModel);
+            return RedirectToAction(nameof(Index));
         }
-        return View(model);
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            PageModel = model.PageModel
+        });
     }
 
     public async Task<IActionResult> Delete(int? id)
     {
         if (id != null)
         {
-            var model = await _logic.GetById(id.Value);
+            var model = await _pageLogic.GetById(id.Value);
             if (model == null)
             {
                 return RedirectToAction(nameof(Error));
             }
 
-            return View(model);
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                PageModel = model
+            });
         }
 
         return RedirectToAction(nameof(Error));
@@ -129,8 +142,8 @@ public class PageController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        await _logic.Inactivate(id);
-        return RedirectToAction(nameof(List));
+        await _pageLogic.Inactivate(id);
+        return RedirectToAction(nameof(Index));
     }
 
     public IActionResult Error()

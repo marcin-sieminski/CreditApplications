@@ -3,19 +3,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CreditApplications.Intranet.ViewModels;
 
-public class ArticleViewModel
+public class SelectListsForIntranetViewModel
 {
-    public ArticleModel? ArticleModel { get; set; }
     public List<SelectListItem>? AvailablePagesSelectList { get; set; }
 
-    public ArticleViewModel()
+    public SelectListsForIntranetViewModel()
     {
         
     }
 
-    public ArticleViewModel(IEnumerable<PageModel> pageModels)
+    public SelectListsForIntranetViewModel(IEnumerable<PageModel> pageModels)
     {
-        ArticleModel = new ArticleModel();
         AvailablePagesSelectList = SetAvailablePagesSelectList(pageModels);
     }
 

@@ -2,6 +2,7 @@
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.DataAccess;
+using CreditApplications.DataAccess.Entities;
 using CreditApplications.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,10 +28,19 @@ public class ArticleLogic : IArticleLogic
         return model;
     }
 
-    public async Task<List<ArticleModel>> GetAllSorted()
+    public async Task<List<ArticleModel>> GetByPageIdSorted(int? pageId)
     {
         var dbEntities = await _repository.GetAll();
-        var model = _mapper.Map<List<ArticleModel>>(dbEntities.OrderBy(x => x.Position));
+        var articles = new List<Article>();
+        if (pageId > 0)
+        {
+            articles.AddRange(dbEntities.Where(x => x.PageId == pageId));
+        }
+        else
+        {
+            articles.AddRange(dbEntities);
+        }
+        var model = _mapper.Map<List<ArticleModel>>(articles.OrderBy(x => x.Position));
         return model;
     }
 

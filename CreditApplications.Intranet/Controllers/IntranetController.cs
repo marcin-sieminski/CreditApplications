@@ -17,13 +17,13 @@ namespace CreditApplications.Intranet.Controllers
             _articleLogic = articleLogic;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
             try
             {
-                return View(new HomePageViewModel
+                return View(new IntranetViewModel
                 {
-                    Articles = await _articleLogic.GetAllSorted(),
+                    Articles = await _articleLogic.GetByPageIdSorted(id),
                     Pages = await _pageLogic.GetAllSorted()
                 });
             }

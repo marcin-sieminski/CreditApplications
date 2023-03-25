@@ -8,24 +8,25 @@ namespace CreditApplications.Intranet.Controllers;
 public class ArticleController : Controller
 {
     private readonly ILogger<ArticleController> _logger;
-    private readonly IArticleLogic _logic;
+    private readonly IArticleLogic _articleLogic;
+    private readonly IPageLogic _pageLogic;
 
-    public ArticleController(ILogger<ArticleController> logger, IArticleLogic logic)
+    public ArticleController(ILogger<ArticleController> logger, IArticleLogic logic, IPageLogic pageLogic)
     {
         _logger = logger;
-        _logic = logic;
+        _articleLogic = logic;
+        _pageLogic = pageLogic;
     }
 
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> Index()
     {
         try
         {
-            var model = await _logic.GetById(id.Value);
-            if (model == null)
+            return View(new IntranetViewModel
             {
-                return NotFound();
-            }
-            return View(model);
+                Pages = await _pageLogic.GetAllSorted(),
+                Articles = await _articleLogic.GetAll()
+            });
         }
         catch (Exception e)
         {
@@ -34,12 +35,21 @@ public class ArticleController : Controller
         }
     }
 
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> Read(int? id)
     {
         try
         {
-            var model = await _logic.GetAll();
-            return View(model);
+            var model = await _articleLogic.GetById(id.Value);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                ArticleModel = model
+            });
         }
         catch (Exception e)
         {
@@ -53,8 +63,11 @@ public class ArticleController : Controller
     {
         try
         {
-            var model = await _logic.GetById(id);
-            return View(model);
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                ArticleModel = await _articleLogic.GetById(id)
+            });
         }
         catch (Exception e)
         {
@@ -65,20 +78,29 @@ public class ArticleController : Controller
 
     public async Task<IActionResult> Create()
     {
-        var viewModel = new ArticleViewModel(await _logic.GetAvailablePages());
-        return View(viewModel);
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            SelectLists = new SelectListsForIntranetViewModel(await _articleLogic.GetAvailablePages())
+        });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(ArticleViewModel viewModel)
+    public async Task<IActionResult> Create(IntranetViewModel model)
     {
         if (ModelState.IsValid)
         {
-            await _logic.Create(viewModel.ArticleModel);
-            return RedirectToAction(nameof(List));
+            await _articleLogic.Create(model.ArticleModel);
+            return RedirectToAction(nameof(Index));
         }
-        return View(viewModel);
+
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            ArticleModel = model.ArticleModel,
+            SelectLists = new SelectListsForIntranetViewModel(await _articleLogic.GetAvailablePages())
+        });
     }
 
     public async Task<IActionResult> Edit(int? id)
@@ -89,43 +111,58 @@ public class ArticleController : Controller
             return RedirectToAction(nameof(Error));
         }
 
-        var model = await _logic.GetById(id.Value);
+        var model = await _articleLogic.GetById(id.Value);
         if (model == null)
         {
             _logger.LogInformation("No article found for {id}.", id.Value);
             return RedirectToAction(nameof(Error));
         }
-        return View(model);
+        
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            ArticleModel = model,
+            SelectLists = new SelectListsForIntranetViewModel(await _articleLogic.GetAvailablePages())
+        });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, ArticleModel model)
+    public async Task<IActionResult> Edit(int id, IntranetViewModel model)
     {
-        if (id != model.Id)
+        if (id != model.ArticleModel.Id)
         {
             return RedirectToAction(nameof(Error));
         }
 
         if (ModelState.IsValid)
         {
-            await _logic.Update(model);
-            return RedirectToAction(nameof(List));
+            await _articleLogic.Update(model.ArticleModel);
+            return RedirectToAction(nameof(Index));
         }
-        return View(model);
+
+        return View(new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted(),
+            ArticleModel = model.ArticleModel
+        });
     }
 
     public async Task<IActionResult> Delete(int? id)
     {
         if (id != null)
         {
-            var model = await _logic.GetById(id.Value);
+            var model = await _articleLogic.GetById(id.Value);
             if (model == null)
             {
                 return RedirectToAction(nameof(Error));
             }
 
-            return View(model);
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                ArticleModel = model
+            });
         }
 
         return RedirectToAction(nameof(Error));
@@ -135,8 +172,8 @@ public class ArticleController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        await _logic.Inactivate(id);
-        return RedirectToAction(nameof(List));
+        await _articleLogic.Inactivate(id);
+        return RedirectToAction(nameof(Index));
     }
 
     public IActionResult Error()

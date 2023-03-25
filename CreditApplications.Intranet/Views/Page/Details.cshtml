@@ -1,4 +1,4 @@
-﻿@model PageModel
+﻿@model IntranetViewModel
 
 @{
     ViewData["Title"] = "Page details";
@@ -12,41 +12,41 @@
         <tbody class="table-secondary">
             <tr>
                 <th scope="row">
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.DisplayNameFor(model => model.PageModel.Title)
                 </th>
                 <td>
-                    @Html.DisplayFor(model => model.Title)
+                    @Html.DisplayFor(model => model.PageModel.Title)
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    @Html.DisplayNameFor(model => model.Body)
+                    @Html.DisplayNameFor(model => model.PageModel.Body)
                 </th>
                 <td>
-                    @Html.DisplayFor(model => model.Body)
+                    @Html.DisplayFor(model => model.PageModel.Body)
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    @Html.DisplayNameFor(model => model.LinkTitle)
+                    @Html.DisplayNameFor(model => model.PageModel.LinkTitle)
                 </th>
                 <td>
-                    @Html.DisplayFor(model => model.LinkTitle)
+                    @Html.DisplayFor(model => model.PageModel.LinkTitle)
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    @Html.DisplayNameFor(model => model.Position)
+                    @Html.DisplayNameFor(model => model.PageModel.Position)
                 </th>
                 <td>
-                    @Html.DisplayFor(model => model.Position)
+                    @Html.DisplayFor(model => model.PageModel.Position)
                 </td>
             </tr>
         </tbody>
     </table>
     <div class="form-group">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
-        <a class="btn btn-primary" asp-action="List">Back to list</a>
+        <a class="btn btn-primary mt-1 me-1" asp-action="Edit" asp-route-id="@Model.PageModel.Id">Edit</a>
+        <a class="btn btn-primary mt-1 me-1" asp-action="Index">Back to list</a>
     </div>
 
 </div>
