@@ -29,5 +29,4 @@ public class ArticleModel
 
     [Display(Name = "Page")]
     public int PageId { get; set; }
-    public List<PageModel> AvailablePages { get; set; } = new();
 }

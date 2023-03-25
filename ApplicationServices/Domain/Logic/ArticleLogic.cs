@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
+using CreditApplications.DataAccess;
 using CreditApplications.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
@@ -9,11 +11,13 @@ public class ArticleLogic : IArticleLogic
 {
     private readonly IRepository<DataAccess.Entities.Article> _repository;
     private readonly IMapper _mapper;
+    private readonly CreditApplicationsDbContext _context;
 
-    public ArticleLogic(IRepository<DataAccess.Entities.Article> repository, IMapper mapper)
+    public ArticleLogic(IRepository<DataAccess.Entities.Article> repository, IMapper mapper, CreditApplicationsDbContext context)
     {
         _repository = repository;
         _mapper = mapper;
+        _context = context;
     }
 
     public async Task<List<ArticleModel>> GetAll()
@@ -81,5 +85,13 @@ public class ArticleLogic : IArticleLogic
     public bool EntityExists(int id)
     {
         return _repository.TryEntityExists(id);
+    }
+
+    public async Task<IEnumerable<PageModel>> GetAvailablePages()
+    {
+        var dbEntitiesPages = await _context.Pages.Where(x => x.IsActive).ToListAsync();
+        var pageModels = _mapper.Map<List<PageModel>>(dbEntitiesPages.OrderBy(x => x.Position));
+
+        return pageModels;
     }
 }

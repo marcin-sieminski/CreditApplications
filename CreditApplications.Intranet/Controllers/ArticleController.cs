@@ -1,5 +1,6 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
+using CreditApplications.Intranet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApplications.Intranet.Controllers;
@@ -62,21 +63,22 @@ public class ArticleController : Controller
         }
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View();
+        var viewModel = new ArticleViewModel(await _logic.GetAvailablePages());
+        return View(viewModel);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(ArticleModel model)
+    public async Task<IActionResult> Create(ArticleViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
-            await _logic.Create(model);
+            await _logic.Create(viewModel.ArticleModel);
             return RedirectToAction(nameof(List));
         }
-        return View(model);
+        return View(viewModel);
     }
 
     public async Task<IActionResult> Edit(int? id)

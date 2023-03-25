@@ -13,4 +13,5 @@ public interface IArticleLogic
     Task<int> Inactivate(int id);
     Task<int> GetCount();
     bool EntityExists(int id);
+    Task<IEnumerable<PageModel>> GetAvailablePages();
 }
