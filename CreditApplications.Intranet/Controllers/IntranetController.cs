@@ -2,41 +2,40 @@
 using CreditApplications.Intranet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CreditApplications.Intranet.Controllers
+namespace CreditApplications.Intranet.Controllers;
+
+public class IntranetController : Controller
 {
-    public class IntranetController : Controller
+    private readonly ILogger<ArticleController> _logger;
+    private readonly IPageLogic _pageLogic;
+    private readonly IArticleLogic _articleLogic;
+
+    public IntranetController(ILogger<ArticleController> logger, IPageLogic pageLogic, IArticleLogic articleLogic)
     {
-        private readonly ILogger<ArticleController> _logger;
-        private readonly IPageLogic _pageLogic;
-        private readonly IArticleLogic _articleLogic;
+        _logger = logger;
+        _pageLogic = pageLogic;
+        _articleLogic = articleLogic;
+    }
 
-        public IntranetController(ILogger<ArticleController> logger, IPageLogic pageLogic, IArticleLogic articleLogic)
+    public async Task<IActionResult> Index(int? id)
+    {
+        try
         {
-            _logger = logger;
-            _pageLogic = pageLogic;
-            _articleLogic = articleLogic;
-        }
-
-        public async Task<IActionResult> Index(int? id)
-        {
-            try
+            return View(new IntranetViewModel
             {
-                return View(new IntranetViewModel
-                {
-                    Articles = await _articleLogic.GetByPageIdSorted(id),
-                    Pages = await _pageLogic.GetAllSorted()
-                });
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to get intranet content count: {e}");
-                return RedirectToAction(nameof(Error));
-            }
-
+                Articles = await _articleLogic.GetByPageIdSorted(id),
+                Pages = await _pageLogic.GetAllSorted()
+            });
         }
-        public IActionResult Error()
+        catch (Exception e)
         {
-            return View("NotFound");
+            _logger.LogError($"Failed to get intranet content count: {e}");
+            return RedirectToAction(nameof(Error));
         }
+
+    }
+    public IActionResult Error()
+    {
+        return View("NotFound");
     }
 }

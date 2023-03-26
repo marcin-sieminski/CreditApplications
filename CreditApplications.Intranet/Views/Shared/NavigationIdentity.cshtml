@@ -1,4 +1,6 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+﻿@using CreditApplications.Intranet.Helpers
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" asp-area="" asp-controller="Intranet" asp-action="Index" asp-route-id=""><i class="fas fa-university"></i>Credit Applications Intranet</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +10,7 @@
             <ul class="navbar-nav me-auto">
                 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
+                    <a class="nav-link dropdown-toggle @Html.IsActive("Intranet", "Index")" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
 
                     <div class="dropdown-menu">
                         <partial name="_LoginPartial" />

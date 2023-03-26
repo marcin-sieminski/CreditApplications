@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="~/lib/fortawesome/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/pulse-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/after-bootstrap.css" />
 </head>
 <body>
-<header>
-    <partial name="Navigation"/>
-</header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <partial name="Navigation" />
+
+    <main class="container">
+        <div class="pb-3" role="main">
             @RenderBody()
-        </main>
-    </div>
-    
-<footer class="border-top footer text-muted">
+        </div>
+    </main>
+
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Credit Applications
         </div>
