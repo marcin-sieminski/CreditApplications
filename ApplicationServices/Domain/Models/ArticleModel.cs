@@ -12,6 +12,7 @@ public class ArticleModel
     public string Title { get; set; }
 
     [Display(Name = "Body")]
+    [Required(ErrorMessage = "Article body is required")]
     public string Body { get; set; }
 
     [Required(ErrorMessage = "Link title is required")]
@@ -28,5 +29,6 @@ public class ArticleModel
     public bool IsActive { get; set; }
 
     [Display(Name = "Page")]
+    [Required(ErrorMessage = "Page is required")]
     public int PageId { get; set; }
 }

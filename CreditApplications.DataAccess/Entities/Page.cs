@@ -13,6 +13,8 @@ public class Page : EntityBase
     [Required]
     public string LinkTitle { get; set; }
 
+    [Required]
     public int Position { get; set; }
+    
     public virtual List<Article> Articles { get; set; }
 }
