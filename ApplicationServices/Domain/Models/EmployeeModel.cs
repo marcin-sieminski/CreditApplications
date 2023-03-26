@@ -25,11 +25,11 @@ public class EmployeeModel
 
     [DisplayName("Role")]
     public int RoleId { get; set; }
-    public virtual Role Role { get; set; }
+    public virtual ProcessRole Role { get; set; }
 
     public virtual List<CreditApplication> CreditApplications { get; set; } = new List<CreditApplication>();
 
     public List<DepartmentModel> AvailableDepartments { get; set; } = new();
-    public List<RoleModel> AvailableRoles { get; set; } = new();
+    public List<ProcessRoleModel> AvailableRoles { get; set; } = new();
 
 }

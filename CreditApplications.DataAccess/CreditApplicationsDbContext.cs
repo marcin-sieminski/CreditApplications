@@ -1,10 +1,11 @@
 ﻿using CreditApplications.DataAccess.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CreditApplications.DataAccess;
 
-public class CreditApplicationsDbContext : DbContext
+public class CreditApplicationsDbContext : IdentityDbContext
 {
     public CreditApplicationsDbContext(DbContextOptions<CreditApplicationsDbContext> options) : base(options)
     {
@@ -19,7 +20,7 @@ public class CreditApplicationsDbContext : DbContext
     public DbSet<ProductType> ProductTypes => Set<ProductType>();
     public DbSet<CartItem> CartItems => Set<CartItem>();
     public DbSet<Message> Messages => Set<Message>();
-    public DbSet<Role> Roles => Set<Role>();
+    public DbSet<ProcessRole> Roles => Set<ProcessRole>();
     public DbSet<Collateral> Collaterals => Set<Collateral>();
     public DbSet<Page> Pages => Set<Page>();
     public DbSet<Article> Articles => Set<Article>();

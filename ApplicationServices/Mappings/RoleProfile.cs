@@ -7,7 +7,7 @@ public class RoleProfile : Profile
 {
     public RoleProfile()
     {
-        CreateMap<DataAccess.Entities.Role, Domain.Models.RoleModel>();
-        CreateMap<Domain.Models.RoleModel, DataAccess.Entities.Role>();
+        CreateMap<DataAccess.Entities.ProcessRole, Domain.Models.ProcessRoleModel>();
+        CreateMap<Domain.Models.ProcessRoleModel, DataAccess.Entities.ProcessRole>();
     }
 }

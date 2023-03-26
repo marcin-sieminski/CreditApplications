@@ -2,12 +2,12 @@
 
 namespace CreditApplications.ApplicationServices.Domain.Interfaces;
 
-public interface IRoleLogic
+public interface IProcessRoleLogic
 {
-    Task<List<RoleModel>> GetAll();
-    Task<RoleModel> GetById(int id);
-    Task<DataAccess.Entities.Role> Create(RoleModel model);
-    Task<int> Update(RoleModel model);
+    Task<List<ProcessRoleModel>> GetAll();
+    Task<ProcessRoleModel> GetById(int id);
+    Task<DataAccess.Entities.ProcessRole> Create(ProcessRoleModel model);
+    Task<int> Update(ProcessRoleModel model);
     Task<int> Delete(int id);
     Task<int> Inactivate(int id);
     Task<int> GetCount();

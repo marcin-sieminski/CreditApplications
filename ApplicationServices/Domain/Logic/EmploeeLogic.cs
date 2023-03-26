@@ -83,7 +83,7 @@ public class EmployeeLogic : IEmploeeLogic
     public async Task<EmployeeModel> Initialize(EmployeeModel model)
     {
         model.AvailableDepartments = _mapper.Map<List<DepartmentModel>>(await _context.Departments.Where(x => x.IsActive).ToListAsync());
-        model.AvailableRoles = _mapper.Map<List<RoleModel>>(await _context.Roles.Where(x => x.IsActive).ToListAsync());
+        model.AvailableRoles = _mapper.Map<List<ProcessRoleModel>>(await _context.Roles.Where(x => x.IsActive).ToListAsync());
         return model;
     }
 

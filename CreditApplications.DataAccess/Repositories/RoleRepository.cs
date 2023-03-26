@@ -3,32 +3,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplications.DataAccess.Repositories;
 
-public class RoleRepository : IRepository<Role>
+public class RoleRepository : IRepository<ProcessRole>
 {
     private readonly CreditApplicationsDbContext _context;
-    private readonly DbSet<Role> _entities;
+    private readonly DbSet<ProcessRole> _entities;
 
     public RoleRepository(CreditApplicationsDbContext context)
     {
         _context = context;
-        _entities = context.Set<Role>();
+        _entities = context.Set<ProcessRole>();
     }
 
-    public async Task<List<Role>> GetAll()
+    public async Task<List<ProcessRole>> GetAll()
     {
         return await _entities
             .Where(x => x.IsActive)
             .ToListAsync();
     }
 
-    public async Task<Role> GetById(int id)
+    public async Task<ProcessRole> GetById(int id)
     {
         return await _entities
             .Where(x => x.IsActive)
             .SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<Role> Create(Role entity)
+    public async Task<ProcessRole> Create(ProcessRole entity)
     {
         if (entity == null)
         {
@@ -40,7 +40,7 @@ public class RoleRepository : IRepository<Role>
         return entityEntry.Entity;
     }
 
-    public async Task<int> Update(Role entity)
+    public async Task<int> Update(ProcessRole entity)
     {
         if (entity == null)
         {

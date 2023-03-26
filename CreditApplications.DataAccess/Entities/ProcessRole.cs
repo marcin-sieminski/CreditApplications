@@ -2,7 +2,7 @@
 
 namespace CreditApplications.DataAccess.Entities;
 
-public class Role : EntityBase
+public class ProcessRole : EntityBase
 {
     [Required]
     [MaxLength(250)]

@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplications.Mobile.i
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.Mobile", "CreditApplications.Mobile\CreditApplications.Mobile\CreditApplications.Mobile.csproj", "{17407373-3831-4603-8A38-2812DCAAA14A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplications.Intranet", "CreditApplications.Intranet\CreditApplications.Intranet.csproj", "{077C009F-A088-441C-919D-82C7FBF03334}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplications.Intranet", "CreditApplications.Intranet\CreditApplications.Intranet.csproj", "{077C009F-A088-441C-919D-82C7FBF03334}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

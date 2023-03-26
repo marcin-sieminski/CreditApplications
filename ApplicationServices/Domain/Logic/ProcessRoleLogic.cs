@@ -5,34 +5,34 @@ using CreditApplications.DataAccess.Repositories;
 
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
-public class RoleLogic : IRoleLogic
+public class ProcessRoleLogic : IProcessRoleLogic
 {
-    private readonly IRepository<DataAccess.Entities.Role> _repository;
+    private readonly IRepository<DataAccess.Entities.ProcessRole> _repository;
     private readonly IMapper _mapper;
 
-    public RoleLogic(IRepository<DataAccess.Entities.Role> repository, IMapper mapper)
+    public ProcessRoleLogic(IRepository<DataAccess.Entities.ProcessRole> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task<List<RoleModel>> GetAll()
+    public async Task<List<ProcessRoleModel>> GetAll()
     {
         var dbEntities = await _repository.GetAll();
-        var model = _mapper.Map<List<RoleModel>>(dbEntities);
+        var model = _mapper.Map<List<ProcessRoleModel>>(dbEntities);
         return model;
     }
 
-    public async Task<RoleModel> GetById(int id)
+    public async Task<ProcessRoleModel> GetById(int id)
     {
         var dbEntity = await _repository.GetById(id);
-        var model = _mapper.Map<RoleModel>(dbEntity);
+        var model = _mapper.Map<ProcessRoleModel>(dbEntity);
         return model;
     }
 
-    public async Task<DataAccess.Entities.Role> Create(RoleModel model)
+    public async Task<DataAccess.Entities.ProcessRole> Create(ProcessRoleModel model)
     {
-        var dbEntity = _mapper.Map<DataAccess.Entities.Role>(model);
+        var dbEntity = _mapper.Map<DataAccess.Entities.ProcessRole>(model);
         dbEntity.Created = DateTime.Now;
         dbEntity.Modified = DateTime.Now;
         dbEntity.IsActive = true;
@@ -40,9 +40,9 @@ public class RoleLogic : IRoleLogic
         return entityCreated;
     }
 
-    public async Task<int> Update(RoleModel model)
+    public async Task<int> Update(ProcessRoleModel model)
     {
-        var entityForDb = _mapper.Map<DataAccess.Entities.Role>(model);
+        var entityForDb = _mapper.Map<DataAccess.Entities.ProcessRole>(model);
         entityForDb.Modified = DateTime.Now;
         entityForDb.IsActive = true;
         var idUpdated = await _repository.Update(entityForDb);

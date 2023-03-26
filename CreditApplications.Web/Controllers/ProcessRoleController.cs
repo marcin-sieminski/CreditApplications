@@ -1,16 +1,15 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using CreditApplications.ApplicationServices.Domain.Models;
-using CreditApplications.DataAccess.Entities;
 
 namespace CreditApplications.Web.Controllers
 {
-    public class RoleController : Controller
+    public class ProcessRoleController : Controller
     {
-        private readonly ILogger<RoleController> _logger;
-        private readonly IRoleLogic _logic;
+        private readonly ILogger<ProcessRoleController> _logger;
+        private readonly IProcessRoleLogic _logic;
 
-        public RoleController(ILogger<RoleController> logger, IRoleLogic logic)
+        public ProcessRoleController(ILogger<ProcessRoleController> logger, IProcessRoleLogic logic)
         {
             _logger = logger;
             _logic = logic;
@@ -52,7 +51,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RoleModel model)
+        public async Task<IActionResult> Create(ProcessRoleModel model)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +81,7 @@ namespace CreditApplications.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, RoleModel model)
+        public async Task<IActionResult> Edit(int id, ProcessRoleModel model)
         {
             if (id != model.Id)
             {

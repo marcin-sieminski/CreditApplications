@@ -2,14 +2,14 @@ using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Logic;
 using CreditApplications.ApplicationServices.Mappings;
 using CreditApplications.DataAccess;
-using CreditApplications.DataAccess.Entities;
-using CreditApplications.DataAccess.Repositories;
+using CreditApplications.DataAccess.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
@@ -23,13 +23,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 builder.Services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
-builder.Services.AddDbContext<CreditApplicationsDbContext>(cfg =>
-{
-    cfg.UseSqlServer(builder.Configuration.GetConnectionString("CreditApplicationsConnection")).EnableSensitiveDataLogging();
-});
-builder.Services.AddScoped<IRepository<Article>, ArticleRepository>();
-builder.Services.AddScoped<IRepository<Page>, PageRepository>();
-
 builder.Services.AddScoped<IArticleLogic, ArticleLogic>();
 builder.Services.AddScoped<IPageLogic, PageLogic>();
 
@@ -61,4 +54,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Intranet}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();

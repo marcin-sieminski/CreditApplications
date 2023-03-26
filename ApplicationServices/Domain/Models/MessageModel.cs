@@ -6,6 +6,6 @@ public class MessageModel
     public string Title { get; set; }
     public string Body { get; set; }
     public DateTime Created { get; set; }
-    public virtual List<RoleModel> RolesToDistribute { get; set; }
+    public virtual List<ProcessRoleModel> RolesToDistribute { get; set; }
 
 }

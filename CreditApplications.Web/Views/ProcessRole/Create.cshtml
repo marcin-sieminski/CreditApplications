@@ -1,17 +1,16 @@
-﻿@model RoleModel
+﻿@model ProcessRoleModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create role";
     Layout = "_Layout";
 }
 
 <div>
-    <h4>Edit role</h4>
+    <h4>Create role</h4>
     <hr />
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
                 <label asp-for="RoleName" class="control-label"></label>
@@ -20,7 +19,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
                 <a class="btn btn-primary" asp-action="List">Back to list</a>
             </div>
         </form>

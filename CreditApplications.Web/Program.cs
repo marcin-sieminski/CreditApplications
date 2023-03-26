@@ -32,7 +32,7 @@ builder.Services.AddScoped<IRepository<Customer>, CustomersRepository>();
 builder.Services.AddScoped<IRepository<ProductType>, ProductTypeRepository>();
 builder.Services.AddScoped<IRepository<ApplicationStatus>, ApplicationsStatusRepository>();
 builder.Services.AddScoped<IRepository<Department>, DepartmentRepository>();
-builder.Services.AddScoped<IRepository<Role>, RoleRepository>();
+builder.Services.AddScoped<IRepository<ProcessRole>, RoleRepository>();
 builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
 builder.Services.AddScoped<IRepository<Collateral>, CollateraleRepository>();
 
@@ -41,7 +41,7 @@ builder.Services.AddScoped<ICustomerLogic, CustomerLogic>();
 builder.Services.AddScoped<IProductTypeLogic, ProductTypeLogic>();
 builder.Services.AddScoped<IApplicationStatusLogic, ApplicationStatusLogic>();
 builder.Services.AddScoped<IDepartmentLogic, DepartmentLogic>();
-builder.Services.AddScoped<IRoleLogic, RoleLogic>();
+builder.Services.AddScoped<IProcessRoleLogic, ProcessRoleLogic>();
 builder.Services.AddScoped<IEmploeeLogic, EmployeeLogic>();
 builder.Services.AddScoped<ICollateralLogic, CollateralLogic>();
 
