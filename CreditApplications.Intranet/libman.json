@@ -15,6 +15,11 @@
       "provider": "unpkg",
       "library": "jquery-validation-globalize@0.1.1",
       "destination": "wwwroot/lib/jquery-validation-globalize/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot/bootstrap/"
     }
   ]
 }

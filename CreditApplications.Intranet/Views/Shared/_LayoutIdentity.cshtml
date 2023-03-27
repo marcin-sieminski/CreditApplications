@@ -6,13 +6,13 @@
     <title>@ViewData["Title"] - Credit Applications</title>
     <link rel="stylesheet" href="~/lib/fortawesome/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/pulse-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/after-bootstrap.css" />
 </head>
 <body>
-    <partial name="NavigationIdentity" />
+    <partial name="NavigationTopIdentity" />
 
-    <main class="container">
+    <main class="container d-flex flex-nowrap">
         <div class="pb-3" role="main">
             @RenderBody()
         </div>
@@ -23,8 +23,9 @@
             &copy; 2023 - Credit Applications
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

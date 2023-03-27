@@ -1,0 +1,16 @@
+﻿@model IntranetViewModel
+
+<div class="flex-shrink-0 p-3" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            @foreach (var item in Model.Pages)
+            {
+                <li class="nav-item">
+                    <a class="nav-link px-2 text-secondary @Html.IsActive("Intranet", "Index", @item.Id)" asp-area="" asp-controller="Intranet" asp-action="Index" asp-route-id="@item.Id">
+                        @item.LinkTitle
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

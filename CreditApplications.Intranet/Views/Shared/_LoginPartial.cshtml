@@ -5,18 +5,27 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-        <a class="dropdown-item prevent-close">Logged in as: @UserManager.GetUserName(User)</a>
+    <div class="dropdown text-end">
 
-        <div class="dropdown-divider"></div>
-
-        <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account settings</a>
-
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Intranet", new { area = "" })">
-            <button id="logout" type="submit" class="dropdown-item">Logout</button>
-        </form>
+        <div class="dropdown">
+            <button class="btn btn-outline-light me-2 text-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @UserManager.GetUserName(User).Split('@')[0].Substring(0, 1).ToUpper()@UserManager.GetUserName(User).Split('@')[0].Substring(1).ToLower()
+            </button>
+            <ul class="dropdown-menu text-small">
+                <li>
+                    <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Ustawienia użytkownika</a>
+                </li>
+                <li>
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Intranet", new { area = "" })">
+                        <button id="logout" type="submit" class="dropdown-item">Wyloguj</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
 }
 else
 {
-        <a class="dropdown-item" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        <a class="dropdown-item" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    <a type="button" class="btn btn-outline-light me-2" id="login" asp-area="Identity" asp-page="/Account/Login">Zaloguj</a>
+    <a type="button" class="btn btn-warning" id="register" asp-area="Identity" asp-page="/Account/Register">Zarejestruj</a>
 }
