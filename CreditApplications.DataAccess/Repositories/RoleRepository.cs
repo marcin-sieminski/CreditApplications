@@ -50,7 +50,7 @@ public class RoleRepository : IRepository<ProcessRole>
         if (dbEntity is not null)
         {
             entity.Created = dbEntity.Created;
-            entity.CreatedBy = dbEntity.CreatedBy;
+            entity.CreatedById = dbEntity.CreatedById;
         }
         _entities.Update(entity);
         return await _context.SaveChangesAsync();

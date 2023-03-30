@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace CreditApplications.DataAccess.Entities;
 
@@ -18,4 +19,6 @@ public class Article : EntityBase
     
     [Required]
     public int PageId { get; set; }
+
+    public IdentityUser CreatedBy { get; set; }
 }

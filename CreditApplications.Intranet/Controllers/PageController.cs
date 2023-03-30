@@ -2,9 +2,11 @@
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Intranet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CreditApplications.Intranet.Controllers;
 
+[Authorize]
 public class PageController : Controller
 {
     private readonly ILogger<PageController> _logger;

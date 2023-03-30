@@ -1,9 +1,11 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.Intranet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApplications.Intranet.Controllers;
 
+[Authorize]
 public class IntranetController : Controller
 {
     private readonly ILogger<ArticleController> _logger;

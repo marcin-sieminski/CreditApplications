@@ -7,10 +7,9 @@
 <a asp-action="Create" class="btn btn-secondary" role="button">Add new article</a>
 <div class="container-fluid">
     <div class="row">
-
-        <table class="table table-hover">
+        <table class="table table-hover table-secondary">
             <thead>
-                <tr>
+                <tr >
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Title)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Body)</th>
@@ -23,7 +22,7 @@
             <tbody>
                 @foreach (var item in Model.Articles)
                 {
-                    <tr class="table-primary">
+                    <tr class="table-light">
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.Body)</td>

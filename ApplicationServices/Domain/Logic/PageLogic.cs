@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
+using CreditApplications.ApplicationServices.ApplicationUser;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.DataAccess.Repositories;
-
+using CreditApplications.DataAccess.Entities;
 namespace CreditApplications.ApplicationServices.Domain.Logic;
 
 public class PageLogic : IPageLogic
 {
     private readonly IRepository<DataAccess.Entities.Page> _repository;
     private readonly IMapper _mapper;
+    private readonly IUserContext _userContext;
 
-    public PageLogic(IRepository<DataAccess.Entities.Page> repository, IMapper mapper)
+    public PageLogic(IRepository<DataAccess.Entities.Page> repository, IMapper mapper, IUserContext userContext)
     {
         _repository = repository;
         _mapper = mapper;
+        _userContext = userContext;
     }
 
     public async Task<List<PageModel>> GetAll()
@@ -37,11 +40,12 @@ public class PageLogic : IPageLogic
         return model;
     }
 
-    public async Task<DataAccess.Entities.Page> Create(PageModel model)
+    public async Task<Page> Create(PageModel model)
     {
-        var dbEntity = _mapper.Map<DataAccess.Entities.Page>(model);
+        var dbEntity = _mapper.Map<Page>(model);
         dbEntity.Created = DateTime.Now;
         dbEntity.Modified = DateTime.Now;
+        dbEntity.CreatedById = _userContext.GetCurrentUser().Id;
         dbEntity.IsActive = true;
         var entityCreated = await _repository.Create(dbEntity);
         return entityCreated;
@@ -49,8 +53,9 @@ public class PageLogic : IPageLogic
 
     public async Task<int> Update(PageModel model)
     {
-        var entityForDb = _mapper.Map<DataAccess.Entities.Page>(model);
+        var entityForDb = _mapper.Map<Page>(model);
         entityForDb.Modified = DateTime.Now;
+        entityForDb.ModifiedById = _userContext.GetCurrentUser().Id;
         entityForDb.IsActive = true;
         var idUpdated = await _repository.Update(entityForDb);
         return idUpdated;
@@ -62,6 +67,7 @@ public class PageLogic : IPageLogic
         if (dbEntity is not null)
         {
             dbEntity.Inactivated = DateTime.Now;
+            dbEntity.InactivatedById = _userContext.GetCurrentUser().Id;
             dbEntity.IsActive = false;
         }
         return await _repository.Update(dbEntity); 

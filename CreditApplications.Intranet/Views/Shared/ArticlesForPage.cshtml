@@ -3,8 +3,10 @@
     <div class="d-flex flex-wrap">
         @foreach (var item in Model)
         {
-            <div class="card border-primary m-3" style="max-width: 20rem;">
-                <div class="card-header">@Html.ActionLink(item.Title, "Read", "Article", new { id = item.Id }, null)</div>
+            <div class="card border-secondary m-3" style="max-width: 20rem;">
+                <div class="card-header text-black">
+                    @Html.ActionLink(item.Title, "Read", "Article", new { id = item.Id }, null)
+                </div>
                 <div class="card-body">
                     <p class="card-text">@item.Body</p>
                 </div>

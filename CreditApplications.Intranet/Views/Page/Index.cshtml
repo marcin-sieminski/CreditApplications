@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <table class="table table-hover">
+        <table class="table table-hover table-secondary">
             <thead>
             <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Id)</th>
@@ -22,7 +22,7 @@
             <tbody>
             @foreach (var item in Model.Pages)
             {
-                <tr class="table-primary">
+                <tr class="table-light">
                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                     <td>@Html.DisplayFor(modelItem => item.Body)</td>

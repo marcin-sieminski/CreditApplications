@@ -9,7 +9,7 @@ public class CreditApplicationsDbContext : IdentityDbContext
 {
     public CreditApplicationsDbContext(DbContextOptions<CreditApplicationsDbContext> options) : base(options)
     {
-        
+
     }
 
     public DbSet<ApplicationStatus> ApplicationStatuses => Set<ApplicationStatus>();
@@ -51,35 +51,5 @@ public class CreditApplicationsDbContext : IdentityDbContext
                         pk.HasKey(x => x.Id);
                     }
                 ));
-    }
-
-
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-    {
-        foreach (var entry in ChangeTracker.Entries<EntityBase>())
-        {
-            switch (entry.State)
-            {
-                case EntityState.Added:
-                    entry.Entity.CreatedBy = string.Empty;
-                    entry.Entity.Created = DateTime.UtcNow;
-                    entry.Entity.IsActive = true;
-                    break;
-                case EntityState.Modified:
-                    entry.Entity.ModifiedBy = string.Empty;
-                    entry.Entity.Modified = DateTime.UtcNow;
-                    break;
-                case EntityState.Deleted:
-                    entry.Entity.ModifiedBy = string.Empty;
-                    entry.Entity.Modified = DateTime.UtcNow;
-                    entry.Entity.Inactivated = DateTime.UtcNow;
-                    entry.Entity.InactivatedBy = string.Empty;
-                    entry.Entity.IsActive = false;
-                    entry.State = EntityState.Modified;
-                    break;
-            }
-        }
-
-        return base.SaveChangesAsync(cancellationToken);
     }
 }

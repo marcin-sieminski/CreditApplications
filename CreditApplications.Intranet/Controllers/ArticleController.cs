@@ -1,10 +1,12 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
 using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Intranet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApplications.Intranet.Controllers;
 
+[Authorize]
 public class ArticleController : Controller
 {
     private readonly ILogger<ArticleController> _logger;

@@ -17,6 +17,6 @@ public static class ServiceCollectionExtension
         });
         services.AddScoped<IRepository<Article>, ArticleRepository>();
         services.AddScoped<IRepository<Page>, PageRepository>();
-        services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<CreditApplicationsDbContext>();
+        services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<CreditApplicationsDbContext>();
     }
 }

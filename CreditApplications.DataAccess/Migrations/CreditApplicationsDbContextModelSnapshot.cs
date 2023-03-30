@@ -67,13 +67,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -82,7 +82,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -105,13 +105,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -124,7 +124,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PageId")
@@ -138,6 +138,8 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("PageId");
 
@@ -155,7 +157,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CreditApplicationId")
@@ -167,7 +169,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -176,7 +178,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SessionId")
@@ -202,7 +204,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -212,7 +214,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -221,7 +223,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -257,7 +259,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Currency")
@@ -276,7 +278,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -285,7 +287,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
@@ -355,7 +357,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerFirstName")
@@ -375,7 +377,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -384,7 +386,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -415,7 +417,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DepartmentName")
@@ -426,7 +428,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -435,7 +437,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -454,7 +456,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -464,7 +466,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -473,7 +475,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -497,7 +499,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DepartmentId")
@@ -511,7 +513,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -525,7 +527,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleId")
@@ -555,13 +557,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -570,7 +572,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -596,13 +598,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -615,7 +617,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Position")
@@ -626,6 +628,8 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.ToTable("Pages");
                 });
@@ -641,13 +645,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -659,7 +663,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleName")
@@ -685,13 +689,13 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Inactivated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InactivatedBy")
+                    b.Property<string>("InactivatedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -700,7 +704,7 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductTypeName")
@@ -858,10 +862,12 @@ namespace CreditApplications.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -898,10 +904,12 @@ namespace CreditApplications.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -943,11 +951,17 @@ namespace CreditApplications.DataAccess.Migrations
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
                 {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
                     b.HasOne("CreditApplications.DataAccess.Entities.Page", null)
                         .WithMany("Articles")
                         .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CreatedBy");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CartItem", b =>
@@ -1032,6 +1046,15 @@ namespace CreditApplications.DataAccess.Migrations
                     b.Navigation("Department");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("CreditApplications.DataAccess.Entities.Page", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.Navigation("CreatedBy");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProcessRole", b =>
