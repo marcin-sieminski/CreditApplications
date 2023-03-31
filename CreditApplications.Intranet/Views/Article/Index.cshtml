@@ -1,10 +1,10 @@
 ﻿@model IntranetViewModel
 @{
-    ViewData["Title"] = "Articles list";
+    ViewData["Title"] = "Artykuły";
     Layout = "_Layout";
 }
-<h4>Articles</h4>
-<a asp-action="Create" class="btn btn-secondary" role="button">Add new article</a>
+<h4>Artykuły</h4>
+
 <div class="container-fluid">
     <div class="row">
         <table class="table table-hover table-secondary">
@@ -16,7 +16,7 @@
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.LinkTitle)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.PageId)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Position)</th>
-                    <th></th>
+                    <th class="text-center fw-normal"><a asp-action="Create">Dodaj artykuł</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,10 +29,10 @@
                         <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.PageId)</td>
                         <td>@Html.DisplayFor(modelItem => item.Position)</td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <td class="text-center fw-normal">
+                            <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
                         </td>
                     </tr>
                 }
