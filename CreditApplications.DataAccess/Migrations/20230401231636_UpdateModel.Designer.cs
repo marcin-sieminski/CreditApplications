@@ -4,6 +4,7 @@ using CreditApplications.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditApplications.DataAccess.Migrations
 {
     [DbContext(typeof(CreditApplicationsDbContext))]
-    partial class CreditApplicationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230401231636_UpdateModel")]
+    partial class UpdateModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("CreditApplicationsId");
 
-                    b.ToTable("CollateralCreditApplication", (string)null);
+                    b.ToTable("CollateralCreditApplication");
                 });
 
             modelBuilder.Entity("CreditApplicationDocument", b =>
@@ -49,7 +52,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("DocumentsId");
 
-                    b.ToTable("CreditApplicationDocument", (string)null);
+                    b.ToTable("CreditApplicationDocument");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ApplicationStatus", b =>
@@ -87,7 +90,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationStatuses", (string)null);
+                    b.ToTable("ApplicationStatuses");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Article", b =>
@@ -143,7 +146,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("PageId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CartItem", b =>
@@ -190,7 +193,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Collateral", b =>
@@ -236,7 +239,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collaterals", (string)null);
+                    b.ToTable("Collaterals");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplication", b =>
@@ -305,7 +308,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("ProductTypeId");
 
-                    b.ToTable("CreditApplications", (string)null);
+                    b.ToTable("CreditApplications");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.CreditApplicationEmployee", b =>
@@ -331,7 +334,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("CreditApplicationEmployee", (string)null);
+                    b.ToTable("CreditApplicationEmployee");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Customer", b =>
@@ -403,7 +406,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Department", b =>
@@ -442,7 +445,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Document", b =>
@@ -485,7 +488,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Document", (string)null);
+                    b.ToTable("Document");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Employee", b =>
@@ -539,7 +542,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Message", b =>
@@ -581,7 +584,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.Page", b =>
@@ -631,7 +634,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Pages", (string)null);
+                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProcessRole", b =>
@@ -675,7 +678,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasIndex("MessageId");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("CreditApplications.DataAccess.Entities.ProductType", b =>
@@ -714,7 +717,7 @@ namespace CreditApplications.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductTypes", (string)null);
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

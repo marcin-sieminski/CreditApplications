@@ -3,13 +3,11 @@
     ViewData["Title"] = "Artykuły";
     Layout = "_Layout";
 }
-<h4>Artykuły</h4>
-
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-3">
         <table class="table table-hover table-secondary">
-            <thead>
-                <tr >
+            <thead class="align-middle">
+                <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Title)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Body)</th>
@@ -25,9 +23,18 @@
                     <tr class="table-light">
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Body)</td>
+                        <td>
+                            @if (item.Body.Length > 100)
+                            {
+                                <s class="text-decoration-none">@item.Body.Substring(0, 100)...</s>
+                            }
+                            else
+                            {
+                                @item.Body
+                            }
+                        </td>
                         <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PageId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Page.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Position)</td>
                         <td class="text-center fw-normal">
                             <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |

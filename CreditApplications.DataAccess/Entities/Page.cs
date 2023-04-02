@@ -9,7 +9,7 @@ public class Page : EntityBase
     [Required]
     public string Title { get; set; }
     
-    public string Body { get; set; }
+    public string Description { get; set; }
 
     [Required]
     public string LinkTitle { get; set; }

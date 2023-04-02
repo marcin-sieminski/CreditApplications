@@ -2,14 +2,12 @@
 @{
     ViewData["Title"] = @Model.ArticleModel.Title;
 }
-<div><h4>Article details</h4></div>
-<hr />
-<div class="card border-secondary m-3" style="max-width: 20rem;">
+<div class="container-fluid card border-secondary mt-4" >
     <div class="card-header">@Model.ArticleModel.Title</div>
     <div class="card-body">
         <p class="card-text">@Model.ArticleModel.Body</p>
     </div>
 </div>
 <br />
-<a class="btn btn-secondary mt-1 me-1" asp-controller="Intranet" asp-action="Index" asp-route-id="@Model.ArticleModel.PageId">Go back to main page</a>
+<a class="btn btn-secondary mb-1" asp-controller="Intranet" asp-action="Index" asp-route-id="@Model.ArticleModel.PageId">Powrót do strony głównej</a>
 

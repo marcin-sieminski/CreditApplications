@@ -4,11 +4,20 @@
         @foreach (var item in Model)
         {
             <div class="card border-secondary m-3" style="max-width: 20rem;">
-                <div class="card-header text-black">
+                <div class="card-header">
                     @Html.ActionLink(item.Title, "Read", "Article", new { id = item.Id }, null)
                 </div>
                 <div class="card-body">
-                    <p class="card-text">@item.Body</p>
+                    <p class="card-text">
+                        @if (item.Body.Length > 200)
+                        {
+                            <s class="text-decoration-none">@item.Body.Substring(0, 200)...</s>
+                        }
+                        else
+                        {
+                            @item.Body
+                        }
+                    </p>
                 </div>
             </div>
         }

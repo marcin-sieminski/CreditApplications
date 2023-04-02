@@ -1,14 +1,14 @@
 ﻿@model IntranetViewModel
 
 @{
-    ViewData["Title"] = "Create article";
+    ViewData["Title"] = "Dodaj artykuł";
     Layout = "_Layout";
 }
 
 <div>
-    <h4>Create article</h4>
+    <h4>Dodaj artykuł</h4>
     <hr />
-    <div class="input-group mb-3 col-12">
+    <div class="container-fluid">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label asp-for="ArticleModel.Body" class="control-label"></label>
-                <input asp-for="ArticleModel.Body" class="form-control" />
+                <textarea class="form-control" aria-label="Textarea" asp-for="ArticleModel.Body"></textarea>
                 <span asp-validation-for="ArticleModel.Body" class="text-danger"></span>
             </div>
             
@@ -42,9 +42,9 @@
                 <span asp-validation-for="ArticleModel.Position" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-secondary mt-1 me-1" />
-                <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Back to list</a>
+            <div class="form-group mb-1">
+                <input type="submit" value="Utwórz" class="btn btn-secondary mt-1 me-1" />
+                <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Powrót</a>
             </div>
         </form>
     </div>

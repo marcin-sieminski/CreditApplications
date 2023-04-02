@@ -19,6 +19,8 @@ public class Article : EntityBase
     
     [Required]
     public int PageId { get; set; }
+    
+    public virtual Page Page { get; set; }
 
     public IdentityUser CreatedBy { get; set; }
 }

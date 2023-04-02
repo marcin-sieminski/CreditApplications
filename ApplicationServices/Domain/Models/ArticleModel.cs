@@ -6,29 +6,31 @@ public class ArticleModel
 {
     public int Id { get; set; }
 
-    [Display(Name = "Title")]
-    [Required(ErrorMessage = "Article title is required")]
-    [MaxLength(1000, ErrorMessage = "Max article title length is 1000 characters")]
+    [Display(Name = "Tytuł artykułu")]
+    [Required(ErrorMessage = "Tytuł artykułu jest wymagany")]
+    [MaxLength(5000, ErrorMessage = "Maksymalna długość to 5000 znaków")]
     public string Title { get; set; }
 
-    [Display(Name = "Body")]
-    [Required(ErrorMessage = "Article body is required")]
+    [Display(Name = "Treść artykułu")]
+    [Required(ErrorMessage = "Treść artykułu jest wymagana")]
     public string Body { get; set; }
 
-    [Required(ErrorMessage = "Link title is required")]
-    [MaxLength(200, ErrorMessage = "Max title length is 200 characters")]
-    [Display(Name = "Link title")]
+    [Display(Name = "Tytuł odnośnika")]
+    [Required(ErrorMessage = "Tytuł odnośnika jest wymagany")]
+    [MaxLength(1000, ErrorMessage = "Maksymalna długość to 1000 znaków")]
     public string LinkTitle { get; set; }
 
-    [Display(Name = "Position")]
-    [Required(ErrorMessage = "Position is required")]
+    [Display(Name = "Pozycja artykułu")]
+    [Required(ErrorMessage = "Pozycja artykułu jest wymagana")]
     public int Position { get; set; }
 
-    [Display(Name = "Created")]
+    [Display(Name = "Artykuł utworzony")]
     public DateTime Created { get; set; }
     public bool IsActive { get; set; }
 
-    [Display(Name = "Page")]
-    [Required(ErrorMessage = "Page is required")]
+    [Display(Name = "Strona")]
+    [Required(ErrorMessage = "Strona jest wymagana")]
     public int PageId { get; set; }
+
+    public virtual PageModel Page { get; set; }
 }

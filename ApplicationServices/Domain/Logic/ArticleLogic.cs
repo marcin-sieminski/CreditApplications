@@ -33,15 +33,11 @@ public class ArticleLogic : IArticleLogic
 
     public async Task<List<ArticleModel>> GetByPageIdSorted(int? pageId)
     {
-        var dbEntities = await _repository.GetAll();
         var articles = new List<Article>();
         if (pageId > 0)
         {
+            var dbEntities = await _repository.GetAll();
             articles.AddRange(dbEntities.Where(x => x.PageId == pageId));
-        }
-        else
-        {
-            articles.AddRange(dbEntities);
         }
         var model = _mapper.Map<List<ArticleModel>>(articles.OrderBy(x => x.Position));
         return model;
@@ -84,7 +80,7 @@ public class ArticleLogic : IArticleLogic
             dbEntity.InactivatedById = _userContext.GetCurrentUser().Id;
             dbEntity.IsActive = false;
         }
-        return await _repository.Update(dbEntity); 
+        return await _repository.Update(dbEntity);
     }
 
     public async Task<int> Delete(int id)
