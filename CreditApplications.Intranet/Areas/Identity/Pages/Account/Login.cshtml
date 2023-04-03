@@ -5,12 +5,12 @@
     ViewData["Title"] = "Logowanie";
 }
 
-<h4>@ViewData["Title"]</h4>
-<div class="row">
-    <div class="col-md-12">
+<div class="row justify-content-center">
+    <div class="col-md-5">
         <section>
             <form id="account" method="post">
-                <h5>Zaloguj się.</h5>
+                <h4>@ViewData["Title"]</h4>
+                <h5>Aby korzystać z serwisu należy się zalogować.</h5>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">

@@ -36,6 +36,30 @@ public class IntranetController : Controller
         }
 
     }
+
+    public async Task<IActionResult> Read(int? id)
+    {
+        try
+        {
+            var model = await _articleLogic.GetById(id.Value);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(new IntranetViewModel
+            {
+                Pages = await _pageLogic.GetAllSorted(),
+                ArticleModel = model
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to get article: {e}");
+            return RedirectToAction(nameof(Error));
+        }
+    }
+
     public IActionResult Error()
     {
         return View("NotFound");

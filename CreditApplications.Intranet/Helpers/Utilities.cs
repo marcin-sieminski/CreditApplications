@@ -14,7 +14,7 @@ public static class Utilities
         {
             routeId = routeData.Values["id"].ToString();
         }
-        var returnActive = controller == routeController && action == routeAction && id.ToString() == routeId;
+        var returnActive = controller == routeController && ((action == routeAction) || string.IsNullOrEmpty(action)) && id.ToString() == routeId;
         return returnActive ? "active bg-secondary text-white" : "";
     }
 
@@ -23,7 +23,7 @@ public static class Utilities
         var routeData = html.ViewContext.RouteData;
         var routeAction = (string)routeData.Values["action"];
         var routeControl = (string)routeData.Values["controller"];
-        var returnActive = controller == routeControl && action == routeAction;
+        var returnActive = controller == routeControl && ((action == routeAction) || string.IsNullOrEmpty(action));
         return returnActive ? "text-secondary" : "text-white";
     }
 }
