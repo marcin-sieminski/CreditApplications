@@ -6,7 +6,7 @@
             @foreach (var item in Model.Pages)
             {
                 <li class="nav-item">
-                    <a class="nav-link px-2 text-secondary @Html.IsActive("Intranet", "Index", @item.Id)" asp-area="" asp-controller="Intranet" asp-action="Index" asp-route-id="@item.Id">
+                    <a class="nav-link px-2 text-secondary @Html.IsActive("Intranet", "List", @item.Id)" asp-controller="Intranet" asp-action="List" asp-route-id="@item.Id">
                         @item.LinkTitle
                     </a>
                 </li>

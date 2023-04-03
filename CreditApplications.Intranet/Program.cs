@@ -43,7 +43,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Intranet}/{action=Index}/{id?}");
+    pattern: "{controller=Intranet}/{action=List}/{id?}");
 
 app.MapRazorPages();
 app.Run();

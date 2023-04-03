@@ -19,7 +19,7 @@ public class IntranetController : Controller
         _articleLogic = articleLogic;
     }
 
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> List(int? id)
     {
         try
         {
@@ -36,17 +36,16 @@ public class IntranetController : Controller
         }
 
     }
-
-    public async Task<IActionResult> Read(int? id)
+    
+    public async Task<IActionResult> Read(int? id, int? articleId)
     {
         try
         {
-            var model = await _articleLogic.GetById(id.Value);
+            var model = await _articleLogic.GetById(articleId.Value);
             if (model == null)
             {
                 return NotFound();
             }
-
             return View(new IntranetViewModel
             {
                 Pages = await _pageLogic.GetAllSorted(),
@@ -55,7 +54,7 @@ public class IntranetController : Controller
         }
         catch (Exception e)
         {
-            _logger.LogError($"Failed to get article: {e}");
+            _logger.LogError($"Failed to get intranet items: {e}");
             return RedirectToAction(nameof(Error));
         }
     }

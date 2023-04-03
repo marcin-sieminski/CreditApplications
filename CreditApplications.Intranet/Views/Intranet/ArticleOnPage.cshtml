@@ -5,7 +5,7 @@
         {
             <div class="card border-secondary m-3" style="max-width: 20rem;">
                 <div class="card-header bg-secondary">
-                    @Html.ActionLink(item.Title, "Read", "Intranet", new { id = item.Id }, new { @class = "text-decoration-none text-white" } )
+                    <a class="text-decoration-none text-white" asp-controller="Intranet" asp-action="Read" asp-route-id="@item.PageId" asp-route-articleId="@item.Id">@item.Title</a>
                 </div>
                 <div class="card-body">
                     <p class="card-text">

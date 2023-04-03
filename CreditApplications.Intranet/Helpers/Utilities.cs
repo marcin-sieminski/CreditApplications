@@ -14,7 +14,7 @@ public static class Utilities
         {
             routeId = routeData.Values["id"].ToString();
         }
-        var returnActive = controller == routeController && ((action == routeAction) || string.IsNullOrEmpty(action)) && id.ToString() == routeId;
+        var returnActive = controller == routeController && ((action == routeAction) || string.IsNullOrEmpty(action) || ((routeAction == "Read"))) && id.ToString() == routeId;
         return returnActive ? "active bg-secondary text-white" : "";
     }
 
