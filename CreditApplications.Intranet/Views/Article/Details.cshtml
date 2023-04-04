@@ -1,13 +1,13 @@
 ﻿@model IntranetViewModel
 
 @{
-    ViewData["Title"] = "Article details";
+    ViewData["Title"] = "Szczegóły artykułu";
 }
 
-<h4>Article details</h4>
+<h4>Szczegóły artykułu</h4>
 
 <hr />
-<div>
+<div class="container-fluid">
     <table class="table table-hover">
         <tbody class="table-secondary">
         <tr>
@@ -53,7 +53,7 @@
         </tbody>
     </table>
     <div class="form-group">
-        <a class="btn btn-secondary mt-1 me-1" asp-action="Edit" asp-route-id="@Model.ArticleModel.Id">Edit</a>
-        <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Back to list</a>
+        <a class="btn btn-secondary mt-1 me-1" asp-action="Edit" asp-route-id="@Model.ArticleModel.Id">Edytuj</a>
+        <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Powrót</a>
     </div>
 </div>

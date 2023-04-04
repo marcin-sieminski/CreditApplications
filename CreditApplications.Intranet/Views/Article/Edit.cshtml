@@ -6,43 +6,43 @@
 }
 
 <div>
-    <h4>Edit article</h4>
+    <h4>Edytuj artykuł</h4>
     <hr />
-    <div class="col-md-4">
+    <div class="container-fluid">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ArticleModel.Id" />
             
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.PageId" class="control-label"></label>
                 <select asp-for="ArticleModel.PageId" asp-items="Model.SelectLists.AvailablePagesSelectList" class="form-control"></select>
                 <span asp-validation-for="ArticleModel.PageId" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.Title" class="control-label"></label>
                 <input asp-for="ArticleModel.Title" class="form-control" />
                 <span asp-validation-for="ArticleModel.Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.Body" class="control-label"></label>
                 <input asp-for="ArticleModel.Body" class="form-control" />
                 <span asp-validation-for="ArticleModel.Body" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.LinkTitle" class="control-label"></label>
                 <input asp-for="ArticleModel.LinkTitle" class="form-control" />
                 <span asp-validation-for="ArticleModel.LinkTitle" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.Position" class="control-label"></label>
                 <input asp-for="ArticleModel.Position" class="form-control" />
                 <span asp-validation-for="ArticleModel.Position" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-secondary mt-1 me-1" />
-                <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Back to list</a>
+            <div class="form-group mt-3 mb-1">
+                <input type="submit" value="Zapisz" class="btn btn-secondary mt-1 me-1" />
+                <a class="btn btn-secondary mt-1 me-1" asp-action="Index">Powrót</a>
             </div>
         </form>
     </div>

@@ -24,7 +24,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>
-                            @if (item.Body.Length > 100)
+                            @if (item.Body?.Length > 100)
                             {
                                 <s class="text-decoration-none">@item.Body.Substring(0, 100)...</s>
                             }

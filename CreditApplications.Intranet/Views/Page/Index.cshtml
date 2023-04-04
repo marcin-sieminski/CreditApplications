@@ -1,40 +1,46 @@
 ﻿@model IntranetViewModel
 @{
-    ViewData["Title"] = "Pages list";
+    ViewData["Title"] = "Strony";
     Layout = "_Layout";
 }
-<h4>Pages</h4>
-<a asp-action="Create" class="btn btn-secondary" role="button">Add new page</a>
 <div class="container-fluid">
-    <div class="row">
-
+    <div class="row mt-3">
         <table class="table table-hover table-secondary">
-            <thead>
-            <tr>
+            <thead class="align-middle">
+                <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Title)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Body)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PageModel.LinkTitle)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Position)</th>
-                <th></th>
-            </tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Body)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PageModel.LinkTitle)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Position)</th>
+                    <th class="text-center fw-normal"><a asp-action="Create">Dodaj stronę</a></th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model.Pages)
-            {
-                <tr class="table-light">
-                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Body)</td>
-                    <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Position)</td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
+                @foreach (var item in Model.Pages)
+                {
+                    <tr class="table-light">
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>
+                            @if (item.Body?.Length > 100)
+                            {
+                                <s class="text-decoration-none">@item.Body.Substring(0, 100)...</s>
+                            }
+                            else
+                            {
+                                @item.Body
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
