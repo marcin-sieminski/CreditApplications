@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "Main";
 }
-<div class="">
-    <div>
-        @await Html.PartialAsync("ArticleOnPage", @Model.Articles)
-    </div>
+<div class="my-3 ms-3">
+    @Model.PageModel?.Description
+</div>
+<div>
+    @await Html.PartialAsync("ArticleOnPage", @Model.Articles)
 </div>

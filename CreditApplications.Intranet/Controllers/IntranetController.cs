@@ -1,4 +1,5 @@
 ﻿using CreditApplications.ApplicationServices.Domain.Interfaces;
+using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Intranet.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,15 @@ public class IntranetController : Controller
     {
         try
         {
+            PageModel pageModel = null;
+            if (id.HasValue)
+            {
+                pageModel = await _pageLogic.GetById(id.Value);
+            }
             return View(new IntranetViewModel
             {
                 Articles = await _articleLogic.GetByPageIdSorted(id),
+                PageModel = pageModel,
                 Pages = await _pageLogic.GetAllSorted()
             });
         }

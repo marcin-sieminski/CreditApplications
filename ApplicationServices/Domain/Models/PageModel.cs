@@ -15,7 +15,7 @@ public class PageModel
 
     [Display(Name = "Opis strony")]
     [Column(TypeName = "nvarchar(MAX)")]
-    public string Body { get; set; }
+    public string Description { get; set; }
 
     [Display(Name = "Tytuł odnośnika do strony")]
     [Required(ErrorMessage = "Tytuł odnośnika do strony jest wymagany")]
