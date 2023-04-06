@@ -11,7 +11,7 @@
             <button class="btn btn-outline-light me-2 text-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 @UserManager.GetUserName(User).Split('@')[0].Substring(0, 1).ToUpper()@UserManager.GetUserName(User).Split('@')[0].Substring(1).ToLower()
             </button>
-            <ul class="dropdown-menu text-small">
+            <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
                     <a class="dropdown-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Ustawienia użytkownika</a>
                 </li>
