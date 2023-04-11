@@ -3,6 +3,7 @@
 #nullable disable
 
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +47,7 @@ namespace CreditApplications.Intranet.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [DisplayName("Hasło")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }
