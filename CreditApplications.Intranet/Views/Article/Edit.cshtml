@@ -26,7 +26,7 @@
             </div>
             <div class="form-group mt-3">
                 <label asp-for="ArticleModel.Body" class="control-label"></label>
-                <input asp-for="ArticleModel.Body" class="form-control" />
+                <textarea class="form-control" style="height: 300px" aria-label="Textarea" asp-for="ArticleModel.Body"></textarea>
                 <span asp-validation-for="ArticleModel.Body" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">

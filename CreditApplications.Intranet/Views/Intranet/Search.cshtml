@@ -7,5 +7,12 @@
     Wyniki wyszukiwania:
 </div>
 <div>
-    @await Html.PartialAsync("ArticleOnPage", @Model.Articles)
+    @if (Model.Articles.Any())
+    {
+        @await Html.PartialAsync("ArticleOnPage", @Model.Articles)
+    }
+    else
+    {
+        <p class="ms-3 text-warning">Nie znaleziono żadnych artykułów spełniających kryteria wyszukiwania.</p>
+    }
 </div>

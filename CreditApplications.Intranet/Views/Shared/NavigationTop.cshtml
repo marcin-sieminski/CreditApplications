@@ -23,8 +23,9 @@
                 </li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" asp-controller="Intranet" asp-action="Search" method="get">
-                <input type="search" name="searchText" class="form-control form-control-dark text-bg-dark" placeholder="Wyszukaj..." aria-label="Wyszukaj">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex" role="search" asp-controller="Intranet" asp-action="Search" method="get">
+                <input type="search" name="searchText" class="form-control form-control-dark text-bg-dark me-1" placeholder="Wyszukaj..." aria-label="Wyszukaj">
+                <button class="btn btn-outline-danger" type="submit">Szukaj</button>
             </form>
 
             <div class="text-end">

@@ -15,7 +15,7 @@ public static class Utilities
             routeId = routeData.Values["id"].ToString();
         }
         var returnActive = controller == routeController && ((action == routeAction) || string.IsNullOrEmpty(action) || ((routeAction == "Read"))) && id.ToString() == routeId;
-        return returnActive ? "active bg-secondary text-white" : "";
+        return returnActive ? "active bg-dark text-warning" : "";
     }
 
     public static string IsActiveTextSecondary(this IHtmlHelper html, string controller, string action)
@@ -24,6 +24,6 @@ public static class Utilities
         var routeAction = (string)routeData.Values["action"];
         var routeControl = (string)routeData.Values["controller"];
         var returnActive = controller == routeControl && ((action == routeAction) || string.IsNullOrEmpty(action));
-        return returnActive ? "text-secondary" : "text-white";
+        return returnActive ? "text-warning" : "text-white";
     }
 }

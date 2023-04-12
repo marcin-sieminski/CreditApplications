@@ -34,8 +34,16 @@ public class ArticleLogic : IArticleLogic
     public async Task<List<ArticleModel>> Search(string searchText)
     {
         var dbEntities = await _repository.GetAll();
-        var filteredEntities = dbEntities.Where(x =>
-            x.Body.Contains(searchText, StringComparison.InvariantCultureIgnoreCase) || x.Title.Contains(searchText, StringComparison.InvariantCultureIgnoreCase) || x.LinkTitle.Contains(searchText, StringComparison.InvariantCultureIgnoreCase));
+        var filteredEntities = new List<Article>();
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            filteredEntities.AddRange(dbEntities
+                .Where(x => x.Body.Contains(searchText, StringComparison.InvariantCultureIgnoreCase) || x.Title.Contains(searchText, StringComparison.InvariantCultureIgnoreCase) || x.LinkTitle.Contains(searchText, StringComparison.InvariantCultureIgnoreCase)));
+        }
+        else
+        {
+            filteredEntities.AddRange(dbEntities);
+        }
         var model = _mapper.Map<List<ArticleModel>>(filteredEntities);
         return model;
     }
