@@ -1,26 +1,33 @@
-﻿@model IntranetViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IntranetViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <header class="p-3 text-bg-dark fixed-top">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a class="navbar-brand me-4" asp-area="" asp-controller="Intranet" asp-action="List" asp-route-id=""><i class="fas fa-university"></i> Credit Applications <i class="fas fa-university"></i></a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                
-                <li> 
+
+                <li>
                     <a class="nav-link px-2 @Html.IsActiveTextSecondary("Intranet", "")" asp-controller="Intranet" asp-action="List" asp-route-id="">
                         Przeglądanie intranetu
                     </a>
                 </li>
-                <li> 
-                    <a class="nav-link px-2 @Html.IsActiveTextSecondary("Page", "")" asp-controller="Page" asp-action="Index">
-                        Zarządzanie stronami
-                    </a>
-                </li>
-                <li> 
-                    <a class="nav-link px-2 @Html.IsActiveTextSecondary("Article", "")" asp-controller="Article" asp-action="Index">
-                        Zarządzanie artykułami
-                    </a>
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="nav-link px-2 @Html.IsActiveTextSecondary("Page", "")" asp-controller="Page" asp-action="Index">
+                            Zarządzanie stronami
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link px-2 @Html.IsActiveTextSecondary("Article", "")" asp-controller="Article" asp-action="Index">
+                            Zarządzanie artykułami
+                        </a>
+                    </li>
+                }
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex" role="search" asp-controller="Intranet" asp-action="Search" method="get">

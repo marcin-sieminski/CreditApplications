@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApplications.Intranet.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin, User")]
 public class IntranetController : Controller
 {
     private readonly ILogger<IntranetController> _logger;
@@ -28,6 +28,10 @@ public class IntranetController : Controller
             if (id.HasValue)
             {
                 pageModel = await _pageLogic.GetById(id.Value);
+                if (pageModel is null)
+                {
+                    return RedirectToAction(nameof(Error));
+                }
             }
             return View(new IntranetViewModel
             {
@@ -38,7 +42,7 @@ public class IntranetController : Controller
         }
         catch (Exception e)
         {
-            _logger.LogError($"Failed to get intranet content count: {e}");
+            _logger.LogError($"Failed to get intranet page: {e}");
             return RedirectToAction(nameof(Error));
         }
 
@@ -51,7 +55,7 @@ public class IntranetController : Controller
             var model = await _articleLogic.GetById(articleId.Value);
             if (model == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error));
             }
             return View(new IntranetViewModel
             {
@@ -83,8 +87,11 @@ public class IntranetController : Controller
         }
     }
 
-    public IActionResult Error()
+    public async Task<IActionResult> Error()
     {
-        return View("NotFound");
+        return View("NotFound", new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted()
+        });
     }
 }

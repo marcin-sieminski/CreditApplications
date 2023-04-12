@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApplications.Intranet.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class ArticleController : Controller
 {
     private readonly ILogger<ArticleController> _logger;
@@ -96,7 +96,7 @@ public class ArticleController : Controller
             _logger.LogInformation("No article found for {id}.", id.Value);
             return RedirectToAction(nameof(Error));
         }
-        
+
         return View(new IntranetViewModel
         {
             Pages = await _pageLogic.GetAllSorted(),
@@ -155,8 +155,12 @@ public class ArticleController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Error()
+    public async Task<IActionResult> Error()
     {
-        return View("NotFound");
+        return View("NotFound", new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted()
+        });
     }
+
 }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CreditApplications.ApplicationServices.Domain.Interfaces;
-using CreditApplications.ApplicationServices.Domain.Models;
 using CreditApplications.Intranet.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CreditApplications.Intranet.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class PageController : Controller
 {
     private readonly ILogger<PageController> _logger;
@@ -148,8 +147,12 @@ public class PageController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Error()
+    public async Task<IActionResult> Error()
     {
-        return View("NotFound");
+        return View("NotFound", new IntranetViewModel
+        {
+            Pages = await _pageLogic.GetAllSorted()
+        });
     }
+
 }
