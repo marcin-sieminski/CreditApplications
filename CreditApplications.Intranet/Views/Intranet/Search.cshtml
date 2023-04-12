@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model CreditApplications.Intranet.ViewModels.IntranetViewModel
+@{
+    ViewData["Title"] = "Wyszukiwanie";
+}
+<div class="my-3 ms-3">
+    Wyniki wyszukiwania:
+</div>
+<div>
+    @await Html.PartialAsync("ArticleOnPage", @Model.Articles)
+</div>

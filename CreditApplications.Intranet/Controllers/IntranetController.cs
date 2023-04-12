@@ -9,11 +9,11 @@ namespace CreditApplications.Intranet.Controllers;
 [Authorize]
 public class IntranetController : Controller
 {
-    private readonly ILogger<ArticleController> _logger;
+    private readonly ILogger<IntranetController> _logger;
     private readonly IPageLogic _pageLogic;
     private readonly IArticleLogic _articleLogic;
 
-    public IntranetController(ILogger<ArticleController> logger, IPageLogic pageLogic, IArticleLogic articleLogic)
+    public IntranetController(ILogger<IntranetController> logger, IPageLogic pageLogic, IArticleLogic articleLogic)
     {
         _logger = logger;
         _pageLogic = pageLogic;
@@ -43,7 +43,7 @@ public class IntranetController : Controller
         }
 
     }
-    
+
     public async Task<IActionResult> Read(int? id, int? articleId)
     {
         try
@@ -62,6 +62,23 @@ public class IntranetController : Controller
         catch (Exception e)
         {
             _logger.LogError($"Failed to get intranet items: {e}");
+            return RedirectToAction(nameof(Error));
+        }
+    }
+
+    public async Task<IActionResult> Search(string searchText)
+    {
+        try
+        {
+            return View(new IntranetViewModel
+            {
+                Articles = await _articleLogic.Search(searchText),
+                Pages = await _pageLogic.GetAllSorted()
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Failed to search intranet: {e}");
             return RedirectToAction(nameof(Error));
         }
     }

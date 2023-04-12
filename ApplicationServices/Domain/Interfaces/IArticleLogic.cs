@@ -5,6 +5,7 @@ namespace CreditApplications.ApplicationServices.Domain.Interfaces;
 public interface IArticleLogic
 {
     Task<List<ArticleModel>> GetAll();
+    Task<List<ArticleModel>> Search(string searchText);
     Task<List<ArticleModel>> GetByPageIdSorted(int? pageId);
     Task<ArticleModel> GetById(int id);
     Task<DataAccess.Entities.Article> Create(ArticleModel model);
