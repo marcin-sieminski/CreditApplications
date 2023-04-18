@@ -15,7 +15,7 @@
                     @Html.DisplayNameFor(model => model.ArticleModel.PageId)
             </th>
             <td>
-                    @Html.DisplayFor(model => model.ArticleModel.PageId)
+                    @Html.DisplayFor(model => model.ArticleModel.Page.LinkTitle)
             </td>
         </tr>
         <tr>
@@ -28,18 +28,18 @@
         </tr>
         <tr>
             <th scope="row">
-                    @Html.DisplayNameFor(model => model.ArticleModel.Body)
-            </th>
-            <td>
-                    @Html.DisplayFor(model => model.ArticleModel.Body)
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
                     @Html.DisplayNameFor(model => model.ArticleModel.LinkTitle)
             </th>
             <td>
                     @Html.DisplayFor(model => model.ArticleModel.LinkTitle)
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                    @Html.DisplayNameFor(model => model.ArticleModel.Body)
+            </th>
+            <td>
+                    @Html.DisplayFor(model => model.ArticleModel.Body)
             </td>
         </tr>
         <tr>

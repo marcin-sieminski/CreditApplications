@@ -10,8 +10,8 @@
                 <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Id)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Title)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Description)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.LinkTitle)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Description)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.PageModel.Position)</th>
                     <th class="text-center fw-normal"><a asp-action="Create">Dodaj stronę</a></th>
                 </tr>
@@ -22,6 +22,7 @@
                     <tr class="table-light">
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
                         <td>
                             @if (item.Description?.Length > 100)
                             {
@@ -32,7 +33,6 @@
                                 @item.Description
                             }
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Position)</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |

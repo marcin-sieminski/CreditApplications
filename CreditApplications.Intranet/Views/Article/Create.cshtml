@@ -25,17 +25,17 @@
             </div>
 
             <div class="form-group mt-3">
-                <label asp-for="ArticleModel.Body" class="control-label"></label>
-                <textarea class="form-control" style="height: 300px" aria-label="Textarea" asp-for="ArticleModel.Body"></textarea>
-                <span asp-validation-for="ArticleModel.Body" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group mt-3">
                 <label asp-for="ArticleModel.LinkTitle" class="control-label"></label>
                 <input asp-for="ArticleModel.LinkTitle" class="form-control" />
                 <span asp-validation-for="ArticleModel.LinkTitle" class="text-danger"></span>
             </div>
 
+            <div class="form-group mt-3">
+                <label asp-for="ArticleModel.Body" class="control-label"></label>
+                <textarea class="form-control" style="height: 300px" aria-label="Textarea" asp-for="ArticleModel.Body"></textarea>
+                <span asp-validation-for="ArticleModel.Body" class="text-danger"></span>
+            </div>
+            
             <div class="form-group mt-3">
                 <label asp-for="ArticleModel.Position" class="control-label"></label>
                 <input asp-for="ArticleModel.Position" class="form-control" />

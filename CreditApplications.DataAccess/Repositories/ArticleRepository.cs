@@ -24,6 +24,7 @@ public class ArticleRepository : IRepository<Article>
     public async Task<Article> GetById(int id)
     {
         return await _entities
+            .Include(x => x.Page)
             .Where(x => x.IsActive)
             .SingleOrDefaultAsync(e => e.Id == id);
     }

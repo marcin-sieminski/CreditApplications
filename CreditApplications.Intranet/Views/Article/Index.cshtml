@@ -9,10 +9,10 @@
             <thead class="align-middle">
                 <tr>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Id)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Title)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Body)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.LinkTitle)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.PageId)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Title)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.LinkTitle)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Body)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.ArticleModel.Position)</th>
                     <th class="text-center fw-normal"><a asp-action="Create">Dodaj artykuł</a></th>
                 </tr>
@@ -22,7 +22,9 @@
                 {
                     <tr class="table-light">
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Page.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
                         <td>
                             @if (item.Body?.Length > 100)
                             {
@@ -33,8 +35,6 @@
                                 @item.Body
                             }
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.LinkTitle)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Page.LinkTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Position)</td>
                         <td class="text-center fw-normal">
                             <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
